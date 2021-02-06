@@ -3,6 +3,11 @@
 Submissions for posts to the
 [PowerShell Community blog](https://devblogs.microsoft.com/powershell-community).
 
+Participation in this blog is governed by the
+[Microsoft Community Code of Conduct](https://answers.microsoft.com/page/codeofconduct).
+
+See the [Wiki pages](https://github.com/PowerShell/Community-Blog/wiki) for detailed instructions.
+
 ## How to write a new blog post
 
 - Create a new `.md` file in **Posts** directory, follow existing posts for naming convention
@@ -41,8 +46,6 @@ Submissions for posts to the
     C:>_ # this would be highlighted with royal blue background and white foreground.
     ```
     ~~~
-
-  - See the Wiki pages for detailed formatting instructions.
 
 ## Publishing draft to blog
 
