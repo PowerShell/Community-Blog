@@ -1,9 +1,9 @@
---
+---
 post_title: Changing Drive Letters and Labels via PowerShell
 username: DoctorDNS
 Catagories: PowerShell, WMI
 Summary: SHows how to change a drive's letter and label using PowerShell and WMI
---
+---
 
 # Change Drive Letters and Labels via PowerShell
 
