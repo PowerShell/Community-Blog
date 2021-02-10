@@ -25,19 +25,19 @@ and create this new one.
 
 ## A blog for the community
 
-Like the Scripting blog, this new blog is focused on teaching you about PowerShell, answering the
-questions you have, and providing interesting and useful examples. We will continue to use the
+Like the **Scripting** blog, this new blog is focused on teaching you about PowerShell, answering
+your questions, and providing interesting and useful examples. We will continue to use the
 [scripter@microsoft.com](mailto:scripter@microsoft.com?subject=Community%20Blog%20question") mailbox
 to accept your questions. But there are new ways to engage with this blog.
 
 ## A blog by the community
 
-On the Scripting blog, it was possible for members of the community to submit blog posts to our
+On the **Scripting** blog, it was possible for members of the community to submit blog posts to our
 email address. The Scripting Guys would review the offered content and publish the post for you.
 
 With the new blog we have a new way to contribute. All posts to this blog are open-source markdown
-files store in GitHub. You will be able submit your own posts as pull requests. And you can use the
-Issues system to ask question, point out problems, or suggest ideas for new posts.
+files store in GitHub. You can share your own knowledge by submitting pull requests. And you can use
+the Issues system to ask question, point out problems, or suggest ideas for new posts.
 
 ## Getting started
 
@@ -47,7 +47,7 @@ would like to see updated, please open an issue in the
 [Community-Blog](https://github.com/PowerShell/Community-Blog/issues) repository.
 
 The content in the Scripting blog is not going away. But rather than updating the posts there, where
-they will be lost among the 5400+ existing posts, they will be published here as fresh content that
-is easy to find.
+they will be lost among the 5400+ existing posts, the updated post will be published here as fresh
+content that is easy to find.
 
 So now it's your turn. Check out this [page]() to learn how to get started.
