@@ -2,13 +2,13 @@
 post_title: Changing Drive Letters and Labels via PowerShell
 username: DoctorDNS
 Catagories: PowerShell, WMI
-Summary: SHows how to change a drive's letter and label using PowerShell and WMI
+Summary: Shows how to change a drive's letter and label using PowerShell and WMI
 ---
 
 # Change Drive Letters and Labels via PowerShell
 
 
-**Q:** I want to change the drive letter and the drive lavel for a new USB drive. 
+**Q:** I want to change the drive letter and the drive label for a new USB drive. 
 Is there a way with PowerShell>
 
 **A:**  Of course. You can use WMI and the CIM cmdlets.
