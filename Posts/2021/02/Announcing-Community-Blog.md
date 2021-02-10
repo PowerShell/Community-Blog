@@ -50,4 +50,6 @@ The content in the Scripting blog is not going away. But rather than updating th
 they will be lost among the 5400+ existing posts, the updated post will be published here as fresh
 content that is easy to find.
 
-So now it's your turn. Check out this [page]() to learn how to get started.
+So now it's your turn. Check out this
+[page](https://devblogs.microsoft.com/powershell-community/how-to-contribute-to-the-blog/) to learn
+how to get started.
