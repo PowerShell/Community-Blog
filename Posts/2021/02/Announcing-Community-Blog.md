@@ -27,7 +27,7 @@ and create this new one.
 
 Like the **Scripting** blog, this new blog is focused on teaching you about PowerShell, answering
 your questions, and providing interesting and useful examples. We will continue to use the
-[scripter@microsoft.com](mailto:scripter@microsoft.com?subject=Community%20Blog%20question") mailbox
+[scripter@microsoft.com](mailto:scripter@microsoft.com?subject=Community%20Blog%20question) mailbox
 to accept your questions. But there are new ways to engage with this blog.
 
 ## A blog by the community
