@@ -46,7 +46,6 @@ You use the cmdlet `Get-CimClass` to discover the names (and type) of the proper
 You can discover the properties of the **Win32_Volume** class like this:
 
 ```powershell
-
 Get-CimClass -ClassName Win32_Volume |
   Select-Object -Expand CimClassProperties | 
     Sort-Object -Property Name |
