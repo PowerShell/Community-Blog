@@ -1,5 +1,9 @@
 # Community-Blog
 
+> NOTE
+>
+> This is a work in progress. We will provide more information in an announcement coming soon.
+
 Submissions for posts to the
 [PowerShell Community blog](https://devblogs.microsoft.com/powershell-community).
 
