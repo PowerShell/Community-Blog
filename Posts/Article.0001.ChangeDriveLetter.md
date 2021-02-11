@@ -7,7 +7,6 @@ Summary: Shows how to change a drive's letter and label using PowerShell and WMI
 
 # Change Drive Letters and Labels via PowerShell
 
-
 **Q:** I want to change the drive letter and the drive label for a new USB drive. 
 Is there a way with PowerShell>
 
@@ -43,11 +42,10 @@ The newer cmdlets do the same job as the WMI cmdlets but have different cmdlets,
 
 ## Discovering WMI Class Properties
 
-You use the cmdlet ``Get-CimClass`` to discover the names (and type) of the properties of any given class.
+You use the cmdlet `Get-CimClass` to discover the names (and type) of the properties of any given class.
 You can discover the properties of the **Win32_Volume** class like this:
 
 ```powershell
-
 Get-CimClass -ClassName Win32_Volume |
   Select-Object -Expand CimClassProperties | 
     Sort-Object -Property Name |
@@ -213,15 +211,15 @@ M           GD Master    NTFS           Fixed     Healthy      OK               
 ```
 
 > **_NOTE:_**  
-One issue you may encounter when you change a drive letter then revert it as shown here.
-It appears that Windows holds on to the old drive latter and does not allow you revert it back immediately.
-Thus you may get a "Set-CimInstance: not available" error message when trying to revert the drive letter.
-To get around this, you have to reboot Windows - it appears just logging off and back on is not adequate.
+> One issue you may encounter when you change a drive letter then revert it as shown here.
+> It appears that Windows holds on to the old drive letter and does not allow you revert it back immediately.
+> Thus you may get a "Set-CimInstance: not available" error message when trying to revert the drive letter.
+> To get around this, you have to reboot Windows - it appears just logging off and back on is not adequate.
 
 ## Summary
 
 Changing drive letters using PowerShell 7 is simple and straightforward.
-As you can see, using the ``Set-CimInstance`` PowerShell cmdlet to modify writable WMI properties is easy.
+As you can see, using the `Set-CimInstance` PowerShell cmdlet to modify writable WMI properties is easy.
 I feel it's more intuitive than making multiple property value assignments (once you you master the hash table). 
 The cool thing is that multiple properties can be modified at one time instead of making multiple value assignments.
 
