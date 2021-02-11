@@ -219,7 +219,7 @@ M           GD Master    NTFS           Fixed     Healthy      OK               
 ## Summary
 
 Changing drive letters using PowerShell 7 is simple and straightforward.
-As you can see, using the ``Set-CimInstance`` PowerShell cmdlet to modify writable WMI properties is easy.
+As you can see, using the `Set-CimInstance` PowerShell cmdlet to modify writable WMI properties is easy.
 I feel it's more intuitive than making multiple property value assignments (once you you master the hash table). 
 The cool thing is that multiple properties can be modified at one time instead of making multiple value assignments.
 
