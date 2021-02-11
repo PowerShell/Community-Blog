@@ -42,7 +42,7 @@ The newer cmdlets do the same job as the WMI cmdlets but have different cmdlets,
 
 ## Discovering WMI Class Properties
 
-You use the cmdlet ``Get-CimClass`` to discover the names (and type) of the properties of any given class.
+You use the cmdlet `Get-CimClass` to discover the names (and type) of the properties of any given class.
 You can discover the properties of the **Win32_Volume** class like this:
 
 ```powershell
