@@ -211,10 +211,10 @@ M           GD Master    NTFS           Fixed     Healthy      OK               
 ```
 
 > **_NOTE:_**  
-One issue you may encounter when you change a drive letter then revert it as shown here.
-It appears that Windows holds on to the old drive latter and does not allow you revert it back immediately.
-Thus you may get a "Set-CimInstance: not available" error message when trying to revert the drive letter.
-To get around this, you have to reboot Windows - it appears just logging off and back on is not adequate.
+> One issue you may encounter when you change a drive letter then revert it as shown here.
+> It appears that Windows holds on to the old drive letter and does not allow you revert it back immediately.
+> Thus you may get a "Set-CimInstance: not available" error message when trying to revert the drive letter.
+> To get around this, you have to reboot Windows - it appears just logging off and back on is not adequate.
 
 ## Summary
 
