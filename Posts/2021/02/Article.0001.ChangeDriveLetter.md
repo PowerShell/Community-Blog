@@ -7,7 +7,6 @@ Summary: Shows how to change a drive's letter and label using PowerShell and WMI
 
 # Changing Drive Letters and Labels via PowerShell
 
-
 **Q:** I want to change the drive letter and the drive label for a new USB drive. 
 Is there a way with PowerShell?
 
@@ -26,11 +25,11 @@ These classes describe the hardware and software in your computer.
 This database is organized in to namespaces each which contains classes and, optionally, additional namespaces.
 You can use the CIM cmdlets to both retrieve and update this information. 
 
-For example, you can discover the drive letter and drive label for a drive from the ``Win32_Volume`` class.
+For example, you can discover the drive letter and drive label for a drive from the **Win32_Volume** class.
 This class in in the root\CimV2 namespace.
 
 Many WMI classes also contain methods that you can use to act on the WMI object.
-You can use the ``Format()`` method of the **Win32_Volume** class to format a Windows volume.
+You can use the `Format()` method of the **Win32_Volume** class to format a Windows volume.
 
 To obtain the values of the properties of a WMI class, or to invoke a class method, you can use the WMI cmdlets, which shipped with Windows PowerShell V1.
 However, these cmdlets no longer ship with PowerShell 7.
@@ -47,7 +46,6 @@ You use the cmdlet `Get-CimClass` to discover the names (and type) of the proper
 You can discover the properties of the **Win32_Volume** class like this:
 
 ```powershell
-
 Get-CimClass -ClassName Win32_Volume |
   Select-Object -ExpandProperty CimClassProperties |
     Sort-Object -Property Name |
@@ -105,9 +103,9 @@ SystemName                        String {CIM_Key, Propagated, read}
 SystemVolume                     Boolean {read}
 ```
 
-In this list, you see each property of the Win32_Volume WMI class, the data type of the property and qualifiers.
+In this list, you see each property of the **Win32_Volume** WMI class, the data type of the property and qualifiers.
 Qualifiers tell you more about the property - in particular whether a given property is read-only or read-write.
-The PageFilePresent property tells whether a given volume contains a WIndows paging file. 
+The **PageFilePresent** property tells whether a given volume contains a Windows paging file. 
 This property can not be changed using the CIM cmdlets.
 The DriveLetter and Label properties, on the other hand, are ones you can update. 
 Let's look at how you can change those properties.
@@ -115,7 +113,7 @@ Let's look at how you can change those properties.
 ## Getting WMI properties
 
 Suppose you want to change the volume label of a disk drive.
-In my host, the **M:\** drive contains a collection of digitised music and my collection of thousands of Grateful Dead live concerts.
+In my host, the `M:\` drive contains a collection of digitised music and my collection of thousands of Grateful Dead live concerts.
 I have been collecting for a long time and have a disk deadicated [SIC] to the task.
 But sometimes, when I plug in my USB backup drives to perform a backup, Windows changes the drive letter for me.
 To ensure my backup scripts work, I need to change it back so my backup scripts work properly.
@@ -140,7 +138,7 @@ COOKHAM24  M:          Master GD
 ## Changing Drive Label
 
 You saw above that both the drive label and the drive letter are writable properties. 
-To change the label for this disk volume, you assign a new value to the label property of ``$Drive``.
+To change the label for this disk volume, you assign a new value to the label property of `$Drive`.
 Changing the property value updates the in-memory class instance which is not a permanent change.
 In order to persist the change, you need to use the `Set-CimInstance` CMDLET. 
 Here is how you can change the drive label, and then confirm the change:
@@ -150,7 +148,6 @@ $Drive = Get-CimInstance -ClassName Win32_Volume -Filter "DriveLetter = 'M:'"
 $Drive | Set-CimInstance -Property @{Label='Grateful Dead'}
 Get-CimInstance -ClassName Win32_Volume -Filter "DriveLetter = 'M:'" |
   Select-Object -Property SystemName, Label, DriveLetter
-
 ```
 
 The output form this command, which shows the updated system label, looks like this
@@ -195,7 +192,7 @@ X           Grateful Dead NTFS           Fixed     Healthy      OK              
 Changing the drive letter can take a while - so be patient.
 
 And as a final point - you can combine the two property updates in a single call to `Set-CimInstance`. 
-To revert this drive to the old drive letter (M:\) and it's Label (GD Master) and confirm the change, you can do it like this:
+To revert this drive to the old drive letter (`M:\`) and it's Label (**GD Master**) and confirm the change, you can do it like this:
 
 ```powershell
 $Drive = Get-CimInstance -ClassName Win32_Volume -Filter "DriveLetter = 'X:'"
@@ -214,7 +211,7 @@ M           GD Master    NTFS           Fixed     Healthy      OK               
 
 > **_NOTE:_**  
 One issue you may encounter when you change a drive letter then revert it as shown here.
-It appears that Windows holds on to the old drive latter and does not allow you revert it back immediately.
+It appears that Windows holds on to the old drive letter and does not allow you revert it back immediately.
 Thus you may get a "Set-CimInstance: not available" error message when trying to revert the drive letter.
 To get around this, you have to reboot Windows - it appears just logging off and back on is not adequate.
 
