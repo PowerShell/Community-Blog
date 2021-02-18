@@ -14,7 +14,7 @@ is a blog by the community and for the community. And we have made it easier tha
 contribute to the new blog.
 
 It all started with a generous [offer](https://twitter.com/doctordns/status/1343618958407168000)
-from a member of he community, Thomas Lee ([@doctordns](https://twitter.com/doctordns)).
+from a member of the community, Thomas Lee ([@doctordns](https://twitter.com/doctordns)).
 
 ![doctordns-tweet](./media/Announcing-Community-Blog/doctordns-tweet.png)
 
