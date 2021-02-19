@@ -2,9 +2,8 @@
 name: New Post Idea 🚀
 about: Suggest a topic for a new blog post
 title: Post idea
-labels: idea
+labels: post-idea
 assignees: ''
-
 ---
 
 # Summary of the new document or enhancement

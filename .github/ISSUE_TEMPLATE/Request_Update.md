@@ -2,7 +2,7 @@
 name: Request update to old post from The Scripting Blog 🆕
 about: Update an outdated post from the old blog
 title: Update request
-labels: post-idea
+labels: post-update
 assignees: ''
 ---
 <!--
