@@ -2,7 +2,7 @@
 name: Post Issue 📚
 about: Problems with an existing post
 title: Post Issue
-labels: question
+labels: post-issue
 assignees: ''
 ---
 <!--
