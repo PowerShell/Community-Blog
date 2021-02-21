@@ -16,7 +16,7 @@ PowerShell does have cmdlets (`Set-Partition` and `Set-Volume`) to change the dr
 But it is also good to know how to do it via WMI and the CIM cmdlets to change both the drive letter and drive label.
 And under the covers, when you use `Set-Partition`, you are actually using WMI.
 In Windows PowerShell and PowerShell 7, you can use **CDXML** files to create cmdlets from WMI classes. 
-Both the Windows Storage and Windows Networking teams make heavy use of WMI and expose cmdlets via **CMXML** files
+Both the Windows Storage and Windows Networking teams make heavy use of WMI and expose cmdlets via **CDXML** files
 The `*-Partition` cmdlets are based on WMI and are implemented via **C:\Windows\System32\WindowsPowerShell\v1.0\Modules\Storage\partition.cdxml**.
 The `*-Volume` commands, likewise, are based on WMI via **C:\Windows\System32\WindowsPowerShell\v1.0\Modules\Storage\Volume.cdxml**.
 
