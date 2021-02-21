@@ -12,13 +12,7 @@ Is there a way with PowerShell?
 
 **A:**  Of course. One way is to use WMI and the CIM cmdlets.
 
-PowerShell does have cmdlets (`Set-Partition` and `Set-Volume`) to change the drive letter and the caption directly. 
-But it is also good to know how to do it via WMI and the CIM cmdlets to change both the drive letter and drive label.
-And under the covers, when you use `Set-Partition`, you are actually using WMI.
-In Windows PowerShell and PowerShell 7, you can use **CDXML** files to create cmdlets from WMI classes. 
-Both the Windows Storage and Windows Networking teams make heavy use of WMI and expose cmdlets via **CDXML** files
-The `*-Partition` cmdlets are based on WMI and are implemented via **C:\Windows\System32\WindowsPowerShell\v1.0\Modules\Storage\partition.cdxml**.
-The `*-Volume` commands, likewise, are based on WMI via **C:\Windows\System32\WindowsPowerShell\v1.0\Modules\Storage\Volume.cdxml**.
+The Windows management tools have cmdlets (`Set-Partition` and `Set-Volume`) to change the drive letter and the caption directly. But it is also good to know how to do it via WMI and the CIM cmdlets to change both the drive letter and drive label. And under the covers, when you use `Set-Partition`, you are actually using WMI. Both the Windows Storage and Windows Networking teams make heavy use of WMI and expose cmdlets via **CDXML** modules. The `*-Partition` cmdlets are implemented by the **CDXML** Storage module.
 
 ## WMI Classes, Class properties and Class Methods
 
