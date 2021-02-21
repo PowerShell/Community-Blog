@@ -2,7 +2,7 @@
 
 **Q:** How can I get yesterday's date?
 
-**A:** You can use a combination of the `Get-Date` cddlet and .NET Time/Date methods. 
+**A:** You can use a combination of the `Get-Date` cmdlet and .NET Time/Date methods.
 
 First, let's look at dates in PowerShell and .NET
 Then we can look at how to calculate yesterday and use that in your scripts.
@@ -11,7 +11,7 @@ Then we can look at how to calculate yesterday and use that in your scripts.
 
 Let's start by looking at how you can deal with dates and times.
 As you probably know, PowerShell contains the `Get-Date` cmdlet.
-This cmdlet returns a .NET **System.DateTime** object containing a datetime object.
+This cmdlet returns a .NET **System.DateTime** object containing a **System.DateTime** object.
 
 Using the `Get-Date` cmdlet, you can get any date and time, and either display it or store it in a variable. 
 To get today's date. you could do this:
@@ -19,8 +19,9 @@ To get today's date. you could do this:
 ```powershell
 # Get the current date
 Get-Date
-# Store the date in a variable
+# Store the date in a variable then view it
 $Now = Get-Date
+$Now
 ```
 
 The output looks like this:
@@ -28,21 +29,22 @@ The output looks like this:
 ```powershell-console
 PS C:\> # Get the current date
 PS C:\> Get-Date
-
 08 January 2021 11:24:46
+
 # Store the date in a variable
 $Now = Get-Date
+$Now
+08 January 2021 11:24:47
 ```
 
 As mentioned, the `Get-Date` cmdlet returns an object whose type is **System.DateTime**.
 This .NET structure provides a rich set of properties and methods to help you manipulate the date/time object.
-See [System.DateTime doccumentation](https://docs.microsoft.com/dotnet/api/system.datetime) for more details on this structure.
-A date and time structure contains both a date and a time.
-This means you can create an object with just a date or just a time, or both, which gives you huge flexibility in handling dates and time.
+See [System.DateTime documentation](https://docs.microsoft.com/dotnet/api/system.datetime) for more details on this structure.
+A date and time object contains both a date and a time.
+This means you can create an object with just a date or just a time, or both, which gives you huge flexibility in handling dates and times.
 
 If you run `Get-Date` and specify no parameters, the cmdlet returns the current date and time.
-To alter this behavior, there are several parameters to this cmdlet.
-These parameters allow you to create an object for a particular date, like this:
+THere are several parameters you can specify that allow you to create an object for a particular date, like this:
 
 ```powershell
 # Using the -Date Parameter and a date string
@@ -60,6 +62,7 @@ PS C:\> Get-Date -Date '1 August 1942'
 PS C:\> > Get-Date -Month 8  -Day 1 -Year 1942 -Hour 0 -Minute 0 -Second 0
 01 August 1942 00:00:00
 ```
+
 You can see the other features of `Get-Date` to help get the date in the exact format you need, see the [`Get-Date` help information](https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/get-date?view=powershell-7.1).
 
 ## Obtaining Yesterday's Date
@@ -67,10 +70,10 @@ You can see the other features of `Get-Date` to help get the date in the exact f
 You can use `Get-Date` to return a specific date/time.
 So how do you get yesterday's date - or the date a date of yesterday, or last month or last year?
 The trick here is to use the object returned from `Get-Date`.
-The object has a type of `SYstem.DateTime1 which contains a number of methods allowing you to add increments of time - a month, a daym etc to the object.
+The object has a type of `SYstem.DateTime1 which contains a number of methods allowing you to add increments of time - a month, a day, etc to the object.
 
-To do Get-yesterday's date, you  create a date and time object for today (using `Get-Date` with no parameters).
-Then you use the ``AddDays`` method to add some number of days where the number is negative, like this:
+To get yesterday's date (or tomoorrow's) you  create a date and time object for today using `Get-Date` with no parameters.
+Then you use the ``AddDays`` method to add/subtract some number of days, like this:
 
 ```powershell
 # Get today's sate
@@ -102,6 +105,7 @@ PS C:\> $Yesterday
 PS C:> # Get tomorrow's date
 PS C:> $Tomorrow = (Get-Date).AddDays(1)
 PS C:> $Tomorrow
+21 February 2021 12:13:54
 ```
 
 ## Using Yesterday's Date
@@ -158,7 +162,7 @@ This manipulation is needed because `Get-Date` returns a string that contains th
 You use the `-Replace` operator to replace the "/" character with a "-".
 Additionally, after performing the replacement, you end up with an (unneeded) time value.
 You can use the `-Split` operator to pull out just the date, which is what you want for the file name.
-Once you do get the date, you can create you can create a file name and the file itself.
+Once you do get the date, you can create you can create a file name for the file
 
 Needless to say, you could do all those file name manipulations operations as a one-liner.
 I will leave that as an exercise for you!
