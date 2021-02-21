@@ -10,10 +10,15 @@ Summary: Shows how to change a drive's letter and label using PowerShell and WMI
 **Q:** I want to change the drive letter and the drive label for a new USB drive. 
 Is there a way with PowerShell?
 
-**A:**  Of course. You can use WMI and the CIM cmdlets.
+**A:**  Of course. One way is to use WMI and the CIM cmdlets.
 
-PowerShell does not have a cmdlet to change the drive letter or the caption directly. 
-But the good news is that you can use WMI and the CIM cmdlets to change both the drive letter and drive label.
+PowerShell does have cmdlets (`Set-Partition` and `Set-Volume`) to change the drive letter and the caption directly. 
+But it is also good to know how to do it via WMI and the CIM cmdlets to change both the drive letter and drive label.
+And under the covers, when you use `Set-Partition`, you are actually using WMI.
+In Windows PowerShell and PowerShell 7, you can use **CDXML** files to create cmdlets from WMI classes. 
+Both the Windows Storage and Windows Networking teams make heavy use of WMI and expose cmdlets via **CMXML** files
+The `*-Partition` cmdlets are based on WMI and are implemented via **C:\Windows\System32\WindowsPowerShell\v1.0\Modules\Storage\partition.cdxml**.
+The `*-Volume` commands, likewise, are based on WMI via **C:\Windows\System32\WindowsPowerShell\v1.0\Modules\Storage\Volume.cdxml**.
 
 ## WMI Classes, Class properties and Class Methods
 
@@ -221,6 +226,8 @@ Changing drive letters using PowerShell 7 is simple and straightforward.
 As you can see, using the `Set-CimInstance` PowerShell cmdlet to modify writable WMI properties is easy.
 I feel it's more intuitive than making multiple property value assignments (once you you master the hash table). 
 The cool thing is that multiple properties can be modified at one time instead of making multiple value assignments.
+
+And as ever, this post shows there is often more than one way to achieve any aim.
 
 ## Tip of the Hat
 
