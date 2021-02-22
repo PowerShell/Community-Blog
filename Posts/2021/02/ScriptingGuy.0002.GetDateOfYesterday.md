@@ -107,6 +107,9 @@ PS C:> $Tomorrow = (Get-Date).AddDays(1)
 PS C:> $Tomorrow
 21 February 2021 12:13:54
 ```
+It is worth noting that a `System.DateTime` object is immutable.
+This means you can not change propery values after you create the object.
+If you use any of the `Add` methods, .NET returns a new object with updated property values. 
 
 ## Using Yesterday's Date
 
@@ -162,7 +165,7 @@ This manipulation is needed because `Get-Date` returns a string that contains th
 You use the `-Replace` operator to replace the "/" character with a "-".
 Additionally, after performing the replacement, you end up with an (unneeded) time value.
 You can use the `-Split` operator to pull out just the date, which is what you want for the file name.
-Once you do get the date, you can create you can create a file name for the file
+Once you do get the date, you can create you can create a file name for the file,
 
 Needless to say, you could do all those file name manipulations operations as a one-liner.
 I will leave that as an exercise for you!
@@ -173,7 +176,7 @@ I will leave that as an exercise for you!
 This structure contains a number of properties such the day, month, hour, millisecond for a given date/time.
 You also get a wide range of methods that enable you to manipulate dates by adding or subtracting hours, days, etc.
 You can use `Get-Date` cmdlet to get the current date/time or an object for a specific date/time.
-Get-Date returns an object of System.DateTime
+Get-Date returns an object of System.DateTime.
 You use the methods of the `System.DateTime` structure to get relative dates, such as yesterday, last month or 2 years 42 days, and 32 milliseconds.
 
 ## Tip of the Hat
