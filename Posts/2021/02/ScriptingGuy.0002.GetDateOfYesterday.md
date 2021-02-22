@@ -11,7 +11,7 @@ Then we can look at how to calculate yesterday and use that in your scripts.
 
 Let's start by looking at how you can deal with dates and times.
 As you probably know, PowerShell contains the `Get-Date` cmdlet.
-This cmdlet returns a .NET **System.DateTime** object containing a **System.DateTime** object.
+This cmdlet returns a .NET **System.DateTime** object.
 
 Using the `Get-Date` cmdlet, you can get any date and time, and either display it or store it in a variable. 
 To get today's date. you could do this:
@@ -50,7 +50,7 @@ THere are several parameters you can specify that allow you to create an object 
 # Using the -Date Parameter and a date string
 Get-Date -Date '1 August 1942'
 # Using parameters to Get-Date to specify specific month, day, and year independently.
-Get-Date -Month 8  -Day 1 -Year 1942
+Get-Date -Month 8 -Day 1 -Year 1942
 ```
 
 The output of these two commands is the same:
@@ -59,7 +59,7 @@ The output of these two commands is the same:
 PS C:\> Get-Date -Date '1 August 1942'
 01 August 1942 00:00:00
 
-PS C:\> > Get-Date -Month 8  -Day 1 -Year 1942 -Hour 0 -Minute 0 -Second 0
+PS C:\> > Get-Date -Month 8 -Day 1 -Year 1942 -Hour 0 -Minute 0 -Second 0
 01 August 1942 00:00:00
 ```
 
@@ -70,9 +70,9 @@ You can see the other features of `Get-Date` to help get the date in the exact f
 You can use `Get-Date` to return a specific date/time.
 So how do you get yesterday's date - or the date a date of yesterday, or last month or last year?
 The trick here is to use the object returned from `Get-Date`.
-The object has a type of `SYstem.DateTime1 which contains a number of methods allowing you to add increments of time - a month, a day, etc to the object.
+The object has a type of `System.DateTime` which contains a number of methods allowing you to add increments of time - a month, a day, etc to the object.
 
-To get yesterday's date (or tomoorrow's) you  create a date and time object for today using `Get-Date` with no parameters.
+To get yesterday's date (or tomorrow's) you create a date and time object for today using `Get-Date` with no parameters.
 Then you use the ``AddDays`` method to add/subtract some number of days, like this:
 
 ```powershell
