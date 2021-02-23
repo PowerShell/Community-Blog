@@ -130,7 +130,7 @@ NT AUTHORITY\NetworkService Automatic C:\WINDOWS\System32\svchost.exe -k Network
 
 ## Windows Powershell 5.1
 
-For Windows PowerShell 5.1, the operation is not straight forward, as such in PowerShell 7, we need to use the `Get-CimInstance` and pass the required WQL query, so in Windows PowerShell 5.1 run the following command
+For Windows PowerShell 5.1, the operation is not as simple as in PowerShell. We need to use the `Get-CimInstance` and pass the required WQL query. So, in Windows PowerShell 5.1, run the following command:
 
 ```powershell
 WPS 5.1> Get-CimInstance -Query 'select * from Win32_Service where caption like "Workstation"' | select StartName,StartMode,PathName
