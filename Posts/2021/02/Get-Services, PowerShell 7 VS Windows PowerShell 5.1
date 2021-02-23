@@ -26,7 +26,7 @@ To drill-down and get a more detailed result, we need to see all the associated 
 ## Getting Windows Services using Get-Service
 
 ```powershell
-Get-Service Workstation | Get-Member 
+Get-Service Workstation | Get-Member | Select-Object Name, MemberType
 ```
 
 The output returns a list of members that can be invoked in the command line. Here is the output in PowerShell 7.
