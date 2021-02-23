@@ -142,7 +142,7 @@ StartName                   StartMode PathName
 NT AUTHORITY\NetworkService Auto      C:\WINDOWS\System32\svchost.exe -k NetworkService -p
 ```
 
-As shown in the command, we invoke `Get-CimInstance` (or if you are using Get-WmiObject) and wrote a query to get the service name, and after that select the required properties, which is a long way and require to know extra information related to the original service name and some basic WMI query.
+In this example, we invoke `Get-CimInstance` with a query to get the service name and then select the required properties, which is a long way and requires you to know extra information related to the original service name and some basic WMI query language.
 
 ## Summary
 
