@@ -19,6 +19,7 @@ To get today's date. you could do this:
 ```powershell
 # Get the current date
 Get-Date
+
 # Store the date in a variable then view it
 $Now = Get-Date
 $Now
@@ -49,6 +50,7 @@ THere are several parameters you can specify that allow you to create an object 
 ```powershell
 # Using the -Date Parameter and a date string
 Get-Date -Date '1 August 1942'
+
 # Using parameters to Get-Date to specify specific month, day, and year independently.
 Get-Date -Month 8  -Day 1 -Year 1942
 ```
@@ -80,9 +82,11 @@ Then you use the ``AddDays`` method to add/subtract some number of days, like th
 $Today = Get-Date
 $Yesterday = $Today.AddDays(-1)
 $Yesterday
+
 # Or more simply
 $Yesterday = (Get-Date).AddDays(-1)
 $Yesterday
+
 # Get tomorrow's date
 $Tomorrow = (Get-Date).AddDays(1)
 $Tomorrow
@@ -110,10 +114,11 @@ PS C:> $Tomorrow
 
 ## Using Yesterday's Date
 
-There are a variety use cases for getting a date in the past (or the future), including 
-**Identifying files that are older/younger than a day/month/etc ago
-**Determining which AD Users have not logged on in the last week
-**Creating a file name for a file representing last weeks information.
+There are a variety use cases for getting a date in the past (or the future), including:
+
+* Identifying files that are older/younger than a day/month/etc ago
+* Determining which AD Users have not logged on in the last week
+* Creating a file name for a file representing last weeks information.
 
 Here are some examples:
 
@@ -162,7 +167,9 @@ This manipulation is needed because `Get-Date` returns a string that contains th
 You use the `-Replace` operator to replace the "/" character with a "-".
 Additionally, after performing the replacement, you end up with an (unneeded) time value.
 You can use the `-Split` operator to pull out just the date, which is what you want for the file name.
-Once you do get the date, you can create you can create a file name for the file
+Once you do get the date, you can create you can create a file name for the file.
+
+Another point worth making is that Windows tries to display dates in a culture-aware way and Get-Date does a fairly good job in most cases of converting a date string into the date you wanted.
 
 Needless to say, you could do all those file name manipulations operations as a one-liner.
 I will leave that as an exercise for you!
