@@ -11,7 +11,7 @@ Then we can look at how to calculate yesterday and use that in your scripts.
 
 Let's start by looking at how you can deal with dates and times.
 As you probably know, PowerShell contains the `Get-Date` cmdlet.
-This cmdlet returns a .NET **System.DateTime** object containing a **System.DateTime** object.
+This cmdlet returns a .NET **System.DateTime** object.
 
 Using the `Get-Date` cmdlet, you can get any date and time, and either display it or store it in a variable. 
 To get today's date. you could do this:
@@ -52,7 +52,7 @@ THere are several parameters you can specify that allow you to create an object 
 Get-Date -Date '1 August 1942'
 
 # Using parameters to Get-Date to specify specific month, day, and year independently.
-Get-Date -Month 8  -Day 1 -Year 1942
+Get-Date -Month 8 -Day 1 -Year 1942
 ```
 
 The output of these two commands is the same:
@@ -61,7 +61,7 @@ The output of these two commands is the same:
 PS C:\> Get-Date -Date '1 August 1942'
 01 August 1942 00:00:00
 
-PS C:\> > Get-Date -Month 8  -Day 1 -Year 1942 -Hour 0 -Minute 0 -Second 0
+PS C:\> > Get-Date -Month 8 -Day 1 -Year 1942 -Hour 0 -Minute 0 -Second 0
 01 August 1942 00:00:00
 ```
 
@@ -72,9 +72,9 @@ You can see the other features of `Get-Date` to help get the date in the exact f
 You can use `Get-Date` to return a specific date/time.
 So how do you get yesterday's date - or the date a date of yesterday, or last month or last year?
 The trick here is to use the object returned from `Get-Date`.
-The object has a type of `SYstem.DateTime1 which contains a number of methods allowing you to add increments of time - a month, a day, etc to the object.
+The object has a type of `System.DateTime` which contains a number of methods allowing you to add increments of time - a month, a day, etc to the object.
 
-To get yesterday's date (or tomoorrow's) you  create a date and time object for today using `Get-Date` with no parameters.
+To get yesterday's date (or tomorrow's) you create a date and time object for today using `Get-Date` with no parameters.
 Then you use the ``AddDays`` method to add/subtract some number of days, like this:
 
 ```powershell
@@ -111,6 +111,9 @@ PS C:> $Tomorrow = (Get-Date).AddDays(1)
 PS C:> $Tomorrow
 21 February 2021 12:13:54
 ```
+It is worth noting that a `System.DateTime` object is immutable.
+This means you can not change propery values after you create the object.
+If you use any of the `Add` methods, .NET returns a new object with updated property values. 
 
 ## Using Yesterday's Date
 
@@ -134,7 +137,7 @@ Mode                 LastWriteTime         Length Name
 -a---          20/02/2021    14:20          11041 GratefulDead Show List.txt
 
 PS C:> # Getting users who have logged on in the past day
-PS C:> Get-ADUser -Filter * -Property LastLogonDate | Where LastlogonDate -gt $Yesterday
+PS C:> Get-ADUser -Filter * -Property LastLogonDate | Where-Object LastlogonDate -gt $Yesterday
 
 DistinguishedName : CN=Administrator,CN=Users,DC=cookham,DC=net
 Enabled           : True
@@ -169,7 +172,8 @@ Additionally, after performing the replacement, you end up with an (unneeded) ti
 You can use the `-Split` operator to pull out just the date, which is what you want for the file name.
 Once you do get the date, you can create you can create a file name for the file.
 
-Another point worth making is that Windows tries to display dates in a culture-aware way and Get-Date does a fairly good job in most cases of converting a date string into the date you wanted.
+Another point worth making is that Windows tries to display dates in a culture-aware way.
+`Get-Date` does a fairly good job in most cases of converting a date string into the date you wanted.
 
 Needless to say, you could do all those file name manipulations operations as a one-liner.
 I will leave that as an exercise for you!
@@ -180,7 +184,7 @@ I will leave that as an exercise for you!
 This structure contains a number of properties such the day, month, hour, millisecond for a given date/time.
 You also get a wide range of methods that enable you to manipulate dates by adding or subtracting hours, days, etc.
 You can use `Get-Date` cmdlet to get the current date/time or an object for a specific date/time.
-Get-Date returns an object of System.DateTime
+Get-Date returns an object of System.DateTime.
 You use the methods of the `System.DateTime` structure to get relative dates, such as yesterday, last month or 2 years 42 days, and 32 milliseconds.
 
 ## Tip of the Hat
