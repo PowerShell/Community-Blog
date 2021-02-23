@@ -132,7 +132,7 @@ Mode                 LastWriteTime         Length Name
 -a---          20/02/2021    14:20          11041 GratefulDead Show List.txt
 
 PS C:> # Getting users who have logged on in the past day
-PS C:> Get-ADUser -Filter * -Property LastLogonDate | Where LastlogonDate -gt $Yesterday
+PS C:> Get-ADUser -Filter * -Property LastLogonDate | Where-Object LastlogonDate -gt $Yesterday
 
 DistinguishedName : CN=Administrator,CN=Users,DC=cookham,DC=net
 Enabled           : True
