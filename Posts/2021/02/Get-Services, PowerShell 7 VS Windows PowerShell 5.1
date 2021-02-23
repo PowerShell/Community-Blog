@@ -114,7 +114,7 @@ ToString                   ScriptMethod
 
 ## PowerShell 7
 
-The big difference is in the Property, now in Powershell 7, it's possible to read some additional properties that were not available in Windows PowerShell 5.1, such as **UserName, BinaryPathName, StartType.** So let's see how to read the **Username**, **BinaryPathName,** and **StartType** using PowerShell 7
+The big difference is in the **Property** members. Now, in PowerShell 7, it's possible to read some additional properties that were not available in Windows PowerShell 5.1, such as **UserName**, **BinaryPathName**, **StartType**. So let's see how to read these properties using PowerShell 7.
 
 ```powershell
 PS 7> Get-Service workstation | select  Username,Starttype,BinaryPathName
