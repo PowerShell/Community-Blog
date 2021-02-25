@@ -153,7 +153,7 @@ Surname           : Garcia
 # Creating a file with yesterday's date
 PS C:\> # Creating a file with today's date
 PS C:\> $Yesterday     = (Get-Date).AddDays(-1).ToString() -replace '/','-'
-PS C:\> $YesterDayDate = ($Yesterday -split ' ')[0]
+PS C:\> $YesterdayDate = ($Yesterday -split ' ')[0]
 PS C:\> $YesterdayFN   = "Results for $YesterdayDate.Txt"
 PS C:\> 
 PS C:\> New-Item -Path C:\Results -Name  $YesterdayFN -ItemType File
@@ -166,14 +166,22 @@ Mode                 LastWriteTime         Length Name
 ```
 
 In that last example, you need to do a bit of manipulation of the date/time returned by `Get-Date` in order to get a filename that Windows accepts.
-This manipulation is needed because `Get-Date` returns a string that contains the "/" character which confuses `New-Item`.
+This manipulation is needed because `Get-Date` returns a string that contains the "/" character `New-Item` views as a path character.
 You use the `-Replace` operator to replace the "/" character with a "-".
 Additionally, after performing the replacement, you end up with an (unneeded) time value.
 You can use the `-Split` operator to pull out just the date, which is what you want for the file name.
 Once you do get the date, you can create you can create a file name for the file.
 
+Another way to generate the file name based on `Get-Date` would be to use the **ToString()** method and specify the exact output you want, like this:
+
+```powershell
+$YesterdayDate = (Get-Date).AddDays(-1).ToString('yyyy-MM-dd')         
+$YesterdayFN   = "Results for $YesterdayDate.Txt"
+```
+
 Another point worth making is that Windows tries to display dates in a culture-aware way.
 `Get-Date` does a fairly good job in most cases of converting a date string into the date you wanted.
+But if you want a specific result, using **ToString()** and a date format string is possibly better - and fewer lines of code.
 
 Needless to say, you could do all those file name manipulations operations as a one-liner.
 I will leave that as an exercise for you!
