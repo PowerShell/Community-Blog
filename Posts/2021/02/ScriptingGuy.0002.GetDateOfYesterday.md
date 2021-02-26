@@ -1,12 +1,8 @@
 ---
 post_title: Getting Yesterday's Date
 username: tfl@psp.co.uk
-<<<<<<< HEAD
-Catagories: PowerShell, .NET
-=======
 Catagories: PowerShell
 tags: .NET, Scripting Guys Update
->>>>>>> upstream/main
 Summary: Shows how to get a recent date and use that in your scripting.
 ---
 
