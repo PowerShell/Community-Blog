@@ -118,6 +118,7 @@ We can gather information for the new users by making use of `Read-Host` and som
 [ValidatePattern("\w+")]$Company = Read-Host -Prompt "Please input users company"
 [ValidatePattern("\w+")]$Office = Read-Host -Prompt "Please input users office"
 ```
+
 Dead simple. 4 questions with 4 answers, into 4 variables. Instead of asking lots of questions to find out information like postcode or country, let's use our XML!
 
 ```powershell
@@ -127,7 +128,6 @@ $Path = 'OU=Users,OU=Contoso,DC=Contoso,DC=com'
 
 # Build hashtable of new user parameters
   $NewUserParams =@{
-    
         GivenName = $FirstName
         Name = "$FirstName $LastName"
         Surname = $LastName
@@ -167,7 +167,7 @@ Country = ($xml.Companies.$Company.$Office.Country).Trim()
 $XMLWriter.WriteStartElement('Company-1')
 ```
 
-* The variables you input using `Read-Host` need to match the Element names in the XML. You could make use of Validation Scripts to validate your inputs. Here is a helpful read on [everything to do with validation inputs.](https://adamtheautomator.com/powershell-validatescript)
+* The variables you input using `Read-Host` need to match the Element names in the XML. You could make use of Validation Scripts to validate your inputs. Here is a helpful read on [everything to do with validation inputs](https://adamtheautomator.com/powershell-validatescript).
 
 ## Final Comments and Credits
 
