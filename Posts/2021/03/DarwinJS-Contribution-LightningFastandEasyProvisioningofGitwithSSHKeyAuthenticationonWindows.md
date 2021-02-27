@@ -1,6 +1,6 @@
 ---
 post_title: Lightning Fast and Easy Provisioning of Git with SSH Key Authentication on Windows
-username: DarwinJS@sanoys.com
+username: DarwinJS
 Catagories: PowerShell
 tags: Git, DevOps
 Summary: Getting your team setup with Git over SSH as quickly as possible!
@@ -15,8 +15,6 @@ The common Internet guidance for setting up Git with SSH authentication on Windo
 My inner tool smith really loathes when the very first steps into something new are fraught with rocky rabbit holes - so I took on the challenge of creating an easier way. 
 
 The resultant tool is a 20 line PowerShell script that deploys Git, configures SSH and leaves the public key on your clipboard so you can paste it into GitLab or any other Git collaborative webserver. There is also an optional connectivity test.
-
-The code in this article adheres to heuristics I call "Mission Impossible Coding".  I love the pursuit of these heuristics so my I have named my blog [Mission Impossible Code](https://missionimpossiblecode.io)
 
 ## Reasons For Moving to SSH
 
@@ -40,6 +38,8 @@ The conventional wisdom solution offers many steps that are roughly:
 
 ## The Cleanest Way (With Working Automation Code)
 
+Mission Impossible Code is an evolving hypothesis I have about how specific architectural design heuristics can yield simpler, more flexible and robust solutions.  If you become curious to know more, you can checkout [Mission Impossible Code Heuristics for Creating Super-Spy Code That Always Gets the Job Done](https://missionimpossiblecode.io/post/mission-impossible-code-heuristics-for-creating-super-spy-code-that-always-gets-the-job-done/).
+
 ### Mission Impossible Coding Principal 1: Steal Lessons From Desired State Automation
 
 The code in this article is idempotent or "desired state oriented" - meaning that it always checks if the system is already in the desired state and only takes action if it is not. While coding this way takes a little extra effort, there are multiple rewards:
@@ -52,8 +52,8 @@ The code in this article is idempotent or "desired state oriented" - meaning tha
 
 This code also lowers complexity in other ways:
 
-1. By using the presence of a data value as a switch.  In this case, an SSSH if SSHEndPointToGitForTesting contains a test is done, otherwise the test is simply assumed to be disabled on purpose.
-2. The parameters for triggering a test are can be hard coded or passed in environment variables - keeping the code simple, but compatible with the possibility of multiple git server endpoints and with enclosing automation.
+1. By using the presence of a data value as a switch.  In this case, if SSHEndPointToGitForTesting contains a value, then an SSH connect test is done, otherwise the test is simply assumed to be disabled on purpose.
+2. The parameters for triggering a test can be hard coded or passed in environment variables - keeping the code simple, but compatible with the possibility of multiple git server endpoints and with enclosing automation.
 3. By selecting a single test that tests for the maximum problematic connectivity conditions. In this case, using an SSH login tests all end-to-end connectivity at all ISO layers between the client and the git server as well as SSL configuration. It also tests the authentication mechanisms of the server and that the SSH key was added to the correct place in the git server. Another great trick for simpler scenarios is using a tcp connect test instead of ping. This could also be updated to do a tcp connect test **only if** the ssh login fails - sort of building in self-diagnosing intelligence.
 
 ### Mission Impossible Coding Principal 3: Enable Zero Footprint Execution of the Latest Version (Directly From Repository)
