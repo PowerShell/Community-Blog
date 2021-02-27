@@ -38,9 +38,9 @@ If you run that, nothing crazy happens. We have a new xml source file, with noth
 ```powershell
 # write the header
 $xmlWriter.WriteStartDocument()
-$XMLWriter.WriteStartElement('Companies')
 # set XSL statements
 $xmlWriter.WriteProcessingInstruction("xml-stylesheet", "type='text/xsl' href='style.xsl'")
+$XMLWriter.WriteStartElement('Companies')
 ```
 Okay awesome, now we're getting somewhere. We have started our "Companies" element. Let's create a company and add some office information beneath that. Then we'll finalise the XML document.
 
@@ -71,8 +71,8 @@ So, let's see the finished XML after we run this code.
 
 ```xml
 <?xml version="1.0"?>
+<?xml-stylesheet type='text/xsl' href='style.xsl'?>
 <Companies>
-	<?xml-stylesheet type='text/xsl' href='style.xsl'?>
 	<Company-1>
 		<Birmingham>
 			<Street>Unit 77, 132 Dummy Lane</Street>
