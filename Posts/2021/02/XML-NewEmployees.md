@@ -162,8 +162,10 @@ Country = ($xml.Companies.$Company.$Office.Country).Trim()
 ```powershell
 $XMLWriter.WriteStartElement('Company-1')
 ```
+
 * The variables you input using `Read-Host` need to match the Element names in the XML. You could make use of Validation Scripts to validate your inputs. Here is a helpful read on [everything to do with validation inputs.](https://adamtheautomator.com/powershell-validatescript)
-# Final Comments and Credits
+
+## Final Comments and Credits
 
 You can really flesh this out more and get a load of information into XML for referencing, e.g. company project information, sets of AD groups users could be added to, managed bookmark URLS (to then be copied into registry items). 
 
