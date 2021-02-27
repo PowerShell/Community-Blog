@@ -150,7 +150,9 @@ $Path = 'OU=Users,OU=Contoso,DC=Contoso,DC=com'
 # Create the user
 New-ADUser @NewUserParams
 ```
+
 Simple as that, browsing through the xml elements using dot-notation, and trimming off any unwanted whitespace. This is cropped below for convenience:
+
 ```powershell
 StreetAddress = ($XML.Companies.$Company.$Office.Street).Trim()
 PostalCode = ($XML.Companies.$Company.$Office.Postcode).Trim()
