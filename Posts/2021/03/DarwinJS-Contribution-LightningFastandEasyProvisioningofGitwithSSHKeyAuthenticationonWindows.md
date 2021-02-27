@@ -16,8 +16,6 @@ My inner tool smith really loathes when the very first steps into something new 
 
 The resultant tool is a 20 line PowerShell script that deploys Git, configures SSH and leaves the public key on your clipboard so you can paste it into GitLab or any other Git collaborative webserver. There is also an optional connectivity test.
 
-The code in this article adheres to heuristics I call "Mission Impossible Coding".  I love the pursuit of these heuristics so my I have named my blog [Mission Impossible Code](https://missionimpossiblecode.io)
-
 ## Reasons For Moving to SSH
 
 There are multiple reasons you may want to move your Windows developers to SSH authentication for Git:
@@ -39,6 +37,8 @@ The conventional wisdom solution offers many steps that are roughly:
 > Most of this can be avoided by simply using the full SSH client that is embedded inside of the Windows git client install.
 
 ## The Cleanest Way (With Working Automation Code)
+
+Mission Impossible Code is an evolving hypothesis I have about how specific architectural design heuristics can yield simpler, more flexible and robust solutions.  If you become curious to know more, you can checkout [Mission Impossible Code Heuristics for Creating Super-Spy Code That Always Gets the Job Done](https://missionimpossiblecode.io/post/mission-impossible-code-heuristics-for-creating-super-spy-code-that-always-gets-the-job-done/).
 
 ### Mission Impossible Coding Principal 1: Steal Lessons From Desired State Automation
 
