@@ -41,6 +41,7 @@ $xmlWriter.WriteStartDocument()
 $xmlWriter.WriteProcessingInstruction("xml-stylesheet", "type='text/xsl' href='style.xsl'")
 $XMLWriter.WriteStartElement('Companies')
 ```
+
 Okay awesome, now we're getting somewhere. We have started our "Companies" element. Let's create a company and add some office information beneath that. Then we'll finalise the XML document.
 
 ```powershell
