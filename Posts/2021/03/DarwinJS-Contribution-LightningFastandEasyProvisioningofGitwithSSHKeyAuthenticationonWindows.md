@@ -53,7 +53,7 @@ The code in this article is idempotent or "desired state oriented" - meaning tha
 This code also lowers complexity in other ways:
 
 1. By using the presence of a data value as a switch.  In this case, if SSHEndPointToGitForTesting contains a value, then an SSH connect test is done, otherwise the test is simply assumed to be disabled on purpose.
-2. The parameters for triggering a test are can be hard coded or passed in environment variables - keeping the code simple, but compatible with the possibility of multiple git server endpoints and with enclosing automation.
+2. The parameters for triggering a test can be hard coded or passed in environment variables - keeping the code simple, but compatible with the possibility of multiple git server endpoints and with enclosing automation.
 3. By selecting a single test that tests for the maximum problematic connectivity conditions. In this case, using an SSH login tests all end-to-end connectivity at all ISO layers between the client and the git server as well as SSL configuration. It also tests the authentication mechanisms of the server and that the SSH key was added to the correct place in the git server. Another great trick for simpler scenarios is using a tcp connect test instead of ping. This could also be updated to do a tcp connect test **only if** the ssh login fails - sort of building in self-diagnosing intelligence.
 
 ### Mission Impossible Coding Principal 3: Enable Zero Footprint Execution of the Latest Version (Directly From Repository)
