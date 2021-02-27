@@ -41,7 +41,7 @@ The conventional wisdom solution offers many steps that are roughly:
 
 ## The Cleanest Way (With Working Automation Code) 
 
-Besides the above pure pain, here are the additional things solved for in this code:
+Besides the pure pain described above, here are the additional things solved for in this code:
 
 1. Automatically installs Git - but only if necessary (idempotent)
 2. Automatically installs chocolatey to install Git - but only if necessary (idempotent)
@@ -54,13 +54,13 @@ Besides the above pure pain, here are the additional things solved for in this c
 
 This code can be run directly from GitLab with this command:
 
-```bash
+```powershell
 Invoke-Expression -command "Invoke-WebRequest -uri 'https://gitlab.com/missionimpossiblecode/MissionImpossibleCode/-/raw/master/install-gitwithssh.ps1' -UseBasicParsing -OutFile ./install-gitwithssh.ps1" ; . ./install-gitwithssh.ps1
 ```
 
 If you want to download dynamically, but also want the test and instructions to work, then set these environment variables before calling the above:
 
-```bash
+```powershell
 $env:YourGitServerhttpURL="https://gitlab.com"
 $env:GitSSHUserAndEndPointForTesting="git@gitlab.com" #some Git servers might want the windows userid "git", which is specified as $env:username
 ```
@@ -69,8 +69,7 @@ You can also simply copy the code, hardcode the two variables and distribute it 
 
 ## Main Code
 
-```bash
-
+```powershell
 # Set environment variables before calling in order to test
 If ((Test-Path env:YourGitServerhttpURL) -and (!(Test-Path variable:YourGitServerhttpURL))) {$YourGitServerhttpURL="$env:YourGitServerhttpURL"}
 If ((Test-Path env:GitSSHUserAndEndPointForTesting) -and (!(Test-Path variable:GitSSHUserAndEndPointForTesting))) {$GitSSHUserAndEndPointForTesting="$env:GitSSHUserAndEndPointForTesting"}
