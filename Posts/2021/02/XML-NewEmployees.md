@@ -158,8 +158,11 @@ City = ($XML.Companies.$Company.$Office.City).Trim()
 State = ($xml.Companies.$Company.$Office.State).Trim()
 Country = ($xml.Companies.$Company.$Office.Country).Trim()
 ```
+
 # Helpful Notes
+
 * Be careful when creating your XML elements! No whitespace allowed! You will get XML Writer errors if there are spaces in your XML Elements. I use "-" to seperate mine.
+
 ```powershell
 $XMLWriter.WriteStartElement('Company-1')
 ```
