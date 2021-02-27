@@ -8,10 +8,9 @@ featured_image: ./media/DarwinJS-Contribution-LightningFastandEasyProvisioningof
 CanonicalURL: https://missionimpossiblecode.io/post/lightning-fast-and-easy-provisioning-of-git-with-ssh-key-authentication-on-windows/
 ---
 
-
 Maybe you have a team of Windows developers that are onboarding for your new Git server installation or maybe you've decided to drop http password authentication to your existing Git server (due to it's many problems).  Your next steps may well be into a rough and rocky rabbit hole when you were holding out hope for simplicity (you know the kind you've fallen into before if you've been in tech for more than about 45 minutes).
 
-The common internet guidance for setting up Git with SSH authentication on Windows are unnecessarily complex.
+The common Internet guidance for setting up Git with SSH authentication on Windows are unnecessarily complex.
 
 My inner tool smith really loathes when the very first steps into something new are fraught with rocky rabbit holes - so I took on the challenge of creating an easier way. 
 
@@ -23,8 +22,8 @@ The code in this article adheres to heuristics I call "Mission Impossible Coding
 
 There are multiple reasons you may want to move your Windows developers to SSH authentication for Git:
 
-1. You want to get away from git storing local passwords - whether in the git config or in Windows Credentials (with the windows credential helper) because it is pure pain to walk people through how to find and update this password when they change it on the Git server.
-2. You want to avoid both http passwords and the http protocol for git.
+1. You want to get away from git storing local passwords - whether in the git config or in Windows Credentials (with the windows credential helper) because it is painful to walk people through how to find and update this password when they change it on the Git server.
+2. You want to avoid both http passwords and the http protocol for git CLI operations.
 
 ## Conventional Wisdom on SSH Configuration
 
@@ -49,11 +48,20 @@ The code in this article is idempotent or "desired state oriented" - meaning tha
 2. Does not accidentally upgrade software nor destroy existing configurations (e.g. this code will not accidentally overwrite a pre-existing primary ssh key).
 3. If the code fails, it can be run again until it works because it picks up where it left off.
 
-### Mission Impossible Coding Principal 2: Lower Complexity
-It also lowers complexity in two other ways:
+### Mission Impossible Coding Principal 2: Reduce Unnecessary Complexity
 
-1. by using the presence of a data value as a switch.  In this case, an SSSH if SSHEndPointToGiForTesting contains a test is done, otherwise the test is simply assumed to be disabled on purpose.
-2. By selecting a single test that tests for the maximum problematic conditions. In this case, using an SSH login tests all end-to-end connectivity at all ISO layers between the client and the git server and SSL configuration. It also tests the authentication mechanisms of the server and that the SSH key was added to the correct place in the git server. Another great trick for simplier scenarios is using a tcp connect test instead of ping. This could also be updated to do a tcp connect test **only if** the ssh login fails - sort of building in self-diagnosing intelligence. 
+This code also lowers complexity in other ways:
+
+1. By using the presence of a data value as a switch.  In this case, an SSSH if SSHEndPointToGitForTesting contains a test is done, otherwise the test is simply assumed to be disabled on purpose.
+2. The parameters for triggering a test are can be hard coded or passed in environment variables - keeping the code simple, but compatible with the possibility of multiple git server endpoints and with enclosing automation.
+3. By selecting a single test that tests for the maximum problematic connectivity conditions. In this case, using an SSH login tests all end-to-end connectivity at all ISO layers between the client and the git server as well as SSL configuration. It also tests the authentication mechanisms of the server and that the SSH key was added to the correct place in the git server. Another great trick for simpler scenarios is using a tcp connect test instead of ping. This could also be updated to do a tcp connect test **only if** the ssh login fails - sort of building in self-diagnosing intelligence.
+
+### Mission Impossible Coding Principal 3: Enable Zero Footprint Execution of the Latest Version (Directly From Repository)
+
+Like many Mission Impossible Code examples, this one is designed and test to be executed directly from a git raw URL to make it easily used from a single repository location.  Here is the command to run it from the source location:
+
+`Invoke-Expression -command "Invoke-WebRequest -uri 'https://gitlab.com/missionimpossiblecode/MissionImpossibleCode/-/raw/master/install-gitwithssh.ps1' -UseBasicParsing -OutFile ./install-gitwithssh.ps1" ; . ./install-gitwithssh.ps1`
+
 ### Code Behavior
 
 1. If not present, automatically installs Git.
