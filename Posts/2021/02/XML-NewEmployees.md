@@ -31,6 +31,7 @@ $xmlWriter.Formatting = 'Indented'
 $xmlWriter.Indentation = 1
 $XmlWriter.IndentChar = "`t"
 ```
+
 If you run that, nothing crazy happens. We have a new xml source file, with nothing inside; we have set ourselves up to flesh it out.
 
 ```powershell
