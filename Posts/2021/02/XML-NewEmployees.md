@@ -109,6 +109,7 @@ Tip: Save your XML-Creation script in the same location as the script referencin
     }
     
 ```
+
 Here, we are testing the path for the XML and, if it doesn't exist, running the creation script again. Then, we're loading it into a variable for reference.
 
 We can gather information for the new users by making use of `Read-Host` and some added validation. Like so:
