@@ -84,6 +84,7 @@ So, let's see the finished XML after we run this code.
 	</Company-1>
 </Companies>
 ```
+
 ## PowerShell - Working With XML
 
 So, now we have some useable data to work with PowerShell on. You can add more elements for Offices/Companies you are creating users for. It becomes clear how you reference this next. 
