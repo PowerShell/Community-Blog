@@ -17,6 +17,8 @@ My inner tool smith really loathes when the very first steps into something new 
 
 The resultant tool is a 20 line PowerShell script that deploys Git, configures SSH and leaves the public key on your clipboard so you can paste it into GitLab or any other Git collaborative webserver. There is also an optional connectivity test.
 
+The code in this article adheres to heuristics I call "Mission Impossible Coding".  I love the pursuit of these heuristics so my I have named my blog [Mission Impossible Code](https://missionimpossiblecode.io)
+
 ## Reasons For Moving to SSH
 
 There are multiple reasons you may want to move your Windows developers to SSH authentication for Git:
@@ -29,7 +31,7 @@ There are multiple reasons you may want to move your Windows developers to SSH a
 The conventional wisdom solution offers many steps that are roughly:
 
 1. Installing git manually.
-2. Installing the well known Windows SSH client Putty
+2. Installing the well known Windows SSH client Putty.
 3. Installing Putty's key generator.
 4. Converting the non-compatible putty generated key into an ssh compatible one.
 5. Precisely placing the SSH key on disk.
@@ -39,22 +41,27 @@ The conventional wisdom solution offers many steps that are roughly:
 
 ## The Cleanest Way (With Working Automation Code)
 
-### Stealing Lessons From Desired State Automation
+### Mission Impossible Coding Principal 1: Steal Lessons From Desired State Automation
 
-The code that performs these steps is idempotent or "desired state oriented" - meaning that it always checks if the step it is about to perform is necessary or not before doing it. While it takes a little extra effort, there are multiple rewards:
+The code in this article is idempotent or "desired state oriented" - meaning that it always checks if the system is already in the desired state and only takes action if it is not. While coding this way takes a little extra effort, there are multiple rewards:
 
-1. Reduction in runtime if something is already configured
-2. Does not accidentally upgrade software nor destroy existing configurations (e.g. this code will not accidentally overwrite a pre-existing primary ssh key)
+1. Reduction in runtime if something is already installed or configured correctly.
+2. Does not accidentally upgrade software nor destroy existing configurations (e.g. this code will not accidentally overwrite a pre-existing primary ssh key).
 3. If the code fails, it can be run again until it works because it picks up where it left off.
 
+### Mission Impossible Coding Principal 2: Lower Complexity
+It also lowers complexity in two other ways:
+
+1. by using the presence of a data value as a switch.  In this case, an SSSH if SSHEndPointToGiForTesting contains a test is done, otherwise the test is simply assumed to be disabled on purpose.
+2. By selecting a single test that tests for the maximum problematic conditions. In this case, using an SSH login tests all end-to-end connectivity at all ISO layers between the client and the git server and SSL configuration. It also tests the authentication mechanisms of the server and that the SSH key was added to the correct place in the git server. Another great trick for simplier scenarios is using a tcp connect test instead of ping. This could also be updated to do a tcp connect test **only if** the ssh login fails - sort of building in self-diagnosing intelligence. 
 ### Code Behavior
 
-1. If not present, automatically installs Git
-2. If not present, automatically installs chocolatey to install Git
-3. If not present, automatically generates an SSH key
-4. Key generation always uses the Git's built-in SSH client to create SSH keys (avoids the complexity of the above conventional wisdom)
-5. Copies the public key to the clip board and pauses for the user to add it to the Git server (in their profile)
-6. Optionally does a SSH login test if you provide a value for: $SSHEndPointToGitForTesting
+1. If not present, automatically installs Git.
+2. If not present, automatically installs chocolatey to install Git.
+3. If not present, automatically generates an SSH key.
+4. Key generation always uses the Git's built-in SSH client to create SSH keys (avoids much of the complexity of the above conventional wisdom approach).
+5. Copies the public key to the clip board and pauses for the user to add it to the Git server (in their profile).
+6. Optionally does a SSH login test (only if you provide a value for: $SSHEndPointToGitForTesting).
 
 ## Solution Details
 
