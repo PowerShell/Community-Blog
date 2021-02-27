@@ -145,7 +145,6 @@ $Path = 'OU=Users,OU=Contoso,DC=Contoso,DC=com'
         ChangePasswordAtLogon = $false
         Enabled = $true
     }
-    
 # Create the user
 New-ADUser @NewUserParams
 ```
