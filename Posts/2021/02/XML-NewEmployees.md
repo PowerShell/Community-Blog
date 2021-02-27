@@ -1,4 +1,3 @@
-```yaml
 ---
 post_title: 'Leveraging XML with New Employee PowerShell Scripts'
 username: s-r-turner
@@ -7,7 +6,6 @@ tags: XML, ActiveDirectory
 featured_image:
 summary: using XML referencing to bolster up your new employee scripts with information.
 ---
-```
 
 # Leveraging XML With New Employee PowerShell Scripts
 
