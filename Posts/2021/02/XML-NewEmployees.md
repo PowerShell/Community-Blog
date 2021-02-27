@@ -22,7 +22,7 @@ No one likes asking around for the location of a meeting room you were supposed 
 
 ## Getting Started - Creating the XML
 
-To create the xml, we're going to use the [XmlWriter](https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmlwriter?view=net-5.0) class, put this into a variable to build upon and add some formatting options (this makes it easier to see groups of information). Like so:
+To create the xml, we're going to use the [XmlWriter](https://docs.microsoft.com/dotnet/api/system.xml.xmlwriter) class, put this into a variable to build upon and add some formatting options (this makes it easier to see groups of information). Like so:
 
 ```powershell
 $XMLPath = "C:\Users\sam\AD-References.xml"
