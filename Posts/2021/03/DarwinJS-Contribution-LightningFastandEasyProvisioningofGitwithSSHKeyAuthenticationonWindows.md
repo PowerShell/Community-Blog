@@ -11,13 +11,11 @@ CanonicalURL: https://missionimpossiblecode.io/post/lightning-fast-and-easy-prov
 
 Maybe you have a team of Windows developers that are onboarding for your new Git server installation or maybe you've decided to drop http password authentication to your existing Git server (due to it's many problems).  Your next steps may well be into a rough and rocky rabbit hole when you were holding out hope for simplicity (you know the kind you've fallen into before if you've been in tech for more than about 45 minutes).
 
-The guides on the internet for getting Windows setup for SSH authentication for Git are unnecessarily complex.
+The common internet guidance for setting up Git with SSH authentication on Windows are unnecessarily complex.
 
 My inner tool smith really loathes when the very first steps into something new are fraught with rocky rabbit holes - so I took on the challenge of creating an easier way. 
 
 The resultant tool is a 20 line PowerShell script that deploys Git, configures SSH and leaves the public key on your clipboard so you can paste it into GitLab or any other Git collaborative webserver. There is also an optional connectivity test.
-
-<!-- more -->
 
 ## Reasons For Moving to SSH
 
@@ -35,18 +33,26 @@ The conventional wisdom solution offers many steps that are roughly:
 3. Installing Putty's key generator.
 4. Converting the non-compatible putty generated key into an ssh compatible one.
 5. Precisely placing the SSH key on disk.
-6. Precisely and ~~manually~~ permissioning the SSH key and it's parent folder (ssh is purposely fussy about this in order to keep the key secure).
+6. Precisely and manually permissioning the SSH key and it's parent folder (ssh is purposely fussy about this in order to keep the key secure).
 
 > Most of this can be avoided by simply using the full SSH client that is embedded inside of the Windows git client install.
 
-## The Cleanest Way (With Working Automation Code) 
+## The Cleanest Way (With Working Automation Code)
 
-Besides the pure pain described above, here are the additional things solved for in this code:
+### Stealing Lessons From Desired State Automation
 
-1. Automatically installs Git - but only if necessary (idempotent)
-2. Automatically installs chocolatey to install Git - but only if necessary (idempotent)
-3. Automatically generates an SSH key - but only if necessary (idempotent) (which avoids killing a key that might be in use)
-4. Uses the Git's built-in SSH client to create SSH keys (avoids the complexity of the above conventional wisdom)
+The code that performs these steps is idempotent or "desired state oriented" - meaning that it always checks if the step it is about to perform is necessary or not before doing it. While it takes a little extra effort, there are multiple rewards:
+
+1. Reduction in runtime if something is already configured
+2. Does not accidentally upgrade software nor destroy existing configurations (e.g. this code will not accidentally overwrite a pre-existing primary ssh key)
+3. If the code fails, it can be run again until it works because it picks up where it left off.
+
+### Code Behavior
+
+1. If not present, automatically installs Git
+2. If not present, automatically installs chocolatey to install Git
+3. If not present, automatically generates an SSH key
+4. Key generation always uses the Git's built-in SSH client to create SSH keys (avoids the complexity of the above conventional wisdom)
 5. Copies the public key to the clip board and pauses for the user to add it to the Git server (in their profile)
 6. Optionally does a SSH login test if you provide a value for: $SSHEndPointToGitForTesting
 
