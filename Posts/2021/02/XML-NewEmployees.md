@@ -7,8 +7,6 @@ featured_image:
 summary: using XML referencing to bolster up your new employee scripts with information.
 ---
 
-# Leveraging XML With New Employee PowerShell Scripts
-
 I'm going to show how you can leverage XML files for referencing information, to help bolster up your Active Directory user accounts. 
 This will ensure things such as Outlook contact cards are correct but also allows you to use this information at a later date, e.g. creating dynamic distribution lists based on office locations, or setting NTFS permissions on fire evacuation plans for specific floors in buildings.
 Using XML allows for non-PowerShell savvy users to jump into the files and amend or add address information. Meaning less plain text strings in scripts.
