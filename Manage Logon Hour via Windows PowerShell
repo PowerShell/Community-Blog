@@ -1,9 +1,9 @@
----
+----
 post_title: Manage Logon Hour via Windows PowerShell
 username: farisnt@gmail.com
 Catagories: PowerShell, Active Directory
 Summary: How to change users Logon Hours using PowerShell
----
+----
 
 
 **Q:** How can I set AD domain user Logon Hour via Windows PowerShell ?
