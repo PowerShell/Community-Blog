@@ -1,9 +1,9 @@
----
+----
 post_title: Manage Logon Hour via Windows PowerShell
 username: farisnt@gmail.com
 Catagories: PowerShell, Active Directory
 Summary: How to change users Logon Hours using PowerShell
----
+----
 
 
 **Q:** How can I set AD domain user Logon Hour via Windows PowerShell ?
@@ -16,7 +16,7 @@ First, let's start with the GUI of the Logon Hours property by opening any AD us
 
 In the example below, the user cannot log in on Sunday or Saturday all day but can log in from Monday through Friday. 
 
-![Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/Untitled.png](Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/Untitled.png)
+![Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/logonhours-explain.png](Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/logonhours-explain.png)
 
 Logon Hours GUI
 
@@ -24,7 +24,7 @@ Make to enable the Advanced Features in Active Directory Management Console to s
 
 Start by selecting any user —> **Attribute Editor** tab. From the attributes, scroll to **LogonHours** and double click on it. Change the **Value Format** to **Binary.** 
 
-![Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/Untitled%201.png](Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/Untitled%201.png)
+![Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/logonhour-bin.png](Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/logonhour-bin.png)
 
 Logon Hour in attribute
 
@@ -34,7 +34,7 @@ This is what represent the logon hours, but this is undoubtedly not a readable v
 
 In the **LogonHour**, each day of the week represented with 3 Byte (Three sets of **11111111** or **00000000**), and each 1 bit of the byte represent 1 hour
 
-![Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/Untitled%202.png](Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/Untitled%202.png)
+![Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/logonhour-bin-explain.png](Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/logonhour-bin-explain.png)
 
 This user is allowed to login all the days though the week
 
@@ -50,7 +50,7 @@ Changing any value from 1 to 0 or 0 to 1 will be reflected in the Logon Hours GU
 
 So change the first block and make it **01111111**, click on OK to save, and open back the Logon Hour in the **Account** tab. See that there is only one block that is now marked as white.
 
-![Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/Untitled%203.png](Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/Untitled%203.png)
+![Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/logonhour-one-hour-off.png](Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/logonhour-one-hour-off.png)
 
 Result After Changing 1 bit
 
@@ -164,13 +164,13 @@ As mentioned before, the **LogonHours** value should be in the UTC standard time
 
 To see and understand the challenge, let's see it first in action to understand how to build the solution. Starting by setting the Timezone to any Timezone with 0 UTC, such as London, Dublin. **+0 UTC**. Then change the **Logon Hours** GUI for a test user to only be allowed to login 1 hour as the following, and this helps in seeing how this bit is moving by the change of the timezone
 
-![Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/Untitled%204.png](Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/Untitled%204.png)
+![Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/logonhour-utc.png](Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/logonhour-utc.png)
 
 Only One bit is selected
 
 Now change the Timezone to -2 or -3, such as (**UTC - 03:00) Salvador.** Open the same **Logon Hour** GUI interface again and see where the permitted login slot is now shifted.
 
-![Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/Untitled%205.png](Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/Untitled%205.png)
+![Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/logonhour-utc-diff.png](Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/logonhour-utc-diff.png)
 
 The bit is shifted 3 bits to the left
 
