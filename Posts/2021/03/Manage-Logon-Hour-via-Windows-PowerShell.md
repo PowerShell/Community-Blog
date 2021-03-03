@@ -16,7 +16,7 @@ First, let's start with the GUI of the Logon Hours property by opening any AD us
 
 In the example below, the user cannot log in on Sunday or Saturday all day but can log in from Monday through Friday. 
 
-![Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/logonhours-explain.png](Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/logonhours-explain.png)
+![Logonhours Explain](./media/Manage-Logon-Hour-via-Windows-PowerShell/logonhours-explain.png)
 
 Logon Hours GUI
 
@@ -24,7 +24,7 @@ Make to enable the Advanced Features in Active Directory Management Console to s
 
 Start by selecting any user —> **Attribute Editor** tab. From the attributes, scroll to **LogonHours** and double click on it. Change the **Value Format** to **Binary.** 
 
-![Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/logonhour-bin.png](Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/logonhour-bin.png)
+![Logonhour Binary](./media/Manage-Logon-Hour-via-Windows-PowerShell/logonhour-bin.png)
 
 Logon Hour in attribute
 
@@ -34,7 +34,7 @@ This is what represent the logon hours, but this is undoubtedly not a readable v
 
 In the **LogonHour**, each day of the week represented with 3 Byte (Three sets of **11111111** or **00000000**), and each 1 bit of the byte represent 1 hour
 
-![Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/logonhour-bin-explain.png](Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/logonhour-bin-explain.png)
+![Logonhour Binary Explain](./media/Manage-Logon-Hour-via-Windows-PowerShell/logonhour-bin-explain.png)
 
 This user is allowed to login all the days though the week
 
@@ -50,7 +50,7 @@ Changing any value from 1 to 0 or 0 to 1 will be reflected in the Logon Hours GU
 
 So change the first block and make it **01111111**, click on OK to save, and open back the Logon Hour in the **Account** tab. See that there is only one block that is now marked as white.
 
-![Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/logonhour-one-hour-off.png](Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/logonhour-one-hour-off.png)
+![Logonhour one hour off.png](./media/Manage-Logon-Hour-via-Windows-PowerShell/logonhour-one-hour-off.png)
 
 Result After Changing 1 bit
 
@@ -73,7 +73,7 @@ To make things easy to use for the user, I wrote a function **Set-LogonHours** t
 - **Saturday:** Apply the TimeIn24Format to this day *(Switch)*
 - **NonSelectedDaysAre:** This option for the weekdays that are not selected, what the default value should be, is it a permit or denied *(ValidateSet ="WorkingDays" or "NonWorkingDays").*
 
-    ```powershell-console
+    ```powershell
     Set-LogonHours -identity "MyTestUser" -TimeIn24Format @(8,9,10,11,12)  -Monday -Tuesday -Wednesday -Thursday -NonSelectedDaysare WorkingDays
     ```
 
@@ -81,13 +81,13 @@ To make things easy to use for the user, I wrote a function **Set-LogonHours** t
 
 First, create a Byte array, which will hold the final result as the **LogonHour** accepts a Byte array, not an integer array. The array length is 21, which represents a week. The number of Seven * (three blocks "which represent a day")  (7x3=21)
 
-```powershell-console
+```powershell
 $FullByte=New-Object "byte[]" 21
 ```
 
 Then create a Hashtable that represents each hour of the day. The value of this hashtable will be set to **One** based on the user input
 
-```powershell-console
+```powershell
 $FullDay=[ordered]@{
         "1"=0
         "2"=0
@@ -118,7 +118,7 @@ $FullDay=[ordered]@{
 
 The hashtable value is base on what the user input in the array, so if the user type @(8,9,10,11,12,13,14,15), the respected value in the Hashtable should be set to 1, then join all the values together and store the result in a variable named `$Working`
 
-```powershell-console
+```powershell
 Foreach ($Singlevalue in $TimeIn24Format){
         $FullDay[$SingleValue]=1
 
@@ -128,7 +128,7 @@ Foreach ($Singlevalue in $TimeIn24Format){
 
 Depend on the user input, and if the user chose to consider all the non-selected days to allow or denied to logon, the below code would set the default value for the non-selected days. Also, the Second **Switch** statement will fill the user added days parameter value with the allowed logon hours.
 
-```powershell-console
+```powershell
 Switch ($PSBoundParameters["NonSelectedDaysare"])
        
         {
@@ -150,7 +150,7 @@ Switch ($PSBoundParameters.Keys)
 
 The next line will build up the full week string by combining all the values in one line, and this is needed to fix the TimeZone offset so that the script can give the same result regardless of the TimeZone. 
 
-```powershell-console
+```powershell
 $AllTheWeek="{0}{1}{2}{3}{4}{5}{6}" -f $SundayValue,$MondayValue,$TuesdayValue,$WednesdayValue,$ThursdayValue,$FridayValue,$SaturdayValue
 ```
 
@@ -164,13 +164,13 @@ As mentioned before, the **LogonHours** value should be in the UTC standard time
 
 To see and understand the challenge, let's see it first in action to understand how to build the solution. Starting by setting the Timezone to any Timezone with 0 UTC, such as London, Dublin. **+0 UTC**. Then change the **Logon Hours** GUI for a test user to only be allowed to login 1 hour as the following, and this helps in seeing how this bit is moving by the change of the timezone
 
-![Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/logonhour-utc.png](Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/logonhour-utc.png)
+![Logonhour UTC.png](./media/Manage-Logon-Hour-via-Windows-PowerShell/logonhour-utc.png)
 
 Only One bit is selected
 
 Now change the Timezone to -2 or -3, such as (**UTC - 03:00) Salvador.** Open the same **Logon Hour** GUI interface again and see where the permitted login slot is now shifted.
 
-![Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/logonhour-utc-diff.png](Manage%20Logon%20Hour%20via%20Windows%20PowerShell%20c28909d216f44708aad42cfa6706b403/logonhour-utc-diff.png)
+![Logonhour UTC Diff.png](./media/Manage-Logon-Hour-via-Windows-PowerShell/logonhour-utc-diff.png)
 
 The bit is shifted 3 bits to the left
 
@@ -178,7 +178,7 @@ The same thing happens if the selected timezone was **(UTC +)** the bit will shi
 
 In PowerShell, we can get the Timezone by using the `Get-Timezone` cmdlet. The `Get-Timezone` contains a property that shows the Timezone bias `(Get-TimeZone).baseutcoffset.hours`. Using this, it's possible to change the order of the bits based on the Timezone bais. 
 
-```powershell-console
+```powershell
 #Timezone in UTC -
 If ((Get-TimeZone).baseutcoffset.hours -lt 0){
 $TimeZoneOffset = $AllTheWeek.Substring(0,168+ ((Get-TimeZone).baseutcoffset.hours))
@@ -203,7 +203,7 @@ Now the hours are aligned with the Timezone bias, and it's time to build the arr
 
 Another challenge is each 8 bits group needs to have a reverse order, so the 1's and 0's order is reflecting the correct binary number bits order, and then update the result in the `$FullByte` variable, which will be used to update the AD user information by using ~~Set-ADUser~~ cmdlet
 
-```powershell-console
+```powershell
 $BinaryResult=$FixedTimeZoneOffSet -split '(\d{8})' | where {$_ -match '(\d{8})'}
 
                     Foreach($singleByte in $BinaryResult){
@@ -219,7 +219,7 @@ $BinaryResult=$FixedTimeZoneOffSet -split '(\d{8})' | where {$_ -match '(\d{8})'
            Set-ADUser  -Identity $Identity -Replace @{logonhours = $FullByte}
 ```
 
-```powershell-console
+```powershell
 Function Set-LogonHours{
 [CmdletBinding()]
 Param(
