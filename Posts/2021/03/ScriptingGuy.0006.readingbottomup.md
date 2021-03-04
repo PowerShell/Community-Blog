@@ -1,5 +1,5 @@
 ---
-post_title: Readign a text file bottom up
+post_title: Reading a text file bottom up
 username: tfl@psp.co.uk
 Catagories: PowerShell
 tags: Array
@@ -84,7 +84,7 @@ So how do we get to where you want to go?
 
 There’s an important difference between a text file and an array.
 With a text file, using `Get-Content`, you read it from only from the start to the finish.
-Windows, .NET, and PowererShell do not provide a way to read the file in reverse.
+Windows, .NET, and PowerShell do not provide a way to read the file in reverse.
 However, once you have the file contained in an array. it’s easy to read the array from the bottom to the top.
 
 Let's start by working out how many lines there are in the array.
@@ -117,11 +117,11 @@ So what we do is to look first at `$Array[-1]`, then `$Array[-2]`, and so on, al
 
 ```powershell-console
 PS C:\Foo> $Array = Get-Content -Path C:\Foo\SmallFile.txt
-PS C:\Foo> $length = $Array.count
+PS C:\Foo> $Length = $Array.count
 PS C:\Foo> "There are $Length lines in the file"
 There are 7 lines in the file
 PS C:\Foo> $Line = 1
-PS C:\Foo> 1..$length | foreach {$Array[-$line]; $Line++}
+PS C:\Foo> 1..$Length | foreach {$Array[-$Line]; $Line++}
 red
 orange
 yellow
@@ -141,6 +141,7 @@ This may be a little confusing if you haven't work with arrays, but once you get
 Arrays are a fantastic capability within PowerShell.
 
 ## For More Information
+
 For more information on arrays in PowerShell, see [About_Arrays](https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_arrays).
 And for more information on `Get-Content! see the [Get-Content Help page](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-content).
 
@@ -149,9 +150,7 @@ And for more information on `Get-Content! see the [Get-Content Help page](https:
 So as you saw, `Get-Content` does not read backwards through a file.
 If you bring the file contents into an array, you can easily read it backwards.
 
-
-
 ## Tip of the Hat
 
 This article is based on an earlier Scripting Guys blog article at [Can I Read a Text file from the Bottom Up?](https://devblogs.microsoft.com/scripting/can-i-read-a-text-file-from-the-bottom-up/).
-Not sure who wrote the original article.
+I am not sure who wrote the original article.
