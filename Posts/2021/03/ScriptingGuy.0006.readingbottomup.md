@@ -137,13 +137,13 @@ You then use `foreach` to run a script block once for each line in the file.
 Inside the script block you get the array element starting at the end and output it to the console.
 Then you increment the line number and repeat.
 
-This may be a little confusing if you haven't work with arrays, but once you get the hang of it, you'll see how simple it really is.
+This may be a little confusing if you haven't work with arrays, but once you get the hang of it, you see how simple it really is.
 Arrays are a fantastic capability within PowerShell.
 
 ## For More Information
 
 For more information on arrays in PowerShell, see [About_Arrays](https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_arrays).
-And for more information on `Get-Content! see the [Get-Content Help page](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-content).
+And for more information on `Get-Content` see the [Get-Content](https://docs.microsoft.com/powershell/module/microsoft.powershell.management/get-content) help page.
 
 ## Summary
 
