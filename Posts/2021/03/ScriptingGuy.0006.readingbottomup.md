@@ -15,8 +15,8 @@ A simple way is to use the power of array handling in PowerShell.
 
 ## The Get-Content Cmdlet
 
-Before getting into the solution, let's look at the `Get-Content` cmdlet
-The `Get-Content` cmdlet allows you to read a file but it always does so from start to finish.
+Before getting into the solution, let's look at the `Get-Content` cmdlet.
+The `Get-Content` cmdlet always reads a file from start to finish.
 You can always get the very last line of the file like this:
 
 ```powershell
@@ -103,8 +103,8 @@ So that tells us you have the number of lines in the array that you expected.
 
 So let's give you a solution. 
 In our sample array, `$Array` we have 7 lines.
-We can address directly any individual array member by using `[<index>]` syntax (after the array name).
-So the first item in the array always has an index number of 0 or `$Array[0`).
+We can address any individual array member directly using `[<index>]` syntax (after the array name).
+So the first item in the array always has an index number of 0 or `$Array[0]`).
 In our array, the line **violet** has an index number of 0 so you can get to it using `$Array[0]`.
 Likewise, red has an index number of 6, or `$Array[6]`.
 But that doesn't help us much - just yet!
@@ -121,7 +121,7 @@ PS C:\Foo> $Length = $Array.count
 PS C:\Foo> "There are $Length lines in the file"
 There are 7 lines in the file
 PS C:\Foo> $Line = 1
-PS C:\Foo> 1..$Length | foreach {$Array[-$Line]; $Line++}
+PS C:\Foo> 1..$Length | ForEach-Object {$Array[-$Line]; $Line++}
 red
 orange
 yellow
@@ -133,7 +133,7 @@ violet
 
 This code snippet first sets a variable, `$Line`, to 1.
 Then you read the file and display how many lines are in the file.
-You then use `foreach` to run a script block once for each line in the file.
+You then use `ForEach-Object` to run a script block once for each line in the file.
 Inside the script block you get the array element starting at the end and output it to the console.
 Then you increment the line number and repeat.
 
