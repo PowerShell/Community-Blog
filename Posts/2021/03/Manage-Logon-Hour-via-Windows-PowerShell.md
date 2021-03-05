@@ -251,11 +251,8 @@ $FullByte=New-Object "byte[]" 21
 $FullDay=[ordered]@{}
 0..23 | foreach{$FullDay.Add($_,"0")}
 
-        Foreach ($singlevalue in $TimeIn24Format){
-        $FullDay[$singlevalue]=1
-
-        }
-        $Working= -join ($FullDay.values)
+       $TimeIn24Format.ForEach({$FullDay[$_]=1})
+       $Working= -join ($FullDay.values)
         
         Switch ($PSBoundParameters["NonSelectedDaysare"])
        
