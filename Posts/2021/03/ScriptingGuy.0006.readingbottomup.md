@@ -54,7 +54,7 @@ PS C:\Foo> $File = @'
 >> red
 >> '@
 PS C:\Foo> $File | Out-File -Path C:\Foo\SmallFile.txt
-PS C:\Foo> Get-ChileItem -Path C:\Foo\SmallFile.txt
+PS C:\Foo> Get-ChildItem -Path C:\Foo\SmallFile.txt
 
     Directory: C:\Foo
 
