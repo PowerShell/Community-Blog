@@ -1,6 +1,6 @@
 ---
 post_title: Determine if a folder exists
-username: fabian.baumanis@gmx.de
+username: baumanisf
 Catagories: PowerShell
 tags: File, Test-Path
 Summary: How can I determine if a folder exists?
@@ -16,7 +16,7 @@ It looks for a given path and returns `True` if it exists, otherwise it returns 
 You could evaluate the result of the `Test-Path` like in the code snippet below 
 
 ```powershell
-$Folder = 'C:\Windows'
+$Folder = 'C:\\Windows'
 "Test to see if folder [$Folder]  exists"
 if (Test-Path -Path $Folder) {
     "Path exists!"
