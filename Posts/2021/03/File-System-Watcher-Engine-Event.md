@@ -1,7 +1,7 @@
 # A Reusable File System Event Watcher for PowerShell
 
 Have you ever needed a FilesystemWatcher and found it a bit cumbersome to interact with the
-[.Net frameworks FileSystemWatcher class](https://docs.microsoft.com/en-us/dotnet/api/system.io.filesystemwatcher)
+[.Net frameworks FileSystemWatcher class](/dotnet/api/system.io.filesystemwatcher)
 within a powershell script?
 
 The PowerShell module
@@ -67,7 +67,7 @@ PS> "XYZ" >> C:\temp\files\xyz
 ```
 
 Also event raised before a handler is registered will remain in the queue until they are consumed
-manually using 'Get.-Event'/'Remove-Event'. This has nothing to do with this module and is just the
+manually using '[Get-Event](xref:Microsoft.PowerShell.Utility.Get-Event)'/'[Remove-Event](xref:Microsoft.PowerShell.Utility.Remove-Event)'. This has nothing to do with this module and is just the
 way PowerShell works.
 
 To suspend the notification temporarily and to resume it later the following two commands can be used:
@@ -93,7 +93,7 @@ Filter                : *
 ```
 
 It will write a state object to the pipe containing the configuration of all filesystem watchers.
-Finally if you want to ger rid of all filesystemwatchers the command 'Remove-FileSystemWatcher' will
+Finally if you want to ger rid of all filesystem watchers the command 'Remove-FileSystemWatcher' will
 dispose a filesystem watcher specified by the source identifier of by piping in a collection of
 watchers:
 
