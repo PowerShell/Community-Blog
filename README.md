@@ -22,8 +22,8 @@ as the post's content is relevant to PowerShell users and is not marketing those
 
 There are several ways you can interact, depending on your needs and levels of enthusiasm.
 
-1. The entry level, so to speak, is to read the blog and enjoy the content.
-You can come [here directly](https://devblogs.microsoft.com/powershell-community) or use a blog aggrigation mechanismn to view the content.
+1. The entry-level, so to speak, is to read the blog and enjoy the content.
+You can come [here directly](https://devblogs.microsoft.com/powershell-community) or use a blog aggregation  mechanism to view the content.
 Over time, we hope and expect the major search engines to index these posts, making it easy for IT Pros to find and use the information contained. 
 
 2. You can also comment on any of blog posts. 
@@ -33,7 +33,7 @@ See the [Wiki pages](https://github.com/PowerShell/Community-Blog/wiki) for deta
 We welcome comments  - but keep them classy.
 
 3. You may want to contribute to the development of blog posts.
-You are welcome to create new posts, or help review content submissions.
+You are welcome to create new posts, file issues, or help review content submissions.
 And should you find an error, feel free to []file a GitHub issue](https://github.com/PowerShell/Community-Blog/issues).
 If there is a specific question you feel might make a good blog post, also file an issue.
 
