@@ -39,7 +39,7 @@ If there is a specific question you feel might make a good blog post, also file 
 
 If you want to either create new blog posts or participate in the creation and review of new posts, then you need to head to [this blog's GitHub home](https://github.com/PowerShell/Community-Blog).
 You need a GitHub aaccount to be able to submit anything to the blog's GitHub repository.
-You can sign up for a GitHuib account at [GitHub's new account sign up page](https://github.com/join?source=login).
+You can sign up for a GitHub account at [GitHub's new account sign up page](https://github.com/join?source=login).
 
 Acceptance of any blog post is done at the sole discretion of the Blog admins. 
 Before we can accept any blog post submission, you must sign the Contributor License Agreement (CLA).
