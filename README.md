@@ -8,8 +8,8 @@ information, see the [Code of Conduct FAQ](https://opensource.microsoft.com/code
 
 ## The Purpose of this blog
 
-The intended purpose of this blog is to provide a platform for the PowerShell Community to show off the great things you can do with PowerSherll.
-The blog should be a set of simple s6eps to take, with PoweShell, to achieve some task. 
+The intended purpose of this blog is to provide a platform for the PowerShell Community to show off the great things you can do with PowerShell.
+The blog should be a set of simple s6eps to take, with PowerShell, to achieve some task. 
 Blog posts can cover either Windows PowerShell, or the open source PowerShell 7.
 While we welcome deep, deep posts, most posts are likely to be at the 200-300 level.
 In other words, great practical advice on how to solve real-world IT Professional problems, with a side-helping of technical depth. 
@@ -27,8 +27,8 @@ You can come [here directly](https://devblogs.microsoft.com/powershell-community
 Over time, we hope and expect the major search engines to index these posts, making it easy for IT Pros to find and use the information contained. 
 
 2. You can also comment on any of blog posts. 
-This blog uses Wordpress, so in order to add comments, you need to create and then then login to a wordpress account. 
-Once you logon successfully, Wordpress allows you to add comments to the posts here. 
+This blog uses WordPress, so in order to add comments, you need to create and then then login to a WordPress account. 
+Once you logon successfully, WordPress allows you to add comments to the posts here. 
 See the [Wiki pages](https://github.com/PowerShell/Community-Blog/wiki) for detailed instructions.
 We welcome comments  - but keep them classy.
 
@@ -38,7 +38,7 @@ And should you find an error, feel free to [file a GitHub issue](https://github.
 If there is a specific question you feel might make a good blog post, also file an issue.
 
 If you want to either create new blog posts or participate in the creation and review of new posts, then you need to head to [this blog's GitHub home](https://github.com/PowerShell/Community-Blog).
-You need a GitHub aaccount to be able to submit anything to the blog's GitHub repository.
+You need a GitHub account to be able to submit anything to the blog's GitHub repository.
 You can sign up for a GitHub account at [GitHub's new account sign up page](https://github.com/join?source=login).
 
 Acceptance of any blog post is done at the sole discretion of the Blog admins. 
