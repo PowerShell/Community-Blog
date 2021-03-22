@@ -7,50 +7,53 @@ Summary: How can I read a file from the bottom up?
 ---
 
 **Q:** I have a script where users enter some information.
-This information needs to be entered in all-capital letters, so my instructions say, “Please make sure the Caps Lock key is on before entering the information.”
+This information needs to be entered in all capital letters, so my instructions say, “Please make sure the Caps Lock key is on before entering the information.”
 They don’t always do that, however.
 Is there a way to turn the Caps Lock key on and off using a script?
 
-**A:**  I don't know how to run the key off and on, but with PowerShell there is a way to mimic the effect of having the Caps Lock key on.
+**A:**  I don't know how to run the key off and on, but with PowerShell, there is a way to mimic the effect of turning on the Caps Lock key.
 
 ## User Input Considered Harmful
 
 Let's start with the observation that all user input is harmful.
-But what does that mean?
-One of my earliest IT heros, Edsger Dijkstra, published a letter [Go To Statement Considered Harmful](https://homepages.cwi.nl/~storm/teaching/reader/Dijkstra68.pdf) in the 1968 which began the structured programming revolution.
-And this is one reason why PowerShell has no goto statement.
-The phrase "Considered Harmful" is also a well known phrase that has a Wikipedia entry at [Considered Harmful](https://en.wikipedia.org/wiki/Considered_harmful#:~:text=Considered%20harmful%20was%20popularized%20among,the%20day%20and%20advocated%20structured).
-In general, I consider user input capable of doing damage, until and unless you thoroughly validate it first.
-Thus, I believe, all user input IS potentially harmful.
+One of my earliest IT heroes, Edsger Dijkstra, published a seminal letter [Go To Statement Considered Harmful](https://homepages.cwi.nl/~storm/teaching/reader/Dijkstra68.pdf) in 1968 which began the structured programming revolution.
+And this is one reason, by the way, why PowerShell has no goto statement.
+The phrase "Considered Harmful" is also a well-known phrase that has a Wikipedia entry at [Considered Harmful](https://en.wikipedia.org/wiki/Considered_harmful#:~:text=Considered%20harmful%20was%20popularized%20among,the%20day%20and%20advocated%20structured).
+In general, I consider all user input potentially harmful, capable of doing damage until and unless you thoroughly validate it first.
 
 ## Is User Input Really Harmful?
 
-At university, I was a verification programmer and got paid an hourly rate plus a bonus for finding bugs.
-I made far more than my hourly wage by simply testing conditions that were outside what the developers considered "normal".
-If an instruction said "Enter a number between 1 and 6", I tried -124, 0, 7, 42, 999999, and so on.
-This inevitably led to several bugs (and several nice bug bounties).
-Ever since then, I have always taught my students to never ever accept user input unchecked.
+I was a verification programmer at university and got paid an hourly rate plus a bonus for finding bugs.
+I made far more than my hourly wage by simply testing conditions outside what the developers considered "normal".
+In other words potentially harmful.
+
+If an instruction said, "Enter a number between 1 and 6", I tried -124, 0, 7, 42, 999999, and so on.
+This approach inevitably led to several bugs (and several nice bug bounties).
+Ever since then, I have always taught my students never ever to accept user input unchecked.
 And that includes having all upper case input if that is what your application requires.
 
 Another example of unchecked user input being harmful is SQL injection attacks.
-You can read more about these attacks and how you can prevent it it at [What is SQL Injection (SQLi) and How to Prevent It](https://www.acunetix.com/websitesecurity/sql-injection/)
+You can read more about these attacks and how you can prevent it at [What is SQL Injection (SQLi) and How to Prevent It](https://www.acunetix.com/websitesecurity/sql-injection/)
 
-So in general, you should never trust any user input without validating it first.
+So, in general, you should never trust any user input without validating it first.
 Although you ask the user to type her name in all upper case, I'll bet that many just won't.
-So wh
+
+So what does the Caps Lock actually do?
+When you type characters into a form or a console, you might type them like this:
+
 ```powershell-console
 this is my sentence.
 ```
 
-Using the Caps Lock key makes it appear on screen like this:
+If you switch on the Caps Lock key, the operating system and your hardware makes those characters appear like this:
 
 ```console
 THIS IS MY SENTENCE.
 ```
 
-So how can we achieve the same affect in a script?
-Simple: we just accept the input as the user typed it.
-Then we make sure it's all upper case before moving on.
+So how can we achieve that same effect in a script?
+Simple: we accept the input as the user typed it.
+Then we make sure it's all upper case before using it.
 
 Let's start with getting the user input in the first place.
 
@@ -58,15 +61,15 @@ Let's start with getting the user input in the first place.
 
 There are several ways to get user input from within a script.
 A common approach with PowerShell scripts is to use the `Read-Host` command.
-This cmdlet reads a line of input from the console and returns it to the script (as a string).
+This cmdlet reads a line of input from the console and returns it to the script as a string.
 For more information on this cmdlet, see the [Read-Host help file](https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/read-host).
 
-There are, or course, other ways to get user input, such as using [Windows Forms](https://docs.microsoft.com/powershell/scripting/samples/creating-a-custom-input-box?view=powershell-7.1) or WPF.
+There are other ways to get user input, such as using [Windows Forms](https://docs.microsoft.com/powershell/scripting/samples/creating-a-custom-input-box?view=powershell-7.1) or WPF.
 You might even use a legacy [Visual Basic `Inputbox`](https://docs.microsoft.com/dotnet/api/microsoft.visualbasic.interaction.inputbox?view=net-5.0).
-But with each of these methods, you still have the underlying issue of making sure the string the user enters is all upper-case.
+But with each of these methods, you still have the underlying issue of making sure the string the user enters is all upper-case before you use it further.
 
 Suppose you wanted to ask the user for their name (and you really need it to be upper case).
-You could ask for. accept, and then display user input like this:
+You could ask for, accept, and then display user input like this:
 
 ```powershell-console
 PS C:\Foo> $Answer = Read-Host -Prompt 'Please Enter Your Name In ALL Upper case'
@@ -77,7 +80,7 @@ Thomas Lee
 
 But that is not in upper case, I hear you say.
 Yes, true - but there is just one more step.
-Be patient grasshopper.
+Be patient, grasshopper.
 
 ## Converting a String to Upper Case
 
@@ -92,7 +95,7 @@ System.String
 ```
 
 This matters because the `System.String` .NET class has a very useful method, **ToUpper()**.
-The **ToUpper()** method converts the string to all upper case and returns a new, all upper-case, string.
+The **ToUpper()** method converts the string to all upper case and returns a new, all upper case, string.
 So to convert the string you entered and stored in **$Answer**, you use the **ToUpper()** method like this:
 
 ```powershell-console
@@ -107,20 +110,22 @@ THOMAS LEE
 
 ## Strings are Immutable in .NET
 
-In .NET, and PowerShell, you can't actually change a System.String in memory after you define it.
-A string is considered immutable.
-When you change any string, NET creates an all-new string (with your changes) and marks the older string as out of scope and available for garbage collection.
+In .NET and PowerShell, a string is immutable
+Once created, you can't change a System.String in memory after you define it.
+
+If you assign a string variable a new value (the old value plus a character), .NET creates an all-new string with same name) and marks the older string as out of scope and available for garbage collection.
 This is generally not an issue in cases such as wanting to ensure user input is all upper-case.
 
-But if you have a script that makes a very large number of changes to a `System.String` object, you could encounter performance issues.
-In such cases, you can use the .NET `System.Text.StringBuilder` class which represents a mutable string of characters.
+But if you have a script that makes a very large number of changes to any `System.String` object, you could encounter performance issues.
+In such cases, you can use the .NET `System.Text.StringBuilder` class representaing mutable string of characters.
+This class can provide significant performance gains in such scenarios.
 For more information on the `StringBuilder` class, see [StringBuilder Class documentation page](https://docs.microsoft.com/en-us/dotnet/api/system.text.stringbuilder)
 I plan to do another blog post on the differences.
 
 ## Strings and Methods
 
 .NET strings also have other methods, including **ToLower()** that change a string to all lower case.
-You can always discover the methods of a string (or any other variable type) by piping the variable to `Get-Member`.
+You can always discover the available methods of a string (or any other variable type) by piping the variable to `Get-Member`.
 Like this:
 
 ```powershell-console
@@ -189,14 +194,13 @@ That could well be the subject of another article that shows you how to achieve 
 ## Summary
 
 Turning the Caps Lock key on is not something I know how to do.
-And if you did it might confuse the user for example if she sees the Caps Lock indicator light up on her keyboard.
+And if you did, it might confuse the user, for example if she sees the Caps Lock indicator light up on her keyboard.
 As well, you would need to turn it off.
 
-But rather then trying, or depending on any user to always do the right thing, you can always ensure that the input is indeed in all upper case.
-And never trust user input without validating it first.
+Rather then depending on any user to always do the right thing, you can always ensure that the input is indeed in all upper case.
+Never trust user input without validating it first.
 
 ## Tip of the Hat
 
 This article is based on an earlier article here: [Can I Enable the Caps Lock Key?](https://devblogs.microsoft.com/scripting/can-i-enable-the-caps-lock-key/).
 I re-developed the article around PowerShell.
-
