@@ -119,7 +119,7 @@ This is generally not an issue in cases such as wanting to ensure user input is 
 But if you have a script that makes a very large number of changes to any `System.String` object, you could encounter performance issues.
 In such cases, you can use the .NET `System.Text.StringBuilder` class representaing mutable string of characters.
 This class can provide significant performance gains in such scenarios.
-For more information on the `StringBuilder` class, see [StringBuilder Class documentation page](https://docs.microsoft.com/en-us/dotnet/api/system.text.stringbuilder)
+For more information on the `StringBuilder` class, see [StringBuilder Class documentation page](https://docs.microsoft.com/dotnet/api/system.text.stringbuilder)
 I plan to do another blog post on the differences.
 
 ## Strings and Methods
