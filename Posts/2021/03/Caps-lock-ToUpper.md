@@ -2,8 +2,8 @@
 post_title: Can I Enable the Caps Lock Key?
 username: tfl@psp.co.uk
 Catagories: PowerShell
-tags: Array
-Summary: How can I read a file from the bottom up?
+tags: Caps Lock, string, ToUpper()
+Summary: How to enable all upper case input
 ---
 
 **Q:** I have a script where users enter some information.
@@ -90,7 +90,7 @@ Even if you enter a number (say 42) PowerShell still treats this as a string con
 ```powershell-console
 PS C:\> $Answer = Read-Host -Prompt "Please Enter Your Name In ALL Upper case"
 Please Enter Your Name In ALL Upper case: 42
-PS C:\> $Answer.GetType().Fullname
+PS C:\> $Answer.GetType().FullName
 System.String
 ```
 
