@@ -18,7 +18,7 @@ Is there a way to turn the Caps Lock key on and off using a script?
 Let's start with the observation that all user input is harmful.
 One of my earliest IT heroes, Edsger Dijkstra, published a seminal letter [Go To Statement Considered Harmful](https://homepages.cwi.nl/~storm/teaching/reader/Dijkstra68.pdf) in 1968 which began the structured programming revolution.
 And this is one reason, by the way, why PowerShell has no goto statement.
-The phrase "Considered Harmful" is also a well-known phrase that has a Wikipedia entry at [Considered Harmful](https://en.wikipedia.org/wiki/Considered_harmful#:~:text=Considered%20harmful%20was%20popularized%20among,the%20day%20and%20advocated%20structured).
+The phrase "Considered Harmful" is also a well-known phrase that has a Wikipedia entry at [Considered Harmful](https://wikipedia.org/wiki/Considered_harmful#:~:text=Considered%20harmful%20was%20popularized%20among,the%20day%20and%20advocated%20structured).
 In general, I consider all user input potentially harmful, capable of doing damage until and unless you thoroughly validate it first.
 
 ## Is User Input Really Harmful?
