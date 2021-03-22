@@ -65,7 +65,7 @@ This cmdlet reads a line of input from the console and returns it to the script 
 For more information on this cmdlet, see the [Read-Host help file](https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/read-host).
 
 There are other ways to get user input, such as using [Windows Forms](https://docs.microsoft.com/powershell/scripting/samples/creating-a-custom-input-box) or WPF.
-You might even use a legacy [Visual Basic `Inputbox`](https://docs.microsoft.com/dotnet/api/microsoft.visualbasic.interaction.inputbox?view=net-5.0).
+You might even use a legacy [Visual Basic `Inputbox`](https://docs.microsoft.com/dotnet/api/microsoft.visualbasic.interaction.inputbox).
 But with each of these methods, you still have the underlying issue of making sure the string the user enters is all upper-case before you use it further.
 
 Suppose you wanted to ask the user for their name (and you really need it to be upper case).
