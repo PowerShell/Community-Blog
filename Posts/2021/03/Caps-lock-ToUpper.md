@@ -124,7 +124,7 @@ I plan to do another blog post on the differences.
 
 ## Strings and Methods
 
-.NET strings also have other methods, including **ToLower()** that change a string to all lower case.
+.NET strings also have other methods, including `ToLower()` that change a string to all lower case.
 You can always discover the available methods of a string (or any other variable type) by piping the variable to `Get-Member`.
 Like this:
 
