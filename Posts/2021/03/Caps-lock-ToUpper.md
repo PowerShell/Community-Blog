@@ -94,9 +94,9 @@ PS C:\> $Answer.GetType().FullName
 System.String
 ```
 
-This matters because the `System.String` .NET class has a very useful method, **ToUpper()**.
-The **ToUpper()** method converts the string to all upper case and returns a new, all upper case, string.
-So to convert the string you entered and stored in **$Answer**, you use the **ToUpper()** method like this:
+This matters because the `System.String` .NET class has a very useful method, `ToUpper()`.
+The `ToUpper()` method converts the string to all upper case and returns a new, all upper case, string.
+So to convert the string you entered and stored in `$Answer`, you use the `ToUpper()` method like this:
 
 ```powershell-console
 PS C:\> $Answer = Read-Host -Prompt 'Enter Your Name In ALL Upper Case'
