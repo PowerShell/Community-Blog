@@ -194,7 +194,7 @@ That could well be the subject of another article that shows you how to achieve 
 ## Summary
 
 Turning the Caps Lock key on is not something I know how to do.
-And if you did, it might confuse the user, for example if she sees the Caps Lock indicator light up on her keyboard.
+And if you did, it might confuse the user, for example if she sees the Caps Lock indicator light up on their keyboard.
 As well, you would need to turn it off afterwards.
 
 Rather then depending on any user to always do the right thing, you can always ensure that the input is indeed in all upper case.
