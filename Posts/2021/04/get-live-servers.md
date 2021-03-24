@@ -9,7 +9,7 @@ Summary: How can I get AD computers check to see they are online?
 **Q:** As an administrator, I often have to do a lot of reporting on the servers in my domain.
 Is there a simple way to test the connection to every server in my domain or to hosts in a specific OU?
 
-**A:**  Of course you can do this with PowerShell, using the Active Directory cmdlets and `Test-Connection`. although it is not as simple as one might like.
+**A:**  Of course you can do this with PowerShell, using the Active Directory cmdlets and `Test-Connection`, although it is not as simple as one might like.
 
 ## Using the `ActiveDirectory` module
 
