@@ -19,8 +19,8 @@ You can also load the Remote Server Administration (RSAT) module for AD on a Win
 The RSAT module allows you to manage the AD using PowerShell from a remote machine.
 For more details on the `ActiveDirectory` module, see the [ActiveDirectory](https://docs.microsoft.com/powershell/module/addsadministration/) module documentation.
 
-You can use the `Get-ADComputer` account to return details about some or all computers within the AD.
-You have several ways to use `Get-ADComputer` to get just the computer accounts you want with any property you need.
+Use the `Get-ADComputer` account to return details about some or all computers within the AD.
+There are several ways to use `Get-ADComputer` to get just the computer accounts you want with any property you need.
 These include using the **-Identity** and **-Filter** parameters.  
 Every computer account returned by `Get-ADComputer` contains two important properties: **Name** and **DNSHostName**.
 The **Name** property is the single-label name of the computer (aka the NetBIOS name).
