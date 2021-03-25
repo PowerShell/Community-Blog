@@ -74,7 +74,7 @@ It is pretty easy to get around this parameter/property alignment challenge.
 You use the `Foreach-Object` cmdlet, like this:
 
 ```powershell-console
-PS C:\Foo> Get-ADComputer -Filter * | 
+PS> Get-ADComputer -Filter * | 
              ForEach-Object {"$_";Test-Connection -TargetName $_.Name;""}
 
 CN=COOKHAM1,OU=Domain Controllers,DC=cookham,DC=net
