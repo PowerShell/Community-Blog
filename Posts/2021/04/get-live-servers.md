@@ -46,7 +46,7 @@ Sadly, it's not quite so simple.
 If you try this, here is what you would see:
 
 ```powershell-console
-PS C:\Foo> Get-ADComputer -Filter * | Test-Connection
+PS> Get-ADComputer -Filter * | Test-Connection
 Test-Connection: Cannot validate argument on parameter 'TargetName'. The argument is null, empty, or an element of the argument collection contains a null value. Supply a collection that does not contain any null values and then try the command again.
 Test-Connection: Cannot validate argument on parameter 'TargetName'. The argument is null, empty, or an element of the argument collection contains a null value. Supply a collection that does not contain any null values and then try the command again.
 Test-Connection: Cannot validate argument on parameter 'TargetName'. The argument is null, empty, or an element of the argument collection contains a null value. Supply a collection that does not contain any null values and then try the command again.
