@@ -151,7 +151,7 @@ For details of and background to the ETS, see the [Extended Type System Overview
 
 ## Summary
 
-The `Get-ADComputer` cmdlet produces objects whose properties the object developers have not aligned, pipeline wise, with Test-Connection.
+The `Get-ADComputer` cmdlet produces objects whose properties the object developers have not aligned, pipeline wise, with `Test-Connection`.
 There is a simple way around that, using `For-EachObject`, although it takes a bit more typing.
 You can also use the ETS to extend the `ADComputer` object to have a more friendly alias.
 
