@@ -17,7 +17,7 @@ Microsoft has developed several modules to help you deploy and manage AD in your
 The `ActiveDirectory` module is one which Microsoft ships with Windows Server (although not installed by default).
 You can also load the Remote Server Administration (RSAT) module for AD on a Windows 10 host.
 The RSAT module allows you to manage the AD using PowerShell from a remote machine.
-For more details on the `ActiveDirectory` module, see the [ActiveDirectory module documentation](https://docs.microsoft.com/powershell/module/addsadministration/().)
+For more details on the `ActiveDirectory` module, see the [ActiveDirectory](https://docs.microsoft.com/powershell/module/addsadministration/) module documentation.
 
 You can use the `Get-ADComputer` account to return details about some or all computers within the AD.
 You have several ways to use `Get-ADComputer` to get just the computer accounts you want with any property you need.
