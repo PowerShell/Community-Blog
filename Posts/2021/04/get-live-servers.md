@@ -28,7 +28,7 @@ The **DNSHostName** property is the fully qualified DNS name for the computer.
 Like this:
 
 ```powershell-console
-PS C:\Foo> Get-ADComputer -Filter * | Format-Table -Property Name, DNSHostName
+PS> Get-ADComputer -Filter * | Format-Table -Property Name, DNSHostName
 
 Name         DNSHostName
 ----         -----------
