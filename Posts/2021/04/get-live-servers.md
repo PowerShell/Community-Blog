@@ -7,9 +7,9 @@ Summary: How can I get AD computers check to see they are online?
 ---
 
 **Q:** As an administrator, I often have to do a lot of reporting on the servers in my domain.
-Is there a simple way to test the connection to every server in my domain or to hosts in a specific OU?
+Is there a simple way to test the connection to every server in my domain or every server or client host in a specific OU?
 
-**A:**  Of course you can do this with PowerShell, using the Active Directory cmdlets and `Test-Connection`, although it is not as simple as one might like.
+**A:**  Of course you can do this with PowerShell! You can use the Active Directory cmdlets and `Test-Connection`, although it is not as simple as one might like.
 
 ## Using the `ActiveDirectory` module
 
@@ -22,9 +22,9 @@ For more details on the `ActiveDirectory` module, see the [ActiveDirectory modul
 You can use the `Get-ADComputer` account to return details about some or all computers within the AD.
 You have several ways to use `Get-ADComputer` to get just the computer accounts you want with any property you need.
 These include using the **-Identity** and **-Filter** parameters.  
-Every computer account returned by `Get-ADComputer` contains two key properties: **Name** and **DNSHostName**.
+Every computer account returned by `Get-ADComputer` contains two important properties: **Name** and **DNSHostName**.
 The **Name** property is the single-label name of the computer (aka the NetBIOS name).
-The **DNSHostName** property if the fully qualified DNS name for the computer.
+The **DNSHostName** property is the fully qualified DNS name for the computer.
 Like this:
 
 ```powershell-console
@@ -41,7 +41,9 @@ COOKHAM4LTDC Cookham4LTDC.cookham.net
 
 So you might be tempted to think it simple to test connections to each computer.
 You pipe the output of `Get-ADComputer` to `Test-Connection`, and it just works.
-Sadly, it's not quite so simple:
+Sadly, it's not quite so simple.
+
+If you try this, here is what you would see:
 
 ```powershell-console
 PS C:\Foo> Get-ADComputer -Filter * | Test-Connection
@@ -57,14 +59,14 @@ What is going on here?
 ## Property/Parameter misalignment
 
 What we have here is a classic, albeit relatively uncommon, situation.
-The `Test-Connection` cmdlet uses the parameter name **Target** to indicate the computer you are testing a connection with.
+The `Test-Connection` cmdlet uses the parameter name **Target** to indicate the computer to which you are testing a connection.
 However, in this pipelined command, the objects produced by `Get-ADComputer` do not contain properties of that name.
-Instead. these objects have properties named **Name** and **DNSHostName**.
+Instead, these objects have properties named **Name** and **DNSHostName**.
 
 Please note: with Windows PowerShell, you used the parameter ComputerName to indicate the computer you are investigating.
 With PowerShell 7, the developers have changed this parameter name `TargetName`.
 For best compatibility, the cmdlet defines the `ComputerName` alias to this parameter.
-This means you can use either **-TargetName** or **-Computername** with `Test-Connection`.
+This cmdlet lets you use either **-TargetName** or **-Computername** with `Test-Connection`.
 
 ## ForEach-Object to the rescue
 
@@ -109,7 +111,7 @@ etc
 
 ## Using the Extensible Type System
 
-If you plan to do a lot of this sort of work, there is a simpler way to get around this alignment issue.
+If you plan to do a lot of this sort of work, there is a more straightforward way to get around this property/parameter alignment issue.
 You can use the Extensible Type System (ETS) to extend any AD Computer object to contain an alias to the `Name` or `DNSHostName` property.
 You define this extension via a small XML file which you then import, like this:
 
@@ -149,11 +151,11 @@ For details of and background to the ETS, see the [Extended Type System Overview
 
 ## Summary
 
-The `Get-ADComputer` cmdlet produces objects whose properties are not aligned, pipeline wise, with Test-Connection.
+The `Get-ADComputer` cmdlet produces objects whose properties the object developers have not aligned, pipeline wise, with Test-Connection.
 There is a simple way around that, using `For-EachObject`, although it takes a bit more typing.
-You can also use the ETS to extend the ADComputer object to have a more friendly alias.
+You can also use the ETS to extend the `ADComputer` object to have a more friendly alias.
 
 ## Tip of the Hat
 
 This article was based on a request in this blog's issue queue
-See the post [Request - How to get all the alive servers in the domain?](https://github.com/PowerShell/Community-Blog/issues/21).
+See the post [Request - How to get all the alive servers in the domain?](https://github.com/PowerShell/Community-Blog/issues/21)
