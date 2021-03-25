@@ -21,7 +21,7 @@ For more details on the `ActiveDirectory` module, see the [ActiveDirectory](http
 
 Use the `Get-ADComputer` account to return details about some or all computers within the AD.
 There are several ways to use `Get-ADComputer` to get just the computer accounts you want with any property you need.
-These include using the **-Identity** and **-Filter** parameters.  
+These include using the **Identity** and **Filter** parameters.  
 Every computer account returned by `Get-ADComputer` contains two important properties: **Name** and **DNSHostName**.
 The **Name** property is the single-label name of the computer (aka the NetBIOS name).
 The **DNSHostName** property is the fully qualified DNS name for the computer.
