@@ -130,8 +130,8 @@ PS> Get-Content '.\aaatypes.types.ps1xml'
 
 </Types>
 
-PS C:\Foo> Update-TypeData -PrependPath .\aaatypes.types.ps1xml
-PS C:\Foo> Get-ADComputer -Identity Cookham1 | Test-Connection
+PS> Update-TypeData -PrependPath .\aaatypes.types.ps1xml
+PS> Get-ADComputer -Identity Cookham1 | Test-Connection
 
    Destination: Cookham1.cookham.net
 
