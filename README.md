@@ -30,7 +30,7 @@ There are several ways you can interact, depending on your needs and levels of e
    these posts, making it easy for IT Pros to find and use the information contained.
 
 1. You can also comment on any of blog posts. This blog uses WordPress, so in order to add comments,
-   you need to create and then then login to a WordPress account. Once you logon successfully,
+   you need to create and then login to a WordPress account. Once you logon successfully,
    WordPress allows you to add comments to the posts here. See the
    [Wiki pages](https://github.com/PowerShell/Community-Blog/wiki) for detailed instructions. We
    welcome comments - but keep them civil and constructive.
