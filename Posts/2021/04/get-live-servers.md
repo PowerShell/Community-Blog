@@ -116,7 +116,7 @@ You can use the Extensible Type System (ETS) to extend any AD Computer object to
 You define this extension via a small XML file which you then import, like this:
 
 ```powershell-console
-PS C:\Foo> get-content '.\aaatypes.types.ps1xml'
+PS> Get-Content '.\aaatypes.types.ps1xml'
 <Types>
  <Type>
     <Name>Microsoft.ActiveDirectory.Management.ADComputer</Name>
