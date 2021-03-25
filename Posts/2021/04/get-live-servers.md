@@ -1,5 +1,5 @@
 ---
-post_title: Testing The Connection to Computers in the Active Directory
+post_title: Testing the connection to computers in the Active Directory
 username: tfl@psp.co.uk
 Catagories: PowerShell
 tags: Active Directory, networking
