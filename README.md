@@ -9,7 +9,7 @@ information, see the [Code of Conduct FAQ](https://opensource.microsoft.com/code
 ## The Purpose of this blog
 
 The intended purpose of this blog is to provide a platform for the PowerShell Community to show off the great things you can do with PowerShell.
-The blog should be a set of simple s6eps to take, with PowerShell, to achieve some task.
+The blog should be a set of simple steps to take, with PowerShell, to achieve some task.
 Blog posts can cover either Windows PowerShell, or the open source PowerShell 7.
 While we welcome deep, deep posts, most posts are likely to be at the 200-300 level.
 In other words, great practical advice on how to solve real-world IT Professional problems, with a side-helping of technical depth.
