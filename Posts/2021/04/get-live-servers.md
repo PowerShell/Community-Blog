@@ -63,10 +63,10 @@ The `Test-Connection` cmdlet uses the parameter name **Target** to indicate the 
 However, in this pipelined command, the objects produced by `Get-ADComputer` do not contain properties of that name.
 Instead, these objects have properties named **Name** and **DNSHostName**.
 
-Please note: with Windows PowerShell, you used the parameter ComputerName to indicate the computer you are investigating.
-With PowerShell 7, the developers have changed this parameter name `TargetName`.
-For best compatibility, the cmdlet defines the `ComputerName` alias to this parameter.
-This cmdlet lets you use either **-TargetName** or **-Computername** with `Test-Connection`.
+[alert type="note" heading="Note"]With Windows PowerShell, you used the parameter **ComputerName** to indicate the computer you are investigating.
+With PowerShell 7, the developers have changed this parameter name to **TargetName**.
+For best compatibility, the cmdlet defines the**`ComputerName** alias to this parameter.
+This cmdlet lets you use either **TargetName** or **Computername** with `Test-Connection`.[/alert]
 
 ## ForEach-Object to the rescue
 
