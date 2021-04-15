@@ -127,4 +127,4 @@ Using the Local Accounts module in PowerShell 7, it's easy to manage local group
 ## Tip of the Hat
 
 This article was originally a VBS based solution as described in (an earlier blog post)[https://devblogs.microsoft.com/scripting/how-can-i-determine-if-a-user-is-a-local-administrator/].
-I am not sure who the author or the post was - but thanks.
+I am not sure who the author of the original post was - but thanks.
