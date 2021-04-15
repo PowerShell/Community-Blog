@@ -8,7 +8,7 @@ Summary: In a logon script, how you can tell if the user is a local administrato
 
 **Q:** Some of the things we do in our logon scripts require the user to be a local administrator. How can the script tell if the user is a local administrator or not, using PowerShell 7.
 
-**A:**  Easy using PowerShell 7 and its LocalAccounts module
+**A:**  Easy using PowerShell 7 and the LocalAccounts module
 
 ## Local Users and Groups
 
@@ -18,7 +18,7 @@ But let's begin lets begin by reviewing local users and groups in Windows.
 
 Every Windows system, except for Domain Controllers, maintains a set of local accounts - local users and local groups.
 Domain controllers use the AD and do not really have local accounts as such.
-You use these local accounts in addition to domain users and domain groups on domain-joined  hosts when setting permissions.
+You use these local accounts in addition to domain users and domain groups on domain-joined hosts when setting permissions.
 You can logon to a given server using a local account or a domain account.
 On Domain Controllers you can only login using a domain account.
 
@@ -37,6 +37,8 @@ At the time of writing, this is a Windows only module.
 ## The Microsoft.PowerShell.LocalAccounts module
 
 In PowerShell 7 for Windows, you can use the `Microsoft.PowerShell.LocalAccounts` module to manage local users and group.
+This module is a Windows PowerShell module which PowerShell 7 loads from C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules\Microsoft.PowerShell.LocalAccounts/.
+
 This module contains 15 cmdlets, which you can view like this:
 
 ```powershell-console
@@ -84,11 +86,10 @@ As you can see in this output, the local Administrators group on this host conta
 ## Is the User an Administrator?
 
 It's easy to get membership of any local group, as you saw above.
-But what if you want to find out if a given user is a member of some group?
-Or, determine whether the user running a given script is a member of the administrator's group?
+But what if you want to find out if a given user is a member of some local administrative group?
 That too is pretty easy and take a couple of steps.
 One way you can get the name of the current user is by using `whoami.exe`.
-Then you can get the members of the Administrator's group.
+Then you can get the members of the local administrator's group.
 Finally, you check to see if the currently logged on user is a member of the group.
 All of which looks like this:
 
@@ -103,26 +104,26 @@ PS> $Admins = Get-LocalGroupMember -Name Administrators |
        Select-Object -ExpandProperty name
 
 PS> # Check to see if this user is an administrator and act accordingly
-PS> if ($Admins -Contains $me) {
+PS> if ($Admins -Contains $Me) {
       "$Me is a local administrator"} 
     else {
      "$Me is NOT a local administrator"}
 Cookham\JerryG is a local administrator
 ```
 
-If the user running the script, then **$Me** is a user in the local administrator's group.
-And if the current user is in the group, that that means that the logged-on user must be a local administrator.
+If the administrative group contains user running the script, then `**`$Me` is a user in that local admin group.
 
 In this snippet, we just echo the fact that the user is, ir is not, a member of the local administrators group.
 You can adapt it to ensure a user is a member of the appropriate group before attempting to run certain commands.
 And you can also adapt it to check for membership in other local groups such as **Backup Operators** or **Hyper-V Users** which may be relevant.
 
-In your logon script, once you know that the user is a local admin, you can carry out any tasks that require administrative privileges.
-And if the user is not a local or other admin, you could echo that fact, and avoid using a cmdlet that requires the user to be an admin.
+In your logon script, once you know that the user is a member of a local administrative group, you can carry out any tasks that require that membership.
+And if the user is not a member of the group, you could echo that fact, and avoid using the relevant cmdlets.
 
 ## Summary
 
 Using the Local Accounts module in PowerShell 7, it's easy to manage local groups!
+You can, of course, manage the groups the same way in Windows PowerShell.
 
 ## Tip of the Hat
 
