@@ -37,7 +37,7 @@ At the time of writing, this is a Windows only module.
 ## The Microsoft.PowerShell.LocalAccounts module
 
 In PowerShell 7 for Windows, you can use the `Microsoft.PowerShell.LocalAccounts` module to manage local users and group.
-This module is a Windows PowerShell module which PowerShell 7 loads from C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules\Microsoft.PowerShell.LocalAccounts/.
+This module is a Windows PowerShell module which PowerShell 7 loads from `C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules\Microsoft.PowerShell.LocalAccounts`.
 
 This module contains 15 cmdlets, which you can view like this:
 
@@ -111,7 +111,7 @@ PS> if ($Admins -Contains $Me) {
 Cookham\JerryG is a local administrator
 ```
 
-If the administrative group contains user running the script, then `**`$Me` is a user in that local admin group.
+If the administrative group contains user running the script, then `$Me` is a user in that local admin group.
 
 In this snippet, we just echo the fact that the user is, ir is not, a member of the local administrators group.
 You can adapt it to ensure a user is a member of the appropriate group before attempting to run certain commands.
