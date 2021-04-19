@@ -28,7 +28,7 @@ When we execute the following Cmdlet we get output similar to this as it
 generates a new 0 Byte random file in the User's Temp folder stored in 
 `$ENV:Temp`
 
-```
+```powershell
 New-TemporaryFile
 
 Mode                 LastWriteTime         Length Name
@@ -38,22 +38,24 @@ Mode                 LastWriteTime         Length Name
 
 Ok, that really wasn’t that impressive but what if we were to do this instead?
 
-```
+```powershell
 $File=New-TemporaryFile
 ```
 
 Now we’ve created the file and stored it away in the `$File` object.   With this 
 we can remove the File of course using the Remove-Item Cmdlet
 
-```
+```powershell
 Remove-Item -path $File -force
 ```
 
-AHA!  I’ve all of that hard work.  But the `$File` object is still there to use.
-So, I could access the name and use it to create a directory instead in the 
-following manner.
+HA!  I’ve already saved some time! The `$File` object is still there with the 
+information I want to use.
 
-```
+So, I could access the name in the object property and use it to create a 
+directory instead in the following manner.
+
+```powershell
 New-Item -itemtype Directory -path $File.Name
 ```
 
@@ -67,7 +69,7 @@ Temporary folder that the New-TemporaryFile uses too!
 
 I can then take that variable and the original name of the Temporary file and combine them together like this.
 
-```
+```powershell
 $ENV:Temp + ‘\’ + $File.Name
 ```
 
@@ -76,21 +78,21 @@ _or_
 
 I can even put them together in a single String like this.
 
-```
+```powershell
 "$($ENV:Temp)\$($File.Name)"
 ```
 
 With this I could just create a New temporary Directory under our temp folder 
 in this manner.
 
-```
+```powershell
 New-Item -itemtype Directory -path "$($ENV:Temp)\$($File.Name)"
 ```
 
 Now to track it, I could same thing as last time if I wanted to know the 
 "Random Directory name" to later remove it.
 
-```
+```powershell
 $Folder=New-Item -itemtype Directory -path "$($ENV:Temp)\$($File.Name)"
 ```
 
@@ -100,7 +102,7 @@ garbage data, I can just use Remove-Item again.
 But because it's a directory, I need to add `-recurse -force` to ensure all data 
 and Subfolders are removed.
 
-```
+```powershell
 Remove-Item -path $Folder -recurse -force
 ```
 
@@ -108,7 +110,7 @@ But here is the fun and neat bit.  If you needed on a regular basis, we could
 make this into a quick function for your code, module or to impress 
 friends with!
 
-```
+```powershell
 Function New-TemporaryFolder {
     # Create Temporary File and store object in $T
     $T = New-TemporaryFile
@@ -138,7 +140,7 @@ manner I wanted it.
 When I ran this in the PowerShell Console it produced the following output of a
 New Temporary Folder
 
-```
+```powershell
 PS C:\> [System.IO.Path]::GetTempFileName()
 C:\Users\Administrator\AppData\Local\Temp\2\tmp3864.tmp
 ```
