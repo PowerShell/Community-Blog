@@ -18,7 +18,7 @@ little green haired shout out "Never fear, Scripto is here!"
 ## New-TemporaryFile Cmdlet
 
 Within PowerShell there is a built in Cmdlet called `New-TemporaryFile`.  
-Running this Cmdlet simply creates a random 0 byte file in the $ENV:Temp folder 
+Running this Cmdlet simply creates a random 0 byte file in the `$ENV:Temp folder` 
 in whichever platform you are working in.
 
 However, we can _borrow_ the filename created and use it to create a folder 
@@ -134,8 +134,8 @@ PowerShell 7.x to see how it was done there.
 
 In reading the source code for `New-TemporaryItem` I was able to see the .NET 
 Object being used to generate the file.  It turns out there is also a .NET 
-method that can be used to create a Temporary Folder as well in exactly the 
-manner I wanted it.
+method that can be used to create just that temporary name which all I wanted 
+to use in the first place for the Directory name.
 
 When I ran this in the PowerShell Console it produced the following output of a
 New Temporary Folder
@@ -145,7 +145,9 @@ PS C:\> [System.IO.Path]::GetTempFileName()
 C:\Users\Administrator\AppData\Local\Temp\2\tmp3864.tmp
 ```
 
-With this approach the function became a lot simpler and more efficient!
+This was exactly what I wanted, that random temporary Name to be consumed for
+the `New-Item` Cmdlet. With this approach the function became a lot simpler and 
+far more efficient!
 
 ```powershell
 Function New-TemporaryFolder {
@@ -159,15 +161,14 @@ for customer and needed a consistent and random set of folders in a common and
 easily erasable location. 
 
 I was hoping that we had a `New-TemporaryDirectory` Cmdlet, but found it was 
-just as easy to write one by _borrowing_ an existing Cmdlet.  
+just as easy to write one by _borrowing_ an existing Cmdlet.
+
 It was fun as well to discover how I could improve on the solution by reading
 the Source code on Github for New-TemporaryItem thanks to a little nudging from
 the Community.  So a big Thank you to Joel Bennett for the critique! :)
 
 Sean Kearney - Customer Engineer/Microsoft
-
 @PowerShellMan
-
 "Remember with great PowerShell comes great responsibilty...."
 
 
