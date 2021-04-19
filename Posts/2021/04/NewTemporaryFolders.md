@@ -167,9 +167,9 @@ It was fun as well to discover how I could improve on the solution by reading
 the Source code on Github for New-TemporaryItem thanks to a little nudging from
 the Community.  So a big Thank you to Joel Bennett for the critique! :)
 
-Sean Kearney - Customer Engineer/Microsoft
-@PowerShellMan
-"Remember with great PowerShell comes great responsibilty...."
+Sean Kearney - Customer Engineer/Microsoft - @PowerShellMan
+
+_"Remember with great PowerShell comes great responsibilty...."_
 
 
 
