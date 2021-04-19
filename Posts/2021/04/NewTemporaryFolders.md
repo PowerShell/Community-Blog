@@ -145,7 +145,7 @@ C:\Users\Administrator\AppData\Local\Temp\2\tmp3864.tmp
 
 With this approach the function became a lot simpler and more efficient!
 
-```
+```powershell
 Function New-TemporaryFolder {
     # Make a new folder based upon a TempFileName
     New-Item -ItemType Directory -Path([System.IO.Path]::GetTempFileName())
