@@ -3,7 +3,7 @@ post_title: Borrowing a Built in PowerShell Cmdlet to create a Temporary Folder
 username: sean.kearney@microsoft.com
 Catagories: PowerShell, Function
 tags: Function,Fun trick,Existing Cmdlet,New Purpose
-Summary: Leveraging Built in Cmdlets in a New and interesting ways
+Summary: Leveraging a Built in Cmdlet in a New and interesting way
 ---
 
 **Q:** Hey I question for you.  It seems silly and I know I could probably put 
