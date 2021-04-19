@@ -70,7 +70,7 @@ Temporary folder that the New-TemporaryFile uses too!
 I can then take that variable and the original name of the Temporary file and combine them together like this.
 
 ```powershell
-$ENV:Temp + ‘\’ + $File.Name
+$ENV:Temp + '\' + $File.Name
 ```
 
 _or_
