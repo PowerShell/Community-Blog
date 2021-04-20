@@ -28,7 +28,7 @@ When we execute the following cmdlet we get output similar to this as it
 generates a new 0 Byte random file in the User's Temp folder stored in
 `$ENV:Temp`
 
-```
+```output
 PS> New-TemporaryFile
 
 Mode                 LastWriteTime         Length Name
@@ -75,7 +75,6 @@ $ENV:Temp + '\' + $File.Name
 ```
 
 _or_
-
 
 I can even put them together in a single String like this.
 
@@ -142,7 +141,7 @@ to use in the first place for the directory name.
 When I ran this in the PowerShell Console it produced the following output of a
 New Temporary Folder
 
-```
+```output
 PS> [System.IO.Path]::GetTempFileName()
 C:\Users\Administrator\AppData\Local\Temp\2\tmp3864.tmp
 ```
