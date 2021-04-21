@@ -1,9 +1,9 @@
 ---
-post_title: Borrowing a Built in PowerShell Cmdlet to create a Temporary Folder
+post_title: Borrowing a built-in PowerShell command to create a temporary folder
 username: sean.kearney@microsoft.com
 Catagories: PowerShell, Function
 tags: Function,Fun trick,Existing Cmdlet,New Purpose
-Summary: Leveraging a Built in Cmdlet in a New and interesting way
+Summary: Leveraging a built-in cmdlet in a new and interesting way
 ---
 
 **Q:** Hey I question for you.  It seems silly and I know I could probably put
@@ -49,14 +49,14 @@ we can remove the file of course using the `Remove-Item` cmdlet
 Remove-Item -path $File -force
 ```
 
-HA!  I’ve already saved some time! The `$File` object is still there with the
+HA! I’ve already saved some time! The `$File` object is still there with the
 information I want to use.
 
 So, I could access the name in the object property and use it to create a
 directory instead in the following manner.
 
 ```powershell
-New-Item -itemtype Directory -path $File.Name
+New-Item -ItemType Directory -Path $File.Name
 ```
 
 But the problem is that it would be in whatever default folder PowerShell was
@@ -71,7 +71,7 @@ I can then take that variable and the original name of the Temporary file and
 combine them together like this.
 
 ```powershell
-$ENV:Temp + '\' + $File.Name
+$ENV:Temp + '\\' + $File.Name
 ```
 
 _or_
@@ -79,14 +79,14 @@ _or_
 I can even put them together in a single String like this.
 
 ```powershell
-"$($ENV:Temp)\$($File.Name)"
+"$($ENV:Temp)\\$($File.Name)"
 ```
 
 With this I could just create a new temporary directory under our temp folder
 in this manner.
 
 ```powershell
-New-Item -itemType Directory -Path "$($ENV:Temp)\$($File.Name)"
+New-Item -ItemType Directory -Path "$($ENV:Temp)\\$($File.Name)"
 ```
 
 Now to identify where the file ended up, I could same thing as last time by
@@ -94,7 +94,7 @@ storing it as an object like `$DirectoryName` if I wanted.   Then I could remove
 the "Random Directory name" later if I needed to.
 
 ```powershell
-$Folder=New-Item -itemtype Directory -path "$($ENV:Temp)\$($File.Name)"
+$Folder=New-Item -ItemType Directory -Path "$($ENV:Temp)\\$($File.Name)"
 ```
 
 Then when I am done with that folder that was presumably used to hold some
@@ -107,7 +107,7 @@ and Subfolders are removed.
 Remove-Item -Path $Folder -Recurse -Force
 ```
 
-But here is the fun and neat bit.  If you needed on a regular basis, we could
+But here is the fun and neat bit. If you needed on a regular basis, we could
 make this into a quick function for your code, module or to impress
 friends with!
 
@@ -120,7 +120,7 @@ Function New-TemporaryFolder {
     Remove-item $T -Force
 
     # Make a new folder based upon the old name
-    New-Item -Itemtype Directory -Path "$($ENV:Temp)\$($File.Name)" 
+    New-Item -Itemtype Directory -Path "$($ENV:Temp)\\$($File.Name)" 
 }
 ```
 
@@ -143,7 +143,7 @@ New Temporary Folder
 
 ```output
 PS> [System.IO.Path]::GetTempFileName()
-C:\Users\Administrator\AppData\Local\Temp\2\tmp3864.tmp
+C:\\Users\\Administrator\\AppData\\Local\\Temp\\2\\tmp3864.tmp
 ```
 
 This was exactly what I wanted, that random temporary Name to be consumed for
@@ -165,11 +165,12 @@ I was hoping that we had a `New-TemporaryDirectory` cmdlet, but found it was
 just as easy to write one by _borrowing_ an existing cmdlet.
 
 It was fun as well to discover how I could improve on the solution by reading
-the [Source code on Github for `New-TemporaryItem`](https://github.com/PowerShell/PowerShell/blob/master/src/Microsoft.PowerShell.Commands.Utility/commands/utility/NewTemporaryFileCommand.cs).
+the [Source codefor New-TemporaryItem](https://github.com/PowerShell/PowerShell/blob/master/src/Microsoft.PowerShell.Commands.Utility/commands/utility/NewTemporaryFileCommand.cs)
+on Github.
 
-Thanks to a little nudging from the Community.  So a big Thank you to Joel
+Thanks to a little nudging from the Community. So a big Thank you to Joel
 Bennett for the critique! :)
 
 Sean Kearney - Customer Engineer/Microsoft - @PowerShellMan
 
-_"Remember with great PowerShell comes great responsibilty...."_
+_"Remember with great PowerShell comes great responsibilty..."_
