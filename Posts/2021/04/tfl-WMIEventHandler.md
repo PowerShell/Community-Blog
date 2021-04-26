@@ -270,8 +270,8 @@ And remember: WMI continues to monitor the group and run the script until you re
 You should see something like this:
 
 ```powershell-console
-PS C:\Foo> # 8. Viewing the event registration details
-PS C:\Foo> Get-WMIPE  
+PS > # 8. Viewing the event registration details
+PS > Get-WMIPE  
 *** Event Filters Defined ***
 
 Name         Query
@@ -305,8 +305,8 @@ This step generates no output.
 Next, in step 10, you take a look at the log file, with output like this:
 
 ```powershell-console
-PS C:\Foo> # 10. Viewing the Grouplog.txt file
-PS C:\Foo> Get-Content -Path C:\Foo\Grouplog.txt
+PS > # 10. Viewing the Grouplog.txt file
+PS > Get-Content -Path C:\Foo\Grouplog.txt
 On:  [04/20/2021 15:41:49]  Group [Enterprise Admins] was changed
 
 Name          DistinguishedName
