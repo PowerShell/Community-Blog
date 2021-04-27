@@ -73,6 +73,8 @@ The equivalent code in PowerShell to do the same thing and even use the same
 variable name for the object would be
 
 ```powershell
+# Create a connect to Internet Explorer and launch it as a 
+# hidden application
 $objIE = New-Object -comobject "InternetExplorer.Application"
 ```
 
@@ -87,8 +89,13 @@ objIE.Quit
 Which in PowerShell would look like this.
 
 ```powershell
+# Point Internet Explorer to "Blank page"
 $objIE.Navigate("about:blank")
-$objIE.document.parentwindow.clipboardData.SetData("text", strCopy)
+
+# Leverage Internet explorer to send content to the clipboard
+$objIE.document.parentwindow.clipboardData.SetData("text", $strCopy)
+
+# A job well done!  Quit and go back home
 $objIE.Quit
 ```
 
