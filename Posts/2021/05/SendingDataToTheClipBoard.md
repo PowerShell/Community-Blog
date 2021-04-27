@@ -59,7 +59,9 @@ strCopy = "This text has been copied to the clipboard."
 
 In PowerShell I can do this in the following manner.
 
+```powershell
 $strCopy = "This text has been copied to the clipboard."
+```
 
 The next line is where a Comobject is created.
 
