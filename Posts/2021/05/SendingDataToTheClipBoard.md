@@ -110,7 +110,7 @@ $objIE.Quit
 The following Window below demonstrates why the old solution, even when
 converted to PowerShell failed.
 
-![Prompt To Allow or Deny Clipboard Paste in Internet Explorer](./media/SendingDataToTheClipBoard/InteractivePromptStoppingTheOldSolution.jpg)
+![Prompt To Allow or Deny Clipboard Paste in Internet Explorer](./media/SendingDataToTheClipBoard/InteractivePromptStoppingTheOldSolution.PNG)
 
 In fact, even if we just ran it in vbScript today, it would have failed in an
 equal manner.
