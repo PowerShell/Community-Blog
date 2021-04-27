@@ -86,21 +86,44 @@ Which in PowerShell would look like this.
 
 ```powershell
 $objIE.Navigate("about:blank")
-$objIE.document.parentwindow.clipboardData.SetData "text", strCopy
+$objIE.document.parentwindow.clipboardData.SetData("text", strCopy)
 $objIE.Quit
 ```
 
+However if you try this solution in a modern version of Windows, it will appear
+to just sit and hang in PowerShell.
+
+We can one extra line to the original code and you see why.
+
+```powershell
+$objIE.Navigate("about:blank")
+
+# Show the hidden Internet Explorer background application
+$objIE.Visible=$True
+
+$objIE.document.parentwindow.clipboardData.SetData("text", strCopy)
+$objIE.Quit
+```
+
+The following Window below demonstrates why the old solution, even when
+converted to PowerShell failed.
+
+![Prompt To Allow or Deny Clipboard Paste in Internet Explorer](./media/SendingDataToTheClipBoard/InteractivePromptStoppingTheOldSolution.jpg)
+
+In fact, even if we just ran it in vbScript today, it would have failed in an
+equal manner.
+
 ## The drawback to converting from VBScript
 
-So that was pretty cool, you've re-used some VBScript to meet your task.   Now
-is the time to break out some celebratory glasses of Pan Galactic Gargle
-Blasters to celebrate your achievement.
+So that was pretty cool, you tried to re-use some VBScript to meet your task.  
+In this case because security has improved in past 17 years, Internet Explorer
+is not allowed to just paste things to the clipboard.
 
 But although this is a nice way to learn how to convert over some older code
 from VBScript, it is actually not a good used of PowerShell for two reasons.
 
 1. It leverages Internet Explorer which, for this purpose, is a big resource
-to solve the problem at hand.
+to solve the problem at hand. We can also no longer automate in this manner.
 1. PowerShell has built in cmdlets to solve the problem which are far easier
 to use.  They not only work well in Windows PowerShell, but also just as
 seamlessly across all supported Operating Systems when using PowerShell 7.x
