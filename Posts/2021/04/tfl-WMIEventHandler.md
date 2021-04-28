@@ -1,4 +1,4 @@
-****---
+---
 post_title: How Do I Discover Changes to an AD Group's Membership
 username: tfl@psp.co.uk
 Catagories: PowerShell
@@ -17,8 +17,9 @@ You can use PowerShell to retrieve information about your host, such as the BIOS
 Additionally, you can perform management actions, such as creating an SMB share.
 
 WMI is, in many cases, just another way to do things.
-For example, you can use WMI to create an SMB share by using the `Create` method of the `Win32_Share` class.
-In most case, you use PowerShell cmdlets, such as the SMB cmdlets, to manage your SMB shares.
+For example, you can use WMI to create an SMB share by using the `Create` method of the **Win32_Share** class.
+For more information, see the (class documentation page for the class)[https://docs.microsoft.com/windows/win32/cimwin32prov/win32-share].
+In most cases, you use PowerShell cmdlets, such as the SMB cmdlets, to manage your SMB shares.
 The value of WMI is that it can provide you access to more information and features that are not available using cmdlets. 
 
 In writing this article, I assume you have an understanding of WMI.
@@ -77,20 +78,28 @@ Let's look at how you use this permanent event consumer to discover changes to t
 With WMI permanent event handling, you need to create three objects within the CIM database
 
 * Event filter - the filter tells WMI which event to detect, such as a change in the change to an AD group.
-* Event consumer - this tells WMI which permanent event consumer to run and how to invoke the consumer, such as to run the Command Line consumer and run ``Monitor.ps1``.
+* Event consumer - this tells WMI which permanent event consumer to run and how to invoke the consumer, such as to run the Command Line consumer and run `Monitor.ps1`.
 * Event binding - this binds the filter (what event to look out for) to the consumer (what to do when the event occurs happens)
 
 To carry out these three operations, you inserting new objects into three specific WMI system classes.
 The WMI system class instances enable WMI to continue to process events after you stop your PowerShell session, log off, or restart your host.
 
 In the code below, you use the Command Line consumer to detect changes to the AD's Enterprise Admins group.
-Every time the change event occurs, you want WMI to run a specific script, namely ``Monitor.ps1``.
+Every time the change event occurs, you want WMI to run a specific script, namely `Monitor.ps1`.
 This script displays a list of the current members of the Enterprise Admins group to a log file and reports whether the membership now contains unauthorised users.
 If the script finds that an unauthorised user is now a group member, it writes details to a text file for you to review later.
 
-## The Code
+## The Solution
 
-Here is a PowerShell code snippet that demonstrates how to set up and test a permanent event handler:
+There are several steps in this solution.
+So please, fasten your seat belts, and away we go.
+
+### Setting up
+
+In this post, you want to detect whether an unauthorised user is a member of the Enterprise Admins group.
+You must first create a file of authorised users.
+Then you create two helper functions to assist you in testing the code.
+The function to delete all aspects of the WMI event filter from your host is useful unless you plan to keep the filter running forever.
 
 ```powershell
 
@@ -106,31 +115,48 @@ $OKUsers |
 # 2. Define two helper functions to get/remove permanent events
 Function Get-WMIPE {
   '*** Event Filters Defined ***'
-  Get-CimInstance -Namespace root\subscription -ClassName __EventFilter  |
+  Get-CimInstance -Namespace ROOT\subscription -ClassName __EventFilter  |
     Where-Object Name -eq "EventFilter1" |
      Format-Table Name, Query
   '***Consumer Defined ***'
   $NS = 'ROOT\subscription'
   $CN = 'CommandLineEventConsumer'
-  Get-CimInstance -Namespace $ns -Classname  $CN |
+  Get-CimInstance -Namespace $ns -ClassName  $CN |
     Where-Object {$_.name -eq "EventConsumer1"}  |
      Format-Table Name, CommandLineTemplate
   '***Bindings Defined ***'
-  Get-CimInstance -Namespace root\subscription -ClassName __FilterToConsumerBinding |
+  Get-CimInstance -Namespace ROOT\subscription -ClassName __FilterToConsumerBinding |
     Where-Object -FilterScript {$_.Filter.Name -eq "EventFilter1"} |
       Format-Table Filter, Consumer
 }
 Function Remove-WMIPE {
-  Get-CimInstance -Namespace root\subscription __EventFilter | 
+  Get-CimInstance -Namespace ROOT\subscription __EventFilter | 
     Where-Object Name -eq "EventFilter1" |
       Remove-CimInstance
-  Get-CimInstance -Namespace root\subscription CommandLineEventConsumer | 
+  Get-CimInstance -Namespace ROOT\subscription CommandLineEventConsumer | 
     Where-Object Name -eq 'EventConsumer1' |
       Remove-CimInstance
-  Get-CimInstance -Namespace root\subscription __FilterToConsumerBinding  |
+  Get-CimInstance -Namespace ROOT\subscription __FilterToConsumerBinding  |
     Where-Object -FilterScript {$_.Filter.Name -eq 'EventFilter1'}   |
       Remove-CimInstance
 }
+
+```
+
+These two steps produce no output.
+When you create the ``OkUsers.txt`` file - ensure the users in the file are actually in your AD.
+
+### Create a WQL event query and WMI event filter
+
+To tell WMI what event you want WMI to detect, you create a WMI Query Language (WQL) query.
+In each WMI namespace, you can find various system classes representing event notification.
+You can use the **__InstanceModificationEvent** class, for example, to detect any modification of an instance (in that namespace).
+You can likewise use the **__MethodInvocationEvent** class to track WMI method invocations.
+If things change anywhere in a Windows host, you can probably use a WMI event to detect the change.
+
+Here's the code to create the WQL query and the WMI event filter
+
+```powershell
 
 # 3. Create a WQL event filter query
 $Group = 'Enterprise Admins'
@@ -144,15 +170,29 @@ $Query = @"
 $Param = @{
   QueryLanguage =  'WQL'
   Query          =  $Query
-  Name           =  "EventFilter1"
-  EventNameSpace =  "root/directory/LDAP"
+  Name           =  'EventFilter1'
+  EventNameSpace =  'ROOT/directory/LDAP'
 }
 $IHT = @{
   ClassName = '__EventFilter'
-  Namespace = 'root/subscription'
+  Namespace = 'ROOT/subscription'
   Property  = $Param
 }        
 $InstanceFilter = New-CimInstance @IHT
+
+```
+
+In this code (which produces no output), the filter query does not state which namespace the query is looking at, just that there is a target class for WMI to monitor.
+In the event filter, you create a new occurrence in the **EventFilter**  class in the **ROOT/Subscription** namespace.
+This occurrence tells WMI to monitor the **ROOT/directory/LDAP** namespace for the **ds_group** class.
+
+### Creating the Event Consumer
+
+The next step is to create an event consumer - what you want WMI to do when it detects the event has occurred.
+In our example, you want the WMI permanent event handler COM object to run a script `Monitor.ps1` any time the event occurs.
+So whenever WMI detects a change to the Enterprise admins group, you want WMI to run the script.
+
+```powershell
 
 # 5. Create Monitor.ps1
 $MONITOR = @'
@@ -186,11 +226,28 @@ $Param =[ordered] @{
   CommandLineTemplate = $CLT
 }
 $ECHT = @{
-  Namespace = 'root/subscription'
+  Namespace = 'ROOT/subscription'
   ClassName = "CommandLineEventConsumer"
   Property  = $param
 }        
 $InstanceConsumer = New-CimInstance @ECHT
+```
+
+The monitoring script is fairly simple - each time the event occurs, it prints some information to a log file.
+Then it looks to see if the Enterprise Admins group contains unauthorised users - and if so, the script reports that fact to the log file.
+This script is fairly simple, and you can embellish. as needed.
+You could, for example, remove all unauthorised users.
+
+To create a WMI event consumer, you add a new occurrence to the **CommandLineEventConsumer** class within the namespace **ROOT/Subscription**.
+
+
+### Binding the Event Filter and the Event Consumer
+
+With the event filter and event consumer details added to WMI, you need to bind the two - telling WMI to detect THAT event and when it occurs, run THIS script.
+You could pre-create, for example, multiple event filters and event consumers.
+Once the binding is in place, WMI starts the monitoring process.
+
+```powershell
 
 # 7. Bind the filter and consumer
 $Param = @{
@@ -198,78 +255,21 @@ $Param = @{
   Consumer = [ref]$InstanceConsumer
 }
 $IBHT = @{
-  Namespace = 'root/subscription'
+  Namespace = 'ROOT/subscription'
   ClassName = '__FilterToConsumerBinding'
   Property  = $Param
 }
 $InstanceBinding = New-CimInstance   @IBHT
 
-# 8. View the event registration details
-Get-WMIPE  
-
-# 9. Adding a user to the Enterprise Admins group
-Add-ADGroupMember -Identity 'Enterprise admins' -Members Malcolm
-
-# 10. Viewing Grouplog.txt file
-Get-Content -Path C:\Foo\Grouplog.txt
-
-# 11. Tidying up
-Remove-WMIPE    # invoke this function you defined above
-$RGMHT = @{
-  Identity = 'Enterprise admins'
-  Member   = 'Malcolm'
-  Confirm  = $false
-}
-Remove-ADGroupMember @RGMHT
-Get-WMIPE       # ensure you have removed the event handling
 ```
 
-## How Does This Work?
+### Checking your work
 
-That is a considerable amount of code in this snippet, so let's break it down.
-
-In step 1, you create a file of authorised members of the Enterprise Admins AD group.
-The file is a set of SAM Account names of authorised members, one per line.
-This example assumes you have two AD users (JerryG and Malcolm) and that JerryG is currently a member of the Enterprise Admins group.
-
-In step 2, you see two helper functions.
-The `Get-WMIPE` function displays the details of this specific permanent event handling configuration by displaying the instances within the three related WMI event handling classes.
-The `Remove-WMIPE` function removes the relevant WMI **class occurrences which effectively removes the event handling configuration.
-If you plan to test WMI permanent eventing, you should create an easy way to see the filter details in place and an easy way to remove the filter when you are finished with your testing.
-These two functions are not needed, but they can be helpful as you develop event handling scripts.
-
-In step 3, you create a WQL event query.
-This query tells WMI to look for any change to the AD group named Enterprise Admins.
-
-In step 4, you create a permanent event filter.
-You do this by adding an occurrence to the ``__EventFilter`` class ``ROOT/subscription' namespace. 
-The occurrence provides WMI with the details of the event query you created in step 3.
-
-When the event occurs, you want WMI to run a script to handle the change to the AD group.
-In step 5, you create a PowerShell script called ``Monitor.ps1``.
-This script first gets the current membership of the Enterprise Admins group and displays it to the log file.
-Next, the script retrieves the file of authorised members to the group, checks to see if any current member is unauthorised and reports the fact.
-
-In production, you could no doubt make many improvements to this script to reflect your organisation.
-But this sample should give you a place from which you can start.
-
-In step 6, you define a WMI event consumer.
-This event consumer definition tells WMI to invoke the Command Line Event Consumer to invoke PowerShell 7 and run the Monitor.ps1 script.
-Note that this step does not specify which query you wish to respond to, only what you want WMI to do eventually.
-
-In step 7, you bind the event filter to the event consumer.
-In effect, this step tells WMI both to look for a particular event and run a specific event consumer when the event occurs.
-To achieve this, you create an instance in the ``__FilterToConsumerBinding`` class in the ``ROOT/subscription`` namespace.
-This class tells WMI which events to filter and what to do when they occur.
-
-In step 8, as a sanity check, you run ``Get-WMIPE`` to review the three new instances you just created.
-As soon as you have created these instances, WMI begins to monitor changes in the AD group.
-And when a change occurs, WMI runs the permanent event consumer and, therefore, your script.
-And remember: WMI continues to monitor the group and run the script until you remove the binding details (at a minimum)!
-
-You should see something like this:
+A great way to check your work is to call the ``Get-WMIPE`` function you create earlier.
+What you should see is:
 
 ```powershell-console
+
 PS > # 8. Viewing the event registration details
 PS > Get-WMIPE  
 *** Event Filters Defined ***
@@ -294,17 +294,19 @@ __EventFilter (Name = "EventFilter1") CommandLineEventConsumer (Name = "EventCon
 
 ```
 
-## Testing your event handler
+### Testing your work
 
-With the permanent event handler now installed into WMI, you need to test it.
-A simple way to do that is to change the AD group and observe the results.
+So having created the event query, the event filter, the event consumer and the filter to consumer binding, you can test your work.
+The easiest way to test this is to add a new user to the group.
+Then, wait a few seconds for WMI to process the event, then look at the output.
+If everything is working correctly, you should see this output:
 
-In step 9, you add a user, Malcolm, to the Enterprise admins group.
-This step generates no output.
-
-Next, in step 10, you take a look at the log file, with output like this:
 
 ```powershell-console
+
+PS > # 9. Adding a user to the Enterprise Admins group
+PS > Add-ADGroupMember -Identity 'Enterprise admins' -Members Malcolm
+PS > 
 PS > # 10. Viewing the Grouplog.txt file
 PS > Get-Content -Path C:\Foo\Grouplog.txt
 On:  [04/20/2021 15:41:49]  Group [Enterprise Admins] was changed
@@ -317,12 +319,41 @@ Administrator CN=Administrator,CN=Users,DC=Reskit,DC=Org
 
 Unauthorized user [Malcolm] added to Enterprise Admins
 **********************************
+
 ```
 
-## Cleaning up
+### Troubleshooting
+This code, of course should "just work".
+If not, you need to perform troubleshooting and here are three things to look for:
+* Is the WQL query correct and correctly formatted?
+* Is the event class you are monitoring in the namespace you think it is in?
+* Is the `Monitor.ps1` script doing what you actually wanted
 
-Unless you intend to continue monitoring the Enterprise Admins group, it is a good idea to tidy up. 
-In the final step, you remove the WMI filter details and remove Malcolm from the Enterprise admins group.
+You may also find that the **Microsoft-Windows-WMI-Activity/Operational** event log useful in tracking down issues.
+
+### Tidying up
+
+After you play with a WMI filter like this, make sure you clean up. 
+You probably don't want the filter to run forever, so remove it as soon as you can.
+To remove it, invoke the ``Remove-WMIPE`` function.
+And you should probably remove any inappropriate users from the Enterprise Admins group
+
+```powershell
+
+# 11. Tidying up
+Remove-WMIPE    # invoke this function you defined above
+$RGMHT = @{
+  Identity = 'Enterprise admins'
+  Member   = 'Malcolm'
+  Confirm  = $false
+}
+Remove-ADGroupMember @RGMHT
+
+```
+
+This step creates no output.
+You might wish to call Get-WMIPE again to verify all three class occurrences no longer exist.
+
 
 ## Summary
 
