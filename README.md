@@ -43,7 +43,7 @@ There are several ways you can interact, depending on your needs and levels of e
    WordPress allows you to add comments to the posts here. See our
    [Coimmunity Blog Wiki pages](https://github.com/PowerShell/Community-Blog/wiki) for detailed instructions. We
    welcome comments - but keep them civil and constructive.
-   We prefer comments in Engtlish. Feel free to use [Bing Translatpr](https://www.bing.com/translator) or [Google Translate](https://translate.google.com/).
+   We prefer comments in English. Feel free to use [Bing Translatpr](https://www.bing.com/translator) or [Google Translate](https://translate.google.com/) if English is not your first language.
 
 1. You may want to contribute to the development of blog posts. You are welcome to create new posts,
    file issues on any article (or proposed article), or help review content submissions. And should you find an error, feel free to
