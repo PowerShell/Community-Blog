@@ -1,4 +1,4 @@
-# PowerShell Community-Blog Repository
+# PowerShell Community Blog Repository
 
 This repository is for submissions for posts to the [PowerShell Community Blog](https://devblogs.microsoft.com/powershell-community).
 We welcome submissions to the blog from anyone in the community.
@@ -8,7 +8,7 @@ Submissions for articles on this blog are governed by the
 [.NET Foundation Code of Conduct](https://dotnetfoundation.org/code-of-conduct). For more
 information, see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/).
 
-## The Purpose of this blog
+## The Purpose of This Blog
 
 The intended purpose of the PowerShell Community Blog is to provide a platform for the PowerShell Community to show off
 the great things you can do with PowerShell and Windows PowerShell. 
