@@ -314,11 +314,12 @@ Unauthorized user [Malcolm] added to Enterprise Admins
 This code, of course should "just work".
 If not, you need to perform troubleshooting and here are three things to look for:
 
-* Is the WQL query correct and correctly formatted?
-* Is the event class you are monitoring in the namespace you think it is in?
-* Is the `Monitor.ps1` script doing what you actually wanted
+* Is the WQL query correct?
+* Are the event and subscriptiong classes in the namespace(s) you think it is in?
+* Is the `Monitor.ps1` script doing what you actually wanted?
 
-You may also find that the **Microsoft-Windows-WMI-Activity/Operational** event log useful in tracking down issues.
+The **Microsoft-Windows-WMI-Activity/Operational** event log can be useful in tracking down issues.
+And if you get stuck, feel free to visit the [Spiceworks PowerShell forum](https://community.spiceworks.com/programming/powershell).
 
 ### Tidying up
 
@@ -339,7 +340,7 @@ Remove-ADGroupMember @RGMHT
 ```
 
 This step creates no output.
-You might wish to call Get-WMIPE again to verify all three class occurrences no longer exist.
+You might wish to call `Get-WMIPE` again to verify you have removed all three class occurrences.
 
 
 ## Summary
