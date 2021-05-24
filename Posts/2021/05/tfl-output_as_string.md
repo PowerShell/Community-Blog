@@ -166,6 +166,7 @@ $Stream.Close()
 
 You can use `Get-Content` to view the generated content, like this:
 
+```powershell-console
 PS> Get-Content -Path c:\\Foo\\Dirs.txt
 C:\\AUDIT
 C:\\Boot
