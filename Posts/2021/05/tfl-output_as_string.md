@@ -20,10 +20,6 @@ You might want to run a command or script that outputs information to a file and
 Or, you might want to view it in a text editor or print it out later.
 
 Once you have created the code (script, fragment, or a single command) that creates the output you need, you can use several techniques to send that output to a file.
-The easiest way to do this is to pipe the output to `Add-Content`, `Set-Content`, or `Out-File`.
-Then, there is the legacy approach, using the redirection operators `>` or `>>`.
-And for some more extreme situations, you can drop down into .NET and output your information using .NET class methods.
-Let's examine the alternatives.
 
 ## The alternative methods
 
@@ -38,8 +34,6 @@ You can use any or all of:
 Writing this reminds me of my friends in Portugal who tell me there are 1000 ways to cook bacalao (cod).
 Then they whisper: plus the way my mother taught me.
 If there are more techniques for file output, I expect to see them in the comments to this article. 😃
-
-Let's examine each of these methods in turn.
 
 ## Using the `*-Content` cmdlets
 
@@ -186,7 +180,7 @@ C:\\PSDailyBuild
 C:\\ReskitApp
 C:\\Temp
 C:\\Users
-C:\\WINDOWS**
+C:\\WINDOWS
 ```
 
 For most PowerShell-using IT Pros, using the classes in the `System.IO` namespace is useful in two situations.
