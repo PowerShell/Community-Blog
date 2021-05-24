@@ -56,8 +56,8 @@ A very important point here - if you pass either cmdlet a non-string object, the
 For example:
 
 ```powershell-console
-PS> Get-Process -Name pwsh | Set-Content -Path C:\Foo\AAA.txt
-PS> Get-Content -Path C:\Foo\AAA.txt
+PS> Get-Process -Name pwsh | Set-Content -Path C:\\Foo\\AAA.txt
+PS> Get-Content -Path C:\\Foo\\AAA.txt
 System.Diagnostics.Process (pwsh)
 System.Diagnostics.Process (pwsh)
 System.Diagnostics.Process (pwsh)
@@ -89,9 +89,9 @@ You can improve the output from `Set-Content` by using `Out-String`, like this:
 PS> # Get Powershell processes, convert to string, then output to a file
 PS> Get-Process -Name pwsh |
       Out-String |
-        Set-Content .\Process.txt
+        Set-Content .\\Process.txt
 PS> # View the file
-PS> Get-Content .\Process.txt
+PS> Get-Content .\\Process.txt
 
  NPM(K)    PM(M)      WS(M)     CPU(s)      Id  SI ProcessName
  ------    -----      -----     ------      --  -- -----------
@@ -115,8 +115,8 @@ Using `Out-File` looks like this:
 
 ```powershell-console
 PS> # Get Powershell processes and output to a file
-PS> Get-Process -Name pwsh | Out-File -Path C:\Foo\pwsh.txt
-PS> Get-Content -Path V:\Foo\pwsh.txt
+PS> Get-Process -Name pwsh | Out-File -Path C:\\Foo\\pwsh.txt
+PS> Get-Content -Path C:\\Foo\\pwsh.txt
 
  NPM(K)    PM(M)      WS(M)     CPU(s)      Id  SI ProcessName
  ------    -----      -----     ------      --  -- -----------
@@ -130,7 +130,7 @@ PS> Get-Content -Path V:\Foo\pwsh.txt
 
 The `Out-File` cmdlet gives you control over the output that PowerShell composes and sends to the file.
 You can use the `-Encoding` parameter to tell PowerShell how to encode the output.
-By default, PowerShell uses the [UTF-8](https://en.wikipedia.org/wiki/UTF-8) encoding, but you can choose others should you need to.
+By default, PowerShell 7 uses the [UTF-8](https://en.wikipedia.org/wiki/UTF-8) encoding, but you can choose others should you need to.
 
 If you output very wide tables, you can use the  `-Width` parameter to adjust the output's width.
 In PowerShell 7, you can specify a value of up to 1024, enabling very wide tables.
@@ -157,11 +157,11 @@ Of these three, the class you are most likely to use to send output to a file is
 Like this:
 
 ```powershell-console
-PS> # Get the directories in C:\
-PS> $Dirs = Get-ChildItem -Path C:\ -Directory
+PS> # Get the directories in C:\\
+PS> $Dirs = Get-ChildItem -Path C:\\ -Directory
 PS>
 PS> # Open a stream writer
-PS> $File   = 'C:\Foo\Dirs.txt'
+PS> $File   = 'C:\\Foo\\Dirs.txt'
 PS> $Stream = [System.IO.StreamWriter]::new($File)
 PS> 
 PS> # Write the folder names for these folders to the file
@@ -173,20 +173,20 @@ PS> $Stream.Close()
 PS>
 PS> # View the generated output
 PS> Get-Content -Path $File
-C:\AUDIT
-C:\Boot
-C:\Foo
-C:\inetpub
-C:\jea
-C:\NVIDIA
-C:\PerfLogs
-C:\Program Files
-C:\Program Files (x86)
-C:\PSDailyBuild
-C:\ReskitApp
-C:\Temp
-C:\Users
-C:\WINDOWS**
+C:\\AUDIT
+C:\\Boot
+C:\\Foo
+C:\\inetpub
+C:\\jea
+C:\\NVIDIA
+C:\\PerfLogs
+C:\\Program Files
+C:\\Program Files (x86)
+C:\\PSDailyBuild
+C:\\ReskitApp
+C:\\Temp
+C:\\Users
+C:\\WINDOWS**
 ```
 
 For most PowerShell-using IT Pros, using the classes in the `System.IO` namespace is useful in two situations.
