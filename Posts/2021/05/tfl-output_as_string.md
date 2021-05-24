@@ -150,23 +150,23 @@ There are three classes, depending on your use case, that you might use:
 Of these three, the class you are most likely to use to send output to a file is the **StreamWriter** class.
 Like this:
 
-```powershell-console
-PS> # Get the directories in C:\\
-PS> $Dirs = Get-ChildItem -Path C:\\ -Directory
-PS>
-PS> # Open a stream writer
-PS> $File   = 'C:\\Foo\\Dirs.txt'
-PS> $Stream = [System.IO.StreamWriter]::new($File)
-PS> 
-PS> # Write the folder names for these folders to the file
-PS> foreach($Dir in $Dirs) {
-      $Stream.WriteLine($Dir.FullName)
-    }
-PS> # Close the stream
-PS> $Stream.Close()
-PS>
-PS> # View the generated output
-PS> Get-Content -Path $File
+```powershell
+# Get the directories in C:\\
+$Dirs = Get-ChildItem -Path C:\\ -Directory
+# Open a stream writer
+$File   = 'C:\\Foo\\Dirs.txt'
+$Stream = [System.IO.StreamWriter]::new($File)
+# Write the folder names for these folders to the file
+foreach($Dir in $Dirs) {
+  $Stream.WriteLine($Dir.FullName)
+}
+# Close the stream
+$Stream.Close()
+ ```
+
+You can use `Get-Content` to view the generated content, like this:
+
+PS> Get-Content -Path c:\\Foo\\Dirs.txt
 C:\\AUDIT
 C:\\Boot
 C:\\Foo
