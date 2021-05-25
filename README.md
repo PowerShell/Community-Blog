@@ -26,7 +26,7 @@ product or even made by Microsoft, as long as the post's content is relevant to 
 is not marketing those products.
 
 The published language for the PowerShell community is English, and mainly American Ennglish, although posts other variations of English are acceptable.
-The article review process focuses on the languyage and structure of each article as well as the specific details. 
+The article review process focuses on the language and structure of each article as well as the specific details. 
 If English is not your first language, or even if it is, the review process can help to iron out any problems. 
 
 ## How to Interact
@@ -43,7 +43,7 @@ There are several ways you can interact, depending on your needs and levels of e
    WordPress allows you to add comments to the posts here. See our
    [Coimmunity Blog Wiki pages](https://github.com/PowerShell/Community-Blog/wiki) for detailed instructions. We
    welcome comments - but keep them civil and constructive.
-   We prefer comments in English. Feel free to use [Bing Translatpr](https://www.bing.com/translator) or [Google Translate](https://translate.google.com/) if English is not your first language.
+   We prefer comments in English. Feel free to use [Bing Translator](https://www.bing.com/translator) or [Google Translate](https://translate.google.com/) if English is not your first language.
 
 1. You may want to contribute to the development of blog posts. You are welcome to create new posts,
    file issues on any article (or proposed article), or help review content submissions. And should you find an error, feel free to
