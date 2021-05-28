@@ -197,7 +197,7 @@ while ($true) {
 We just scrached the surface of what can be done with this class.
 If you want to get your _Actions_ up a notch i would recomend those:
 
-1. Use the -MessageData parameter to get data inside your action.
+1. Use the _-MessageData_ parameter to get data inside your action.
 1. Take a look at the _Global:_ tag on your functions to be able to use it on your actions.
 
 ## Tip of the Hat
