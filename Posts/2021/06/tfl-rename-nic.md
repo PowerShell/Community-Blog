@@ -5,8 +5,6 @@ Categories: PowerShell
 tags: PowerShell, network, NIC
 Summary: How to rename a NIC using PowerShell
 ---
-
-
 **Q:** Is there a simple way to rename a NIC, especially inside a Hyper-V VM?
 
 **A:** You can change the name of any Windows NIC using PowerShell - whether the NIC is in a physical host or a Hyper-V VM.
@@ -23,7 +21,7 @@ To discover the NICs in a host or a VM, you use the `Get-NetAdapter` cmdlet.
 Which looks like this inside a Hyper-V VM:
 
 ```powershell-Console
-PS > Get-NetAdapter
+PS> Get-NetAdapter
 
 Name                      InterfaceDescription                    ifIndex Status       MacAddress             LinkSpeed
 ----                      --------------------                    ------- ------       ----------             ---------
@@ -74,8 +72,8 @@ And that means, once the new console is up and available, you can access that ea
 When you do, you see this:
 
 ```powershell-console
-PS > Get-NetAdapter -InterfaceIndex 16 | Rename-NetAdapter -NewName 'Sales iSCSI VLAN'
-PS C:\Foo> Get-NetAdapter -InterfaceIndex 16
+PS> Get-NetAdapter -InterfaceIndex 16 | Rename-NetAdapter -NewName 'Sales iSCSI VLAN'
+PS> Get-NetAdapter -InterfaceIndex 16
 
 Name                InterfaceDescription                 ifIndex Status   MacAddress          LinkSpeed
 ----                --------------------                 ------- ------   ----------          ---------
