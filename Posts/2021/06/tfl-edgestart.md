@@ -22,11 +22,11 @@ But in some circumstances, you may wish to change this default.
 And fortunately, this is straightforward to achieve.
 
 An easy way to set the startup page for yourself is to configure two registry value entries on the local machine.
-The first is the **RestoreOnStartup** value entry to the registry key **HKCU:\\Software\\Policies\\Microsoft\\Edge**.
+The first is the **RestoreOnStartup** value entry to the registry key `HKCU:\\Software\\Policies\\Microsoft\\Edge`.
 This value entry is a **REG_DWORD**.
 By setting this entry with a value of **4**, you tell Edge to use the URL or URLs you specify when it starts up rather than the default home page.
 
-The second value entry (or entries) is within the key **HKCU:\\Software\\Policies\\Microsoft\\Edge\\RestoreOnStartupURLs**.
+The second value entry (or entries) is within the key `HKCU:\\Software\\Policies\\Microsoft\\Edge\\RestoreOnStartupURLs`.
 This value entry (or entries) contains the URL (or URLS) you want Edge to open at startup.
 In most cases, you would setup a single URL under this key, but you can set more to have Edge bring up multiple pages at startup.
 
@@ -35,7 +35,7 @@ The value entry name doesn't seem to matter, so a value of **1** is fine.
 If you want a second URL, then add a second value entry with a name of **2** (and the value of the second URL).
 
 Creating and setting these keys and key values as shown below enables the current user's settings.
-If you are sharing the host, you might wish to set these entries in **HKCU:\\Software\\Policies** instead.
+If you are sharing the host with multiple users and want all users to have the same start page, you can set these entries in `HKCU:\\Software\\Policies` instead.
 
 ## Configuring Edge Chromium Home Page
 
