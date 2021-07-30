@@ -71,14 +71,14 @@ Certificate  ShouldProcess                        {Cert}
 
 With a provider, you can create a drive that allows access to part of one of the provider-based data stores.
 For the filestore provider, PowerShell provides you with provider drives pointing to the Windows volumes in your system, such as **C:**, **D:**, etc.
-You can also create a provider drive called **DB:** that points to **D:\Dropbox** by using the **New-PSDrive** cmdlet.
+You can also create a provider drive called `DB:` that points to `D:\\Dropbox` by using the `New-PSDrive` cmdlet.
 You can persist the drive name by adding the statement to your profile should this be useful.
 
-With the registry provider, PowerShell provides you with two built-in drives: **HKLM:** and **HKCU**.
+With the registry provider, PowerShell provides you with two built-in drives: `HKLM:` and `HKCU:`.
 The **HKLM:** drive exposes the local machine registry hive - which you (and Windows) use for system wide settings.
 You use the **HKCU:** drive to access the current user's registry hive.
 
-You can discover the provider based drives by using the ``Get-PSProvider`` cmdlet, like this:
+You can discover the provider based drives by using the `Get-PSProvider` cmdlet, like this:
 
 ```powershell-console
 PS> Get-PSDrive
