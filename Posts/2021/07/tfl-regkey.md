@@ -86,17 +86,17 @@ PS> Get-PSDrive
 Name     Used (GB)   Free (GB) Provider      Root
 ----     ---------   --------- --------      ----
 Alias                          Alias
-C           262.51      714.58 FileSystem    C:\
-Cert                           Certificate   \
-D          1312.83      596.76 FileSystem    D:\
-db         1312.83      596.76 FileSystem    D:\DropBox
-docs       1312.83      596.76 FileSystem    D:\Dropbox\PACKT…
+C           262.51      714.58 FileSystem    C:\\
+Cert                           Certificate   \\
+D          1312.83      596.76 FileSystem    D:\\
+db         1312.83      596.76 FileSystem    D:\\DropBox
+docs       1312.83      596.76 FileSystem    D:\\Dropbox\\PACKT…
 Env                            Environment
-F                              FileSystem    F:\
+F                              FileSystem    F:\\
 Function                       Function
-G             2.68       56.79 FileSystem    G:\
-gd         3169.18      556.84 FileSystem    M:\gd
-H          2860.16      865.85 FileSystem    H:\
+G             2.68       56.79 FileSystem    G:\\
+gd         3169.18      556.84 FileSystem    M:\\gd
+H          2860.16      865.85 FileSystem    H:\\
 HKCU                           Registry      HKEY_CURRENT_USER
 HKLM                           Registry      HKEY_LOCAL_MACHINE..
 ```
@@ -116,27 +116,27 @@ ActiveDirectory  Include, Exclude, Filter, ShouldProcess, Credentials  {AD}
 
 As I mentioned above, a registry key can contain value entries.
 You can think of each value entry as an attribute of a registry key.
-You use the ``*-ItemProp0erty`` cmdlets to manage individual registry values. 
+You use the `*-ItemProperty` cmdlets to manage individual registry values. 
 But how does this relate to the question?
 Let's begin by looking at the script in question:
 
 ```powershell-console
-$RegistryPath = 'HKCU:\Software\CommunityBlog\Scripts'
+$RegistryPath = 'HKCU:\\Software\\CommunityBlog\\Scripts'
 $Name         = 'Version'
 $Value        = '42'
 New-ItemProperty -Path $RegistryPath -Name $Name -Value $Value -PropertyType DWORD -Force 
 
-New-ItemProperty: Cannot find path 'HKCU:\Software\CommunityBlog\Scripts' because it does not exist.
+New-ItemProperty: Cannot find path 'HKCU:\\Software\\CommunityBlog\\Scripts' because it does not exist.
 ```
 
-The script used the `New-ItemProperty` to create a Version value entry to a specific key.
-This script, however, fails since the registry key, specified in **$RegistryPath** variable does not exist.
+The script used the `New-ItemProperty` to create a **Version** value entry to a specific key.
+This script, however, fails since the registry key, specified in `$RegistryPath` variable does not exist.
 
 A better approach is to test the registry key path first, creating it if needed, then setting the value entry, like this:
 
 ```powershell
 # Set variables to indicate value and key to set
-$RegistryPath = 'HKCU:\Software\CommunityBlog\Scripts'
+$RegistryPath = 'HKCU:\\Software\\CommunityBlog\\Scripts'
 $Name         = 'Version'
 $Value        = '42'
 # Create the key if it does not exist
