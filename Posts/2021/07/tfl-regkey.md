@@ -155,8 +155,8 @@ Be careful!
 ## Summary
 
 It is easy to change add registry keys and values.
-You can use the ``New-Item`` cmdlet to create any key in any registry hive. 
-Once you create the key, you can use ``New-ItemProperty`` to set a registry value entry.
+You can use the `New-Item` cmdlet to create any key in any registry hive. 
+Once you create the key, you can use `New-ItemProperty` to set a registry value entry.
 
 
 
