@@ -25,7 +25,7 @@ Posts to the blog can discuss products and technologies that are not part of the
 product or even made by Microsoft, as long as the post's content is relevant to PowerShell users and
 is not marketing those products.
 
-The published language for the PowerShell community is English, and mainly American Ennglish, although posts other variations of English are acceptable.
+The published language for the PowerShell community is English, and mainly American English, although posts other variations of English are acceptable.
 The article review process focuses on the language and structure of each article as well as the specific details. 
 If English is not your first language, or even if it is, the review process can help to iron out any problems. 
 
@@ -41,7 +41,7 @@ There are several ways you can interact, depending on your needs and levels of e
 1. You can also comment on any of blog posts directly on the blog. This blog uses WordPress, so in order to add comments,
    you need to create and then login to a WordPress account. Once you logon successfully to the blog,
    WordPress allows you to add comments to the posts here. See our
-   [Coimmunity Blog Wiki pages](https://github.com/PowerShell/Community-Blog/wiki) for detailed instructions. We
+   [Community Blog Wiki pages](https://github.com/PowerShell/Community-Blog/wiki) for detailed instructions. We
    welcome comments - but keep them civil and constructive.
    We prefer comments in English. Feel free to use [Bing Translator](https://www.bing.com/translator) or [Google Translate](https://translate.google.com/) if English is not your first language.
 
@@ -51,7 +51,7 @@ There are several ways you can interact, depending on your needs and levels of e
    specific question you feel might make a good blog post, also file an issue.
 
 If you want to either create new blog posts or participate in the creation and review of new posts,
-then you need to head to [this blog's GitHub rep;ository home](https://github.com/PowerShell/Community-Blog).
+then you need to head to [this blog's GitHub repository home](https://github.com/PowerShell/Community-Blog).
 You need a GitHub account to be able to submit anything to the blog's GitHub repository. You can
 sign up for a GitHub account at
 [GitHub's new account sign up page](https://github.com/join?source=login).
