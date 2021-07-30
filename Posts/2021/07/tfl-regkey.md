@@ -5,7 +5,11 @@ Categories: PowerShell
 tags: PowerShell, registry, provider
 Summary: How you can update or add registry keys or registry key value entries.
 ---
-**Q:** I am having a problem trying to update the registry. I am using the New-ItemProperty cmdlet, but it fails if the registry key does not exist. I added the –Force parameter, but it still does not create the registry key. The error message says that it cannot find the path because it does not exist. Is there something I am not doing? I include my script so you can see what is going on. Help me, please?
+**Q:** I am having a problem trying to update the registry. 
+I am using the New-ItemProperty cmdlet, but it fails if the registry key does not exist. 
+I added the –Force parameter, but it still does not create the registry key. 
+The error message says that it cannot find the path because it does not exist. 
+Is there something I am not doing? I include my script so you can see what is going on. Help me, please?
 
 **A:** Let's look at how you can use PowerShell to add or update any registry key value.
 
@@ -19,10 +23,10 @@ In Windows the Registry is a database of configurations information used by Wind
 The registry is critical to the operation of Windows - I learned that long ago (and got practice reinstalling Windows NT).
 Using the registry editor can be dangerous, so be careful!
 
-The registry is a set of hierarchical keys - a registry key can have zero, one, or more sub-key, and so on.
+The registry is a set of hierarchical keys - a registry key can have zero, or more sub-keys, and so on.
 Each key or sub-key can have zero or more value entries.
 Each value entry has a data type and a data value.
-Any registry key can have keys of any data type.
+Any registry key can have values of any data type.
 The registry allows you to create any key and to put pretty much any kind of data into a value entry.
 
 The registry is implemented in Windows as a set of registry hives.
