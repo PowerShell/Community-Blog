@@ -21,7 +21,7 @@ Then WMI monitors any service changes and generates an alert once it detects a c
 To achieve this, you need Windows PowerShell 5.1 and above.
 
 This post uses the latest version of PowerShell 7.
-So if you are don't yet have PowerShell 7, see the [Microsoft documentation on how to install PowerShell 7 on Windows.](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-windows?view=powershell-7.1).
+So if you are don't yet have PowerShell 7, see the Microsoft documentation on how to [Install PowerShell 7 on Windows](https://docs.microsoft.com/powershell/scripting/install/installing-powershell-core-on-windows).
 
 Also, make sure that PowerShell is running as administrator.
 
