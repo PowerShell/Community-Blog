@@ -108,7 +108,7 @@ The `Register-CimIndicationEvent` is used to subscribe to events generated from 
 And in our case, it subscribes to events generated from the `$query`.
 
 ```powershell-console
-PS> Register-CimIndicationEvent -Namespace 'ROOT\CIMv2' -Query $query -SourceIdentifier 'WindowsServices' -MessageData 'Service Status Change'
+Register-CimIndicationEvent -Namespace 'ROOT\\CIMv2' -Query $query -SourceIdentifier 'WindowsServices' -MessageData 'Service Status Change'
 ```
 
 To confirm the successful registration, type the following cmdlet *Get-EventSubscriber,* the output looks like the following
