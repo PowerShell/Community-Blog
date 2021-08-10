@@ -99,7 +99,7 @@ Select * from <WMI System Class> within <Number of Seconds> where TargetInstance
 Let apply the same to **Win32_Serivce**. Start by creating a PowerShell variable, in our case, you construct the query as follows:
 
 ```powershell-console
-PS> $query = "Select * from CIM_InstModification within 10 where TargetInstance ISA 'Win32_Service'"
+$query = "Select * from CIM_InstModification within 10 where TargetInstance ISA 'Win32_Service'"
 ```
 
 > A full explanation for the WQL query is available in [Your Goto Guide for Working with Windows WMI Events and PowerShell](https://adamtheautomator.com/your-goto-guide-for-working-with-windows-wmi-events-and-powershell/)
