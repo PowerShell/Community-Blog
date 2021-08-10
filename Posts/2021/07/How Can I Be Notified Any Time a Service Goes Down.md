@@ -150,7 +150,7 @@ PS> Stop-Service wuauserv
 ```
 
 To see the newly created events, type `Get-Event`
-Look at the MessageData, it's the same message used in the Register-CimIndicationEvent.
+Look at the **MessageData**, it's the same message used in the `Register-CimIndicationEvent`.
 
 ```powershell-console
 PS> $EventVariable=Get-Event
