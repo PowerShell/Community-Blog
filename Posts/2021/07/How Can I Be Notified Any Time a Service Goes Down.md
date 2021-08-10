@@ -11,7 +11,7 @@ Q: How can I be notified any time a service goes down?
 
 A: The short quick answer to utilizing WMI and PowerShell 7.
 
-You use Powershell to create temporary event monitoring using WMI.
+You use PowerShell to create temporary event monitoring using WMI.
 Then WMI monitors any service changes and generates an alert once it detects a change.
 
 ## Basic Requirement
