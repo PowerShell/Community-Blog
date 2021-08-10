@@ -50,9 +50,9 @@ __EventConsumerProviderRegistration {}                   {provider, ConsumerClas
 ```
 
 The returned result represents all the available classes in the namespace.
-For this tutorial, the focus is on Windows services, which is represented by *Win32_Service*.
+For this tutorial, the focus is on Windows services, which is represented by **Win32_Service**.
 
-To Enumerate the *Win32_Services* WMI class and get all the available services using PowerShell run the following code.
+To Enumerate the **Win32_Services** WMI class and get all the available services using PowerShell run the following code.
 
 ```powershell-console
 PS> Get-CimInstance -Namespace root\CIMV2 -ClassName win32_service
