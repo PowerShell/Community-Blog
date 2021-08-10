@@ -14,7 +14,7 @@ Q: How Can I Be Notified Any Time a Service Goes Down?
 A: The short quick answer to utilizing WMI and PowerShell 7.
 
 You use Powershell to create temporary event monitoring using WMI.
-Then WMI monitors any services changes and generates an alert once it detects a change.
+Then WMI monitors any service changes and generates an alert once it detects a change.
 
 ## Basic Requirement
 
@@ -97,7 +97,7 @@ The WQL syntex structure looks like this:
 
 Let apply the same to *Win32_Serivce.* Start by creating a PowerShell variable, in our case, you construct the query as follows:
 
-```powershell
+```powershell-console
 PS> $query = "Select * from CIM_InstModification within 10 where TargetInstance ISA 'Win32_Service'"
 ```
 
@@ -105,11 +105,11 @@ PS> $query = "Select * from CIM_InstModification within 10 where TargetInstance 
 
 ## Registering The Query
 
-We have the WQL query, let move to the next step and register the query to the WMI events by using the [**Register-CimIndicationEvent**](https://docs.microsoft.com/en-us/powershell/module/cimcmdlets/register-cimindicationevent?view=powershell-7.1).
+We have the WQL query, let's move to the next and register the query to the WMI events by using the [**Register-CimIndicationEvent**](https://docs.microsoft.com/en-us/powershell/module/cimcmdlets/register-cimindicationevent?view=powershell-7.1).
 The **Register-CimIndicationEvent** is used to subscribe to events generated from the system.
 And in our case, it subscribes to events generated from the $query.
 
-```powershell
+```powershell-console
 PS> Register-CimIndicationEvent -Namespace 'ROOT\CIMv2' -Query $query -SourceIdentifier 'WindowsServices' -MessageData 'Service Status Change'
 ```
 
@@ -152,7 +152,7 @@ PS> Stop-Service wuauserv
 ```
 
 To see the newly created events, type `Get-Event`
-Look at the **MessageData**, it's the same message used in the Register-CimIndicationEvent
+Look at the MessageData, it's the same message used in the Register-CimIndicationEvent.
 
 ```powershell-console
 PS> $EventVariable=Get-Event
@@ -180,7 +180,7 @@ ProcessId Name     StartMode State   Status ExitCode
 16508     wuauserv Manual    Running OK     0
 ```
 
-This monitoring remains active as long as PowerShell console is active.
+This WMI monitoring remains active as long as the PowerShell console.
 It creates such a temporary job which runs in the background to monitor the services class.
 You can also end this process by rebooting the computer.
-Hope you learn something new today.
+Hope you learned something new today.
