@@ -55,7 +55,7 @@ For this tutorial, the focus is on Windows services, which is represented by **W
 To Enumerate the **Win32_Services** WMI class and get all the available services using PowerShell run the following code.
 
 ```powershell-console
-PS> Get-CimInstance -Namespace root\CIMV2 -ClassName win32_service
+PS> Get-CimInstance -Namespace root\\CIMV2 -ClassName win32_service
 
 ProcessId Name                                     StartMode State   Status  ExitCode
 --------- ----                                     --------- -----   ------  --------
