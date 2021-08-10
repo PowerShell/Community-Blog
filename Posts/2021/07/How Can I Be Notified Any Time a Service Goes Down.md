@@ -88,7 +88,8 @@ There are three steps you need to follow to create a temporary WMI Event Subscri
 WMI has many special classes that you can use to detect changes to other WMI classes.
 For example, you can use the **CIM_InstModification** class to monitor the targeted class, in this case **Win32_Service**
 
-You have to create a WMI query using [WMI Query Language](https://docs.microsoft.com/en-us/windows/win32/wmisdk/wql-sql-for-wmi).
+You have to create a WMI query using [WMI Query Language](https://docs.microsoft.com/windows/win32/wmisdk/wql-sql-for-wmi).
+
 The WQL syntex structure looks like this:
 
 >Select * from **WMI System Class** within **Number of Seconds** where TargetInstance ISA **WMI Class name**
