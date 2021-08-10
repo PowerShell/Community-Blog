@@ -105,7 +105,7 @@ PS> $query = "Select * from CIM_InstModification within 10 where TargetInstance 
 
 We have the WQL query, let's move to the next and register the query to the WMI events by using the [**Register-CimIndicationEvent**](https://docs.microsoft.com/en-us/powershell/module/cimcmdlets/register-cimindicationevent?view=powershell-7.1).
 The `Register-CimIndicationEvent` is used to subscribe to events generated from the system.
-And in our case, it subscribes to events generated from the $query.
+And in our case, it subscribes to events generated from the `$query`.
 
 ```powershell-console
 PS> Register-CimIndicationEvent -Namespace 'ROOT\CIMv2' -Query $query -SourceIdentifier 'WindowsServices' -MessageData 'Service Status Change'
