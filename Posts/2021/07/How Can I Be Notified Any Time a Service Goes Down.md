@@ -29,7 +29,7 @@ Before going into details, you need to find the required class to monitor.
 To get a list of all available classes, use the following code.
 
 ```powershell-console
-PS> Get-CimClass -Namespace root\cimv2
+PS> Get-CimClass -Namespace root\\cimv2
 
    NameSpace: ROOT/CIMV2
 
