@@ -7,9 +7,7 @@ Summary: Using Powershell to create temporary event monitoring using WMI
 
 ---
 
-**How Can I Be Notified Any Time a Service Goes Down?**
-
-Q: How Can I Be Notified Any Time a Service Goes Down?
+Q: How can I be notified any time a service goes down?
 
 A: The short quick answer to utilizing WMI and PowerShell 7.
 
