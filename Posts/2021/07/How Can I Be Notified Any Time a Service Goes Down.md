@@ -1,5 +1,5 @@
 ---
-post_title: How Can I Be Notified Any Time a Service Goes Down?
+post_title: How can I be notified any time a service goes down?
 username: farisnt@gmail.com
 Categories: PowerShell
 tags: PowerShell, WMI, Events
