@@ -92,7 +92,9 @@ You have to create a WMI query using [WMI Query Language](https://docs.microsoft
 
 The WQL syntex structure looks like this:
 
->Select * from **WMI System Class** within **Number of Seconds** where TargetInstance ISA **WMI Class name**
+```
+Select * from <WMI System Class> within <Number of Seconds> where TargetInstance ISA <WMI Class name>
+```
 
 Let apply the same to *Win32_Serivce.* Start by creating a PowerShell variable, in our case, you construct the query as follows:
 
