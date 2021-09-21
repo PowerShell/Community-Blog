@@ -117,7 +117,7 @@ I suggest you look carefully at each profile on a regular basis and trim it when
 
 ## Summary
 
-Profile files are PowerShell scripts you can use to customize yoru PowerShell host.
+Profile are PowerShell scripts you can use to customize your PowerShell environment.
 There are 4 profile files for each host as you can see by examining the `$Profile` automatic variable.
 
 ## Tip of the Hat
