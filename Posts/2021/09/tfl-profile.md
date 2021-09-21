@@ -92,11 +92,11 @@ As an example of what you can do in a profile, and to get you started, I have pu
 
 These samples do a lot of useful things, including:
 
-* Over-riding some default parameter values
-* Updating the Format enumeration limit
-* Setting the 'home' directory to a non-standard location
-* Creating personal aliases
-* Creating a PowerShell credential object
+* Over-ride some default parameter values
+* Update the Format enumeration limit
+* Set the 'home' directory to a non-standard location
+* Create personal aliases
+* Create a PowerShell credential object
 
 These are all things that make the environment customized to your liking.
 I use some personal aliases as alternatives to standard aliases - if only to save typing.
