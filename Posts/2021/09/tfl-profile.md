@@ -12,9 +12,9 @@ I have heard that I can use a thing called a profile to do this, but when I try 
 **A:** Profiles are a powerful part of PowerShell and allow you to customize PowerShell for your environment.
 They are easy to create and support a range of deployment scenarios.
 
-## What is a Profile File?
+## What is a Profile?
 
-Before explaining the profile file, let's first examine the PowerShell host.
+Before explaining the profile, let's first examine the PowerShell host.
 A PowerShell host is a program that hosts PowerShell to allow you to use it.
 Common PowerShell hosts include the Windows PowerShell console, the Windows PowerShell ISE, the PowerShell 7 console, and VS Code.
 Each host supports the use of profile files.
