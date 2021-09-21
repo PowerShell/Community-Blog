@@ -9,7 +9,7 @@ Summary: Using Profile files with PowerShell 7
 **Q:** I would like to personalize the way that PowerShell works. 
 I have heard that I can use a thing called a profile to do this, but when I try to find information about profiles, I come up blank. There is no `New-Profile` cmdlet, so I do not see how to create such a thing. Can you help me, please?
 
-**A:** Profile files are a powerful part of PowerShell and allow you to customize PowerShell for your environment.
+**A:** Profiles are a powerful part of PowerShell and allow you to customize PowerShell for your environment.
 They are easy to create and support a range of deployment scenarios.
 
 ## What is a Profile File?
