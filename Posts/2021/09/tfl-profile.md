@@ -77,9 +77,9 @@ C:\Users\doctordns\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
 ```
 
 This example is from a Windows 10 client running PowerShell 7 inside VS Code.
-In the example, you can see that the **$PROFILE** variable contains four note properties that contain the location of each profile
-Also, you can see that the **$ROFILE** variable's value is the name of the 'Current User-Current Host' profile file.
-For simplicity you can run ``Notepad $Profile`` to bring up the profile file inside Notepad (or use VS Code!)
+In the example, you can see that the `$PROFILE` variable contains four note properties that contain the location of each profile
+Also, you can see that the `$PROFILE` variable's value is the name of the **CurrentUserCurrentHost** profile.
+For simplicity you can run `Notepad $Profile` to bring up the profile file inside Notepad (or use VS Code!)
 
 ## What can you do in a profile file?
 
