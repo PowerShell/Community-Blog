@@ -19,7 +19,7 @@ A PowerShell host is a program that hosts PowerShell to allow you to use it.
 Common PowerShell hosts include the Windows PowerShell console, the Windows PowerShell ISE, the PowerShell 7 console, and VS Code.
 Each host supports the use of profile files.
 
-A profile file is a PowerShell script that a PowerShell host loads and executes automatically every time you start that PowerShell host.
+A profile is a PowerShell script file that a PowerShell host loads and executes automatically every time you start that PowerShell host.
 The script is, in effect, dot-sourced, so any variables, functions, and the like that you define in a profile script remain available in the PowerShell session, which is incredibly handy.
 I use profiles to create PowerShell drives, various useful variables, and a few useful (for me!) functions.
 
