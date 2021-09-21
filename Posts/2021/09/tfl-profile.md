@@ -32,7 +32,7 @@ Each PowerShell host has 4 separate profile files as follows:
 
 Why so many, you might ask.
 Because having these four profile files allows you numerous deployment opportunities.
-You could, for example, have one profile file for every PowerShell host on a machine for all users that defines corporate aliases or standard PS drives.
+You could, for example, have one profile that defines corporate aliases or standard PS drives for every PowerShell host and user on a machine.
 You could have 'this host' profiles that define host-specific customizations which could differ depending on the PowerShell host.
 For example, in my profile file for VS code, I use ``Set-PSReadLineOption`` to set token colours depending on which color theme I am using.
 Like so many things in PowerShell, the PowerShell team engineered profiles for every scenario you might come across in deploying PowerShell and PowerShell hosts.
