@@ -33,8 +33,8 @@ Each PowerShell host has 4 separate profile files as follows:
 Why so many, you might ask.
 Because having these four profile files allows you numerous deployment opportunities.
 You could, for example, have one profile that defines corporate aliases or standard PS drives for every PowerShell host and user on a machine.
-You could have 'this host' profiles that define host-specific customizations which could differ depending on the PowerShell host.
-For example, in my profile file for VS code, I use ``Set-PSReadLineOption`` to set token colours depending on which color theme I am using.
+You could have 'this host' profiles that define host-specific customizations that could differ depending on the PowerShell host.
+For example, in my profile file for VS code, I use `Set-PSReadLineOption` to set token colours depending on which color theme I am using.
 Like so many things in PowerShell, the PowerShell team engineered profiles for every scenario you might come across in deploying PowerShell and PowerShell hosts.
 
 In practice, the "this host, this user" profile is the one you most commonly use, but having all four allows considerable deployment flexibility.
@@ -42,18 +42,18 @@ You have options!
 
 ## Where do I find them?
 
-Another frequently asked questions are: where are these files and how are they named?
+Another frequently asked question is: where are these files and how are they named?
 It turns out, like many things PowerShell, you can find the answer to the question inside PowerShell itself.
-In this case, inside a PowerShell automatic variable, **$PROFILE**.
+In this case, inside a PowerShell automatic variable, `$PROFILE`.
 
 Automatic variables in PowerShell, are variables created by PowerShell itself and are available for use.
-These variables are created by the host when you start up the host.
+These variables are created by PowerShell when you start the host.
 For more details on automatic variables see the [automatic variable help text](https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_automatic_variables).
 
-## The **$PROFILE** variable
+## The `$PROFILE` variable
 
-The **$PROFILE** variable is an automatic variable that the PowerShell host creates within each session during startup.
-This variable has both a **ToString()** method and four additional note properties that tell you where __this__ host finds its profile files.
+The `$PROFILE` variable is an automatic variable that PowerShell creates within each session during startup.
+This variable has both a **ToString()** method and four additional note properties that tell you where _this_ host finds its profile files.
 
 To determine the location and fill script name for the four PowerShell scripts, you can do something like this:
 
@@ -73,7 +73,7 @@ CurrentUserCurrentHost NoteProperty string CurrentUserCurrentHost=C:\\Users\\doc
 
 PS> # What does the $PROFILE variable itself contain?
 PS> $PROFILE
-C:\Users\doctordns\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
+C:\\Users\\doctordns\\Documents\\PowerShell\\Microsoft.PowerShell_profile.ps1
 ```
 
 This example is from a Windows 10 client running PowerShell 7 inside VS Code.
