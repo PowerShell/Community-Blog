@@ -81,7 +81,7 @@ In the example, you can see that the `$PROFILE` variable contains four note prop
 Also, you can see that the `$PROFILE` variable's value is the name of the **CurrentUserCurrentHost** profile.
 For simplicity you can run `Notepad $Profile` to bring up the profile file inside Notepad (or use VS Code!)
 
-## What can you do in a profile file?
+## What can you do in a profile script?
 
 You can pretty much do anything you want in profile file to create the environment that works best for you.
 I find the profile useful for creating variables and short aliases, PS Drives, and more as you can see below.
