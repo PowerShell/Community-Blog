@@ -45,7 +45,7 @@ your output handler code in a function or a script file, making it much easier t
 Alright! Writing the PowerShell functions is something I am more comfortable with, so that was my
 next step.
 
-## Writing the parser functions
+## Writing the output parser functions
 
 To create the parser functions I had to know what the output looked like for all of the possible
 command combinations of `vssadmin.exe`. I looked at the help provided by `vssadmin` and captured the
