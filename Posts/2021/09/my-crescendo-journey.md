@@ -40,21 +40,23 @@ The to create a module using the Crescendo framework you have to create two main
 
 Initially, the parsing code had to be embedded in the JSON file, which made writing and formatting
 the code very difficult. But, in the [Preview 3][blog3] release, Jim added to the ability to create
-your output handler code in a function or a script file, making it much easier to manage. Alright!
-Writing PowerShell functions is something I am more comfortable with, so that was my next step.
+your output handler code in a function or a script file, making it much easier to manage.
+
+Alright! Writing the PowerShell functions is something I am more comfortable with, so that was my
+next step.
 
 ## Writing the parser functions
 
 To create the parser functions I had to know what the output looked like for all of the possible
-command combinations of `vssadmin.exe`. I looked at the help output from `vssadmin` and then
-captured the output for each subcommand in a separate file. I used these output files to design and
-implement a parsing function for each output.
+command combinations of `vssadmin.exe`. I looked at the help provided by `vssadmin` and captured the
+output for each subcommand in a separate file. I used these output files to design and implement a
+parsing function for each subcommand.
 
-Now, on the the configuration file.
+Now, on to the configuration file.
 
 ## Creating the JSON configuration
 
-For this I copied the example from the [blog post][blog3] to use as a template. I also looked at the
+For this I used the example from the [blog post][blog3] as a template. I also looked at the
 `Get-InstalledPackage` example from the [Preview 2][blog2] blog post to see how the native commands
 were referenced. For my first cmdlet I started with this JSON configuration:
 
@@ -83,7 +85,7 @@ were referenced. For my first cmdlet I started with this JSON configuration:
 ```
 
 The `ParseProvider` function is one of the functions that I had written to parse the output. I
-repeated this pattern for each of the `vssadmin` commands to create a new cmdlet.
+repeated this pattern to create a new cmdlet for each of the `vssadmin` subcommands.
 
 Notice that the first line of the JSON references a schema file. This file comes with the Crescendo
 module. I copied that to the folder where I was developing my module. I used Visual Studio Code (VS
@@ -96,21 +98,26 @@ And I defined parameter sets for the `vssadmin` commands that supported paramete
 ## Creating the new module
 
 Crescendo, itself, is a module. It contains cmdlets that help you create your configuration and then
-use that configuration to create the module containing your cmdlets. Once you have completed your
-configuration file, use the `Export-CrescendoModule` cmdlet to create your module.
+uses that configuration to create the module containing your cmdlets. Once I was happy with the
+configuration file, I used the `Export-CrescendoModule` cmdlet to create my module.
 
 ```powershell
 Export-CrescendoModule -ConfigurationFile .\vssadmin.crescendo.config.json -ModuleName VssAdmin.psm1
 ```
 
-You end up with two new files:
+Crescendo created two new files:
 
-- The `.psm1` file containing your module code
-- The `.psd1` file containing the module manifest
+- The module code file `VssAdmin.psm1`
+- The module manifest file `VssAdmin.psd1`
 
-These are the only two files you or your users need to install. The `.psm1` file contains all of the
-cmdlets that Crescendo generated from the configuration and the **Output Handler** functions you
+These are the only two files that need to be installed. The `VssAdmin.psm1` file contains all the
+cmdlets that Crescendo generated from the configuration and the **Output Handler** functions I
 wrote to parse the output into objects.
+
+The end result was a well-structured, fully documented module.
+
+I still have one cmdlet left to create and I need to add administrative elevation since `vssadmin`
+requires it. But I am happy with the results I have so far.
 
 ## Conclusion
 
@@ -122,7 +129,7 @@ That is a fair question. But here are the conclusions I came to as I went throug
 - The whole process, starting from nothing, researching both Crescendo and `vssadmin`, writing the
   code, creating the configuration, and generating the module took me about 4 hours. I thought that
   was pretty fast.
-- Crescendo lets to separate the logic code (your parsing functions) from the cmdlet definition and
+- Crescendo lets you separate the logic code (your parsing functions) from the cmdlet definition and
   parameter handling code. I found it easier to describe the cmdlets and their parameters in the
   JSON file rather than having to write that code myself.
 - Crescendo handles things like **CommonParameters** and `SupportsShouldProcess` for you. You don't
