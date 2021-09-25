@@ -14,7 +14,7 @@ Crescendo module and maybe I should just learn it and do the presentation myself
 ## What is Crescendo?
 
 Crescendo is an experimental module developed by [Jim Truher][jim], one of the main developers of
-PowerShell. Crescendo provides a framework to rapidly develop PowerShell cmdlets to wrap native
+PowerShell. Crescendo provides a framework to rapidly develop PowerShell cmdlets that wrap native
 commands, regardless of platform. The goal of a Crescendo-based module is to create PowerShell
 cmdlets that use a native command-line tool, but unlike the tool, return PowerShell objects instead
 of plain text.
@@ -62,7 +62,7 @@ were referenced. For my first cmdlet I started with this JSON configuration:
 
 ```json
 {
-    "$schema": "./Microsoft.PowerShell.Crescendo.Schema.json",
+    "$schema": "https://aka.ms/Crescendo/Schema.json",
     "Commands": [
          {
             "Verb": "Get",
@@ -88,9 +88,9 @@ The `ParseProvider` function is one of the functions that I had written to parse
 repeated this pattern to create a new cmdlet for each of the `vssadmin` subcommands.
 
 Notice that the first line of the JSON references a schema file. This file comes with the Crescendo
-module. I copied that to the folder where I was developing my module. I used Visual Studio Code (VS
-Code) to do all my development. With this schema file, VS Code provides IntelliSense for the JSON,
-making it easy to know what values are required and the type of information needed.
+module. I used Visual Studio Code (VS Code) to do all my development. With this schema file, VS Code
+provides IntelliSense for the JSON, making it easy to know which values are required and the type of
+information needed.
 
 Eventually, I added properties to the configuration for full help with descriptions and examples.
 And I defined parameter sets for the `vssadmin` commands that supported parameters.
@@ -116,7 +116,7 @@ wrote to parse the output into objects.
 
 The end result was a well-structured, fully documented module.
 
-I still have one cmdlet left to create and I need to add administrative elevation since `vssadmin`
+I still have one cmdlet left to create and I want to add administrative elevation since `vssadmin`
 requires it. But I am happy with the results I have so far.
 
 ## Conclusion
@@ -134,8 +134,16 @@ That is a fair question. But here are the conclusions I came to as I went throug
   JSON file rather than having to write that code myself.
 - Crescendo handles things like **CommonParameters** and `SupportsShouldProcess` for you. You don't
   have to write that support code in the cmdlets.
+- The configuration file also makes it easy to add help to your cmdlets. You don't have to remember
+  the comment-based help keywords and structure.
 - Separating the declarative code (the JSON configuration) from the logical code (your parsers)
   makes is easier to add functionality to your module if the native command-line tool is updated.
+
+Take a few minutes to read the Crescendo blog posts. Then go and look at the VssAdmin module I
+created. I have included the link to it below. Examine the `vssadmin.crescendo.config.json` file to
+see how I defined the cmdlets and the parameter sets. The parameters for the
+`Resize-VssShadowStorage` cmdlet were interesting because the `vssadmin.exe resize shadowstorage`
+has a `/MaxSize=` parameter that can take 3 different types of input.
 
 ## Links to resources
 
