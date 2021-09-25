@@ -28,7 +28,7 @@ When I first heard about Crescendo, I thought:
 But I knew there must be more to it for Jim to invest this much time and effort into it, and I
 wanted something to present at the user group meeting.
 
-So, I started by reading the blog posts about Crescendo and looking a some examples in the
+So, I started by reading the blog posts about Crescendo and looking at some examples in the
 [repository][repo].
 
 ### How Crescendo works
@@ -39,7 +39,7 @@ The to create a module using the Crescendo framework you have to create two main
 - Output handler functions that parse the output from the native command and return objects
 
 Initially, the parsing code had to be embedded in the JSON file, which made writing and formatting
-the code very difficult. But, in the [Preview 3][blog3] release, Jim added to the ability to create
+the code very difficult. But, in the [Preview 3][blog3] release, Jim added the ability to create
 your output handler code in a function or a script file, making it much easier to manage.
 
 Alright! Writing the PowerShell functions is something I am more comfortable with, so that was my
@@ -137,13 +137,13 @@ That is a fair question. But here are the conclusions I came to as I went throug
 - The configuration file also makes it easy to add help to your cmdlets. You don't have to remember
   the comment-based help keywords and structure.
 - Separating the declarative code (the JSON configuration) from the logical code (your parsers)
-  makes is easier to add functionality to your module if the native command-line tool is updated.
+  makes it easier to add functionality to your module if the native command-line tool is updated.
 
 Take a few minutes to read the Crescendo blog posts. Then go and look at the VssAdmin module I
 created. I have included the link to it below. Examine the `vssadmin.crescendo.config.json` file to
-see how I defined the cmdlets and the parameter sets. The parameters for the
-`Resize-VssShadowStorage` cmdlet were interesting because the `vssadmin.exe resize shadowstorage`
-has a `/MaxSize=` parameter that can take 3 different types of input.
+see how I defined the cmdlets and the parameter sets. The `vssadmin.exe resize shadowstorage`
+command has a `/MaxSize=` parameter that can take 3 different types of values. Look at the
+definition of the `Resize-VssShadowStorage` cmdlet to see how I handled that.
 
 ## Links to resources
 
