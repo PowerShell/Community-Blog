@@ -146,6 +146,9 @@ TCP      [2600:6c56:7e00:78d:e1e8:756c:d2be:42da]:64901 [2620:1ec:21::18]:https 
 TCP      [2600:6c56:7e00:78d:e1e8:756c:d2be:42da]:65492 ord30s21-in-x0e:https         TIME_WAIT
 ```
 
+Success! I now have converted text output to a PowerShell object. At this point, this is enough to
+become an **Output Handler** fora Crescendo module.
+
 If we want to get fancier, we can parse the address columns into the IP Address and the Port. That
 data is in `$column[1]` and `$column[2]`. To separate the Port from the IP Address we have to
 determine if the address is IPv4 or IPv6. The following code handles this:
