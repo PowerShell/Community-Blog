@@ -99,7 +99,8 @@ The **ActiveDirectoryRights** can also hold **ExtendedRights**, **Generic**, and
 
 ## Understanding the InheritanceType Property
 
-The **InheritanceType** shows the scope of the applied permission and define which AD objects should the AEC applied to.
+The **InheritanceType** shows the scope of the applied permission and defines which AD objects the ACE should 
+ be applied to.
 You can see the **InheritanceType** in the ACL GUI in the Advance Security Permission Window.
 
 ![Applies to](./media/getaclad/InheritanceType_In_GUI.png)
