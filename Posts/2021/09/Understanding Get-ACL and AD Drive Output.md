@@ -19,7 +19,7 @@ In this post, I will try to simplify Active Directory ACL and how to read the re
 To follow along with this article, you need the following:
 
 - PowerShell 7. x or Windows PowerShell 5.1
-- The user is memeber of Domain Admin AD Group.
+- A user account that is member of Domain Admin AD Group.
 - Windows Server 2012, 2016, 2019 or 2022 with Active Directory Domain Service role installed.
 
 The domain name used for this tutorial is **Contoso.com**.
