@@ -31,7 +31,7 @@ However, we are reading from AD and not the FileSystem provider. So we use the `
 
 [alert type="note" heading="Note"]To import Active Directory Module, use the `Import-Module ActiveDirectory`.[/alert]
 
-Also, the path format used to query objects is the **Distinguished Name** for the AD object.
+When you query for an object to get its ACL, you need to search based on **Distinguished Name**.
 Use the following statement to get the ACL for the **MyOrgOU** organization unit in the **Contoso.com**.
 
 ```powershell-console
@@ -162,12 +162,26 @@ To get the list of *ObjectType* names, run the following PowerShell code
 
 ```powershell
 $ObjectTypeGUID = @{}
-$SchGUID=Get-ADObject -SearchBase (Get-ADRootDSE).SchemaNamingContext -LDAPFilter '(SchemaIDGUID=*)' -Properties Name, SchemaIDGUID
+
+
+$GetADObjectParameter=@{
+    SearchBase=(Get-ADRootDSE).SchemaNamingContext
+    LDAPFilter='(SchemaIDGUID=*)'
+    Properties=@("Name", "SchemaIDGUID")
+}
+
+$SchGUID=Get-ADObject @GetADObjectParameter
     Foreach ($SchemaItem in $SchGUID){
     $ObjectTypeGUID.Add([GUID]$SchemaItem.SchemaIDGUID,$SchemaItem.Name)
 }
 
-$SchExtGUID=Get-ADObject -SearchBase "CN=Extended-Rights,$((Get-ADRootDSE).ConfigurationNamingContext)" -LDAPFilter '(ObjectClass=ControlAccessRight)' -Properties Name, RightsGUID
+$ADObjExtPar=@{
+    SearchBase="CN=Extended-Rights,$((Get-ADRootDSE).ConfigurationNamingContext)"
+    LDAPFilter='(ObjectClass=ControlAccessRight)'
+    Properties=@("Name", "RightsGUID")
+}
+
+$SchExtGUID=Get-ADObject @ADObjExtPar
     ForEach($SchExtItem in $SchExtGUID){
     $ObjectTypeGUID.Add([GUID]$SchExtItem.RightsGUID,$SchExtItem.Name)
 }
@@ -239,4 +253,6 @@ You can see this value when the *Only Apply this permission to objects and/or co
 
 Keep in mind that the **PropagationFlags** are significant only if inheritance flags are present.
 
-In this post, I try to simplify the `Get-ACL` output result as it helps in better understanding the permission structure through PowerShell.
+## Conslucsion
+As you can see, the `Get-ACL` cmdlet is a powerful cmdlet, and it works in the `AD:` drive as the FileSystem drive, but with some challenges.
+In this post, I try to simplify the `Get-ACL` output result and explain the GUIDs and what these GUID mean, as it helps in better understanding the permission structure through PowerShell.
