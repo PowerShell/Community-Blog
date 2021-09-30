@@ -53,7 +53,7 @@ PropagationFlags      : None
 Output Trimmed to make the result clear.
 ```
 
-As the output shows, there are multiple properties, but not that clear.
+As the output shows, there are multiple properties, but some are not obvious in terms of their usage.
 You can tell from the first view is that there is a **CreateChild** and **DeleteChild** permission assigned to the **BUILTIN\\Account Operators**.
 But on which object (User, Computer...etc) and which AD attribute?
 Let's take another example.
