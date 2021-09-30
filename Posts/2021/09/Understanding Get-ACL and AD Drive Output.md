@@ -207,8 +207,7 @@ PS> $ObjectTypeGUID[[GUID]'28630ebf-41d5-11d1-a9c1-0000f80367c1']
 Lockout-Time
 ```
 
->![Note]
->Looking to know more about Hashtable, read this great post on [Everything you wanted to know about hashtables](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-hashtable?view=powershell-7.1)
+[alert type="note" heading="Note"]If you want to know more about Hashtables, read this great post on [Everything you wanted to know about hashtables](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-hashtable?view=powershell-7.1)[/alert]
 
 From the previous example and after understanding the **ObjectType** value, we know that **Contoso\\User1** is **Allowed* to *WrtiteProperty** to **Lockout-Time** property
 
