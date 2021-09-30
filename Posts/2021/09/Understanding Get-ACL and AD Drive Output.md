@@ -33,7 +33,7 @@ However, we are reading from AD and not the FileSystem provider. So we use the `
 >To import Active Directory Module, use the **Import-Module ActiveDirectory**
 
 Also, the path format used to query objects is the **Distinguished Name** for the AD object.
-To get the ACL for the **MyOrgOU** organization unit in the **Contoso.com** using the following line.
+Use the following statement to get the ACL for the **MyOrgOU** organization unit in the **Contoso.com**.
 
 ```powershell-console
 PS> (Get-Acl -Path "AD:OU=MyOrgOU,DC=Contoso,DC=com").Access
