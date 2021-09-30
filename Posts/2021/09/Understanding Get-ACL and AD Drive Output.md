@@ -78,7 +78,7 @@ Same as the first case, the question is what **Contoso\\User1** actually has per
 
 ## Understanding the Get-ACL and AD Drive Output
 
-To make things easier, let's start by understanding each property of the output and what does it mean.
+To make things easier, let's start by understanding each property of the output and what that property does..
 
 ### Understanding the ActiveDirectoryRights Property
 
