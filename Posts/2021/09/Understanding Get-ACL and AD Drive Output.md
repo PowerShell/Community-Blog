@@ -139,9 +139,7 @@ You get this value when the **Applies to** set to value **This object and all de
 
 The **ObjectType** is represented by a GUID value, even though this is one of the most important values that should be clear.
 The output of `Get-ACL` makes it complex to understand.
-The **ObjectType** is the object attribute. For example
-
-In the following output, **User1** is **Allowed** to **WriteProperty** to object **28630ebf-41d5-11d1-a9c1-0000f80367c1**.
+The **ObjectType** is the object attribute. For example, in the following output, **User1** is **Allowed** to **WriteProperty** to object **28630ebf-41d5-11d1-a9c1-0000f80367c1**.
 
 ```powershell-console
 PS> (Get-Acl -Path "AD:OU=MyOrgOU,DC=Contoso,DC=Com").Access | where-Object {$_.IdentityReference -Like "Contoso\\user1"}
