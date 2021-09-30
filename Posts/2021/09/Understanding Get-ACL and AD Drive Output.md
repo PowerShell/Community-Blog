@@ -87,8 +87,7 @@ usually, this is readable, like **WriteProperty**, **DeleteProperty**.
 But this is not always the case.
 The **ActiveDirectoryRights** can also hold **ExtendedRights**, **Generic**, and other values.
 
->[!NOTE]
->You can read more about **ActiveDirectoryRights** on the [ActiveDirectoryRights](https://docs.microsoft.com/en-us/dotnet/api/system.directoryservices.activedirectoryrights?view=net-5.0) page.
+[alert type="note" heading="Note"]You can read more about **ActiveDirectoryRights** on the [ActiveDirectoryRights](https://docs.microsoft.com/en-us/dotnet/api/system.directoryservices.activedirectoryrights?view=net-5.0) page.[/alert]
 
 - The **ExtendedRight** flag means permission is set to a very specific AD object attribute, such as setting the write _pwdLastSet_ to a AD user object attribute.
         ![Customized property permission = ExtendedRights in ActiveDirectoryRights](./media/getaclad/ExtADPermission.png)
