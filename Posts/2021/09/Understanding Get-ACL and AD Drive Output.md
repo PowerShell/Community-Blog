@@ -27,7 +27,7 @@ The domain name used for this tutorial is **Contoso.com**.
 ## Reading Active Directory Permission using `Get-ACL`
 
 Reading Active Directory permission using `Get-ACL` doesn't require a long line of code.
-However, we are reading from AD and not the  FileSystem provider. So we use the **AQ:** drive. This drive is automatically loaded when you load the ActiveDirectory module.
+However, we are reading from AD and not the FileSystem provider. So we use the `AD:` drive. This drive is automatically loaded when you load the ActiveDirectory module.
 
 >[!NOTE]
 >To import Active Directory Module, use the **Import-Module ActiveDirectory**
