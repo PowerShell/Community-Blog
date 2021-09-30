@@ -225,8 +225,7 @@ Lockout-Time
 
 From the previous example and after understanding the **ObjectType** value, we know that **Contoso\\User1** is **Allowed* to *WrtiteProperty** to **Lockout-Time** property
 
->[!Note]
->One side note, if the value of the **ObjectType** was 00000000-0000-0000-0000-000000000000 this means that the user is allowed//denied to all properties, not a specific one.
+[alert type="note" heading="Note"]One side note, if the value of the **ObjectType** was 00000000-0000-0000-0000-000000000000 this means that the user is allowed//denied to all properties, not a specific one.[/alert]
 
 ## Understanding InheritedObjectType Property
 
