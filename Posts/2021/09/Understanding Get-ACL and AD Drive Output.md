@@ -238,4 +238,5 @@ You can see this value when the *Only Apply this permission to objects and/or co
  ![Apply to This Container only](./media/getaclad/applythiscontainer.png)
 
 Keep in mind that the **PropagationFlags** are significant only if inheritance flags are present.
-In this post, I try to simplify the Get-ACL output result as it helps in better understanding the permission structure through PowerShell.
+
+In this post, I try to simplify the `Get-ACL` output result as it helps in better understanding the permission structure through PowerShell.
