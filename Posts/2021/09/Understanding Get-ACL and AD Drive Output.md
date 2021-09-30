@@ -29,8 +29,7 @@ The domain name used for this tutorial is **Contoso.com**.
 Reading Active Directory permission using `Get-ACL` doesn't require a long line of code.
 However, we are reading from AD and not the FileSystem provider. So we use the `AD:` drive. This drive is automatically loaded when you load the ActiveDirectory module.
 
->[!NOTE]
->To import Active Directory Module, use the **Import-Module ActiveDirectory**
+[alert type="note" heading="Note"]To import Active Directory Module, use the `Import-Module ActiveDirectory`.[/alert]
 
 Also, the path format used to query objects is the **Distinguished Name** for the AD object.
 Use the following statement to get the ACL for the **MyOrgOU** organization unit in the **Contoso.com**.
