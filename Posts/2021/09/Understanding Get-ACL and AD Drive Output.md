@@ -12,7 +12,7 @@ Understanding Active Directory ACL using PowerShell can be a bit tricky.
 There are no out-of-the-box cmdlets with ActiveDirectory PowerShell module to help in settings the permission quickly.
 While there are no cmdlets, you can nevertheless manage AD permissions using the AD PowerShell drive.
 
-In this post, I will try to simplify Active Directory ACL and how to read the result easily, So let's start.
+In this post, I will try to simplify Active Directory ACL and how to read the result easily, so let's start.
 
 ## Prerequisites
 
