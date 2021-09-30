@@ -159,7 +159,7 @@ InheritanceFlags      : ContainerInherit
 PropagationFlags      : InheritOnly
 ```
 
-To resolve this GUID to a name we need to see where these GUID are stored.
+To resolve this GUID to a name we need to see where these GUIDs are stored.
 
 To get the list of *ObjectType* names, run the following PowerShell code
 
