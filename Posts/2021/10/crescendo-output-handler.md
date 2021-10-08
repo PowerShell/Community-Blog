@@ -13,8 +13,8 @@ of a more complex parsing function that I created for my [VssAdmin module][7].
 ## Examining the parser for `Get-VssShadowStorage`
 
 The following screenshot provides line numbers for the `ParseShadowStorage` function. This is the
-function called by `Get-VssShadowStorage` to handle the output (parse) of the `vssadmin.exe`
-command. The process breaks out into these four main areas:
+function called by `Get-VssShadowStorage` to handle the output of the `vssadmin.exe` command. The
+process breaks out into these four main areas:
 
 - Collect the native command output into a single text blob then split it into blocks of text (lines
   96-100)
@@ -122,7 +122,7 @@ Posts in this series
 
 - [My Crescendo journey][1]
   - [My VssAdmin module][7]
-- [Converting strings output to objects][2]
+- [Converting string output to objects][2]
 - A closer look at a Crescendo Output Handler - this post
 - A closer look at a Crescendo configuration file - coming soon
 
