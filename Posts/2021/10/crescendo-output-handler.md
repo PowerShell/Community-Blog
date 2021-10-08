@@ -87,7 +87,7 @@ The second part contains the value data. Each information type contains two data
   To get to the space data items, I split the string at the open parenthesis `(` and trim off the
   closing parenthesis. The first part becomes the size value and the second part becomes the
   percentage. Similar to the volume data, these values are assigned to properties of the `$space`
-  object, which is the value of the key/value pair.
+  object, which becomes the value of the key/value pair.
 
 ### Returning the object
 
