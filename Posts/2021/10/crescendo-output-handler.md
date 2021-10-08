@@ -120,6 +120,7 @@ Crescendo uses to define the structural code.
 Posts in this series
 
 - [My Crescendo journey][1]
+  - [My VssAdmin module][7]
 - [Converting strings output to objects][2]
 - A closer look at a Crescendo Output Handler - this post
 - A closer look at a Crescendo configuration file - coming soon
@@ -140,3 +141,4 @@ References
 [4]: https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_operators
 [5]: https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_switch
 [6]: http://www.ultrapico.com/Expresso.htm
+[7]: https://github.com/sdwheeler/tools-by-sean/tree/master/modules/vssadmin
