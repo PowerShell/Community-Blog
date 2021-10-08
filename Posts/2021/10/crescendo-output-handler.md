@@ -7,7 +7,8 @@ username: sewhee@microsoft.com
 ---
 In my [previous post][2], I showed you how to parse the output from the `netstat` command. The
 output of `netstat` is not very complex. The goal of the post was to introduce some parsing
-strategies that you can use to create a full Crescendo module.
+strategies that you can use to create a full Crescendo module. In this post, I explain the details
+of a more complex parsing function that I created for my [VssAdmin module][7].
 
 ## Examining the parser for `Get-VssShadowStorage`
 
