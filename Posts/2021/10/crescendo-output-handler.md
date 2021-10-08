@@ -41,7 +41,7 @@ Shadow Copy Storage association
    Maximum Shadow Copy Storage space: 23.7 GB (5%)
 ```
 
-All the `vssadmin.exe` commands followed this pattern. There was a 2-line header followed by one or
+All the `vssadmin.exe` commands followed this pattern. There is a 2-line header followed by one or
 more groups of lines of data. Each group of text is separated by a blank line. So first, I wanted to
 get the text split into the blocks separated by the blank line.
 
