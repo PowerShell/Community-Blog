@@ -12,9 +12,9 @@ of a more complex parsing function that I created for my [VssAdmin module][7].
 
 ## Examining the parser for `Get-VssShadowStorage`
 
-The following screenshot provides line numbers for the `ParseShadowStorage` function. This is the
-function called by `Get-VssShadowStorage` to handle the output of the `vssadmin.exe` command. The
-process breaks out into these four main areas:
+The following screenshot shows the `ParseShadowStorage` function that is called by the
+`Get-VssShadowStorage` cmdlet to handle the output from `vssadmin.exe`. The parsing process is
+broken into four areas:
 
 - Collect the native command output into a single text blob then split it into blocks of text (lines
   96-100)
@@ -43,13 +43,14 @@ Shadow Copy Storage association
 
 All the `vssadmin.exe` commands followed this pattern. There was a 2-line header followed by one or
 more groups of lines of data. Each group of text is separated by a blank line. So first, I wanted to
-get the text split into the blocks separated by the blank line. Piping the `$cmdresults` parameter
-to `Out-String` turns that array of lines into one contiguous blob of text.
+get the text split into the blocks separated by the blank line.
 
-Then I split that blob into blocks of text at the blank line using the ``-split "`r`n`r`n"``
-operator. The `$textblocks` variable now contains 2 block of text. The first block is the header and
-the second block is the data. Using the `for` loop on line 102 I start proccessing the lines in the
-second text block. I can skip the first since is only contains the header.
+Piping the `$cmdresults` parameter to `Out-String` turns that array of lines into one contiguous
+blob of text. Then, I split that blob into blocks of text at the blank line using the
+``-split "`r`n`r`n"`` operator. The `$textblocks` variable now contains 2 block of text. The first
+block is the header and the second block is the data. Using the `for` loop on line 102 I start
+proccessing the lines in the second text block. I can skip the first since is only contains the
+header.
 
 ### Parsing the lines of the textblocks
 
@@ -87,6 +88,8 @@ The second part contains the value data. Each information type contains two data
   closing parenthesis. The first part becomes the size value and the second part becomes the
   percentage. Similar to the volume data, these values are assigned to properties of the `$space`
   object, which is the value of the key/value pair.
+
+### Returning the object
 
 I now have a key/value pair ready to be added to a hashtable in line 119 or 129. Once all the lines
 have been parsed, the hashtable is complete. Line 133 converts the hashtable to a **PSObject**,
