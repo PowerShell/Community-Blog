@@ -24,8 +24,8 @@ The more difficult part of the cmdlet is in the code that does the work. Crescen
 functional code (the output handler) from the cmdlet interface code. The Crescendo configuration
 file defines the interfaces of cmdlets that you want Crescendo to create.
 
-The Crescendo configuration file is a JSON file containing a array of cmdlet definitions. JSON
-provides a expressive, structured syntax for defining the properties of object. But so does,
+The Crescendo configuration file is a JSON file containing an array of cmdlet definitions. JSON
+provides an expressive, structured syntax for defining the properties of objects. But so does,
 PowerShell. So why use JSON and not a PowerShell data (PSD1) file? The answer is simple: schema!
 Unlike PowerShell's PSD1 files, JSON supports a schema. Having a schema ensures that the syntax of
 your definition is correct. And with tools like Visual Studio Code (VS Code), the schema provides
@@ -33,7 +33,7 @@ IntelliSense, making it easier to author.
 
 ## Defining a cmdlet interface
 
-The structure of a cmdlet definition can be divided into three categories of properties in the JSON
+The structure of a cmdlet definition can be divided into three property categories in the JSON
 file:
 
 - Required properties
@@ -50,14 +50,14 @@ file:
 
 You might notice that defining **Parameters** is optional. This is not uncommon. In my VssAdmin
 module, the cmdlets `Get-VssProvider`, `Get-VssVolume`, and `Get-VssWriter` do not have parameters.
-These simple cmdlet don't require any input to return the requested information.
+These simple cmdlets don't require any input to return the requested information.
 
 Let's take a closer look at a simple cmdlet definition.
 
 - The **Verb** and **Noun** properties form the name of the cmdlet.
 - The **OriginalName** property contains the path to the native command that the cmdlet runs to get
   the output.
-- The **OriginalCommandElements** is an array of strings that passed to the native command as
+- The **OriginalCommandElements** is an array of strings that are passed to the native command as
   parameters. A typical CLI like `vssadmin` has its own set of commands that perform different
   actions. Those commands may have additional parameters. In this example, the
   `vssadmin list providers` command has no additional parameters.
