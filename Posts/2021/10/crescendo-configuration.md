@@ -113,9 +113,9 @@ Some of the `vssadmin` commands have optional parameters that can be used in var
 For example:
 
 - `vssadmin List Shadows [/For=ForVolumeSpec] [/Shadow=ShadowId|/Set=ShadowSetId]` - 3 optional
-  parameter in 2 parameter sets
+  parameters in 2 parameter sets
 - `vssadmin List ShadowStorage [/For=ForVolumeSpec|/On=OnVolumeSpec]` - 2 parameter sets with 1
-  parameter each
+  optional parameter each
 
 Let's take a look at the help for `vssadmin Resize ShadowStorage`.
 
@@ -140,16 +140,17 @@ Resize ShadowStorage /For=ForVolumeSpec /On=OnVolumeSpec /MaxSize=MaxSizeSpec
                     vssadmin Resize ShadowStorage /For=C: /On=C: /MaxSize=20%
 ```
 
-Th `vssadmin Resize ShadowStorage` command has three required parameters, but the third parameter
+The `vssadmin Resize ShadowStorage` command has three required parameters, but the third parameter
 `/MaxSize` can take three different types of input. In PowerShell, we prefer fixed types for
 parameter values. We can solve this by creating three different parameters, each used in a
 different parameter set.
 
 The following JSON defines the `Resize-VssShadowStorage` cmdlet. The definition starts with the
-required properties and some help information. The difference starts with the parameter definitions.
-Also, this definition has **SupportsShouldProcess** set to `true`. With this property, Crescendo
-adds the `[SupportsShouldProcess()]` attribute to the cmdlet, which automatically adds the `-WhatIf`
-and `-Confirm` parameters.
+required properties and some help information. This definition also has **SupportsShouldProcess**
+set to `true`. With this property, Crescendo adds the `[SupportsShouldProcess()]` attribute to the
+cmdlet, which automatically adds the `-WhatIf` and `-Confirm` parameters.
+
+The interesting part starts in the parameter definitions.
 
 ```json
   {
@@ -168,17 +169,17 @@ and `-Confirm` parameters.
           {
               "Command": "Resize-VssShadowStorage -For C: -On C: -MaxSize 900MB",
               "Description": "Set the new storage size to 900MB",
-              "OriginalCommand": "vssadmin resize shadowstorage /For=C: /On=C: /MaxSize=900MB"
+              "OriginalCommand": "vssadmin Resize ShadowStorage /For=C: /On=C: /MaxSize=900MB"
           },
           {
               "Command": "Resize-VssShadowStorage -For C: -On C: -MaxPercent '20%'",
               "Description": "Set the new storage size to 20% of the OnVolume size",
-              "OriginalCommand": "vssadmin resize shadowstorage /For=C: /On=C: /MaxSize=20%"
+              "OriginalCommand": "vssadmin Resize ShadowStorage /For=C: /On=C: /MaxSize=20%"
           },
           {
               "Command": "Resize-VssShadowStorage -For C: -On C: -Unbounded",
               "Description": "Set the new storage size to unlimited",
-              "OriginalCommand": "vssadmin resize shadowstorage /For=C: /On=C: /MaxSize=UNBOUNDED"
+              "OriginalCommand": "vssadmin Resize ShadowStorage /For=C: /On=C: /MaxSize=UNBOUNDED"
           }
       ],
       "SupportsShouldProcess": true,
@@ -254,7 +255,7 @@ and `-Confirm` parameters.
   }
 ```
 
-Each parameter has the following properties:
+The parameters have the following properties:
 
 - **OriginalName** contains the original parameter used by the native command. Crescendo combines
   the value passed into the cmdlet with the original parameter string. The resulting native
@@ -283,8 +284,9 @@ remaining three parameters are unique to each parameter set.
 
 Since there are three parameters sets, I need to define an output handler for each set. You could
 have a separate function for each set. In my case that was not necessary. The
-`vssadmin resize shadowstorage` command have any output unless there is an error. Since the command
-makes changes, I thought I should call `Get-VssShadowStorage` to show the new values.
+`vssadmin Resize ShadowStorage` command does not have any output unless there is an error. Also,
+since the command makes changes, I thought I should call `Get-VssShadowStorage` to show the new
+settings.
 
 ```powershell
 function ParseResizeShadowStorage {
@@ -301,7 +303,6 @@ function ParseResizeShadowStorage {
     } else {
         $textBlocks[1]
     }
-
 }
 ```
 
