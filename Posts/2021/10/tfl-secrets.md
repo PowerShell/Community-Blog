@@ -6,17 +6,45 @@ tags: PowerShell, profile
 Summary: Using Profile files with PowerShell 7
 ---
 
-**Q:** I have a bunch of scripts we use in production that make use of Windows credentials. In some cases the script has the actual password in plain text, in others the password is read in from an XML file. There has to be a better way.
+**Q:** I have a bunch of scripts we use in production that make use of Windows credentials.
+In some cases, these scripts have an actual password in plain text, while others read the password from an XML file.
+Is there a better way?
 
-
-**A:** Scripts with high-privilege account passwords in plain text is not a good idea and while there are several methods you can use to improve security of credentials handling, one great way is to use the SecretManagement and SecretStore modules from the PowerShell Gallery.
+**A:** Scripts with high-privilege account passwords in plain text is not a good idea.
+There are several methods you can use to improve the security of credentials handling.
+One great way is to use the SecretManagement and SecretStore modules from the PowerShell Gallery.
 
 ## What are Secrets?
 
+Secrets are, in general, passwords you need to access some resource.
+It might be the password for a domain administrator that you use to run a command on a remote host.
+You want to keep secrets secret, yet you want a great way to use them as needed.
+
+In my PowerShell books, I use a domain (Reskit.Org) for all my examples.
+The password for this mythical domain's Enterprise and Domain administrator is "Pa$$W0rd".
+I am not too worried about exposing this password as it is only the password to a few dozen VMs.
+This means many of the scripts from my books contain the password in clear text.
+While great for books, this is not a best practice in production.
 
 
-## What is the Secrets Module?
+Over the years there have been numerous attempts at handling secrets.
+You could store the secrets in an XML file and import the file when you needed those secrets.
+Or, you could force the user to just retype the password every time they want to use it.
+Speaking personally - I get tired real fast of typing a long, complex, password time and time again!
 
+## What are the Secrets Module?
+
+Early in the development the developers of this feature has but one module.
+A challenge was that users wanted the same ability with respect to managing secrets, but wanted flexibility over which secret store to use.
+The elegant solution involved separating secrets management from secrets storage.
+So there there are _two_ modules involved:
+
+* SecretManagement - you use this module in your scripts to make use of secrets.
+* SecretStore - this module contains the commands to manage a specific secret storage.
+
+You also need a vault-specific module which the SecretsStore module accesses. 
+This layered approach allows you to use any secret store you wish, manage the secrets independently of the physical storage mechanism.
+You could, in theory, change the secret store and not need to change your scripts that use the secrets.
 
 ## Installing the Modules
 
@@ -31,132 +59,170 @@ Version Name                                  Repository Description
 ------- ----                                  ---------- -----------
 1.1.0   Microsoft.PowerShell.SecretManagement PSGallery  This module provides a convenient way for a user
                                                          to store and retrieve secrets. The secrets are
-                                                         stored in registered extension vaults. An extension vault can store secrets locally or remotely.
-                                                         SecretManagement coordinates access to the secrets through the registered vaults.
+                                                         stored in registered extension vaults. An 
+                                                         extension vault can store secrets locally or remotely.
+                                                         SecretManagement coordinates access to the secrets
+                                                         through the registered vaults.
+                                                         Go to GitHub for more information about the module
+                                                         and to submit issues:https://github.com/powershell/SecretManagement
 
-                                                         Go to GitHub for more information about the module and to submit issues:
-                                                         https://github.com/powershell/SecretManagement
 1.0.4   Microsoft.PowerShell.SecretStore      PSGallery  This PowerShell module is an extension vault for the
                                                          PowerShell SecretManagement module.
-                                                         As an extension vault, this module stores secrets to the local machine based on the current user    account context. The secrets are encrypted on file using .NET  
-                                                         Crypto APIs. A password is required in the default configuration. The configuration can be changed with the provided cmdlets.
+                                                         As an extension vault, this module stores secrets to the local
+                                                         machine based on the current user account context. 
+                                                         The secrets are encrypted on file using .NETCrypto APIs. 
+                                                         A password is required in the default configuration. 
+                                                         The configuration can be changed with the provided cmdlets.
+                                                         Go to GitHub for more information about this module 
+                                                         and to submit issues: https://github.com/powershell/SecretStore
 
-                                                         Go to GitHub for more information about this module and to submit issues:
-                                                         https://github.com/powershell/SecretStore
+PS> # 2. Install both modules
+PS> Install-Module -Name $Names -Force -AllowClobber
 ```
+When you install the module using `Install-Module` you see no output (unless you use the `-Verbose` switch).
+You can always use `Get-Module` to check that you have installed these new (to you) modules.
 
-
-Discovering commands
-
-
-
-Before explaining the profile, let's first examine the PowerShell host.
-A PowerShell host is a program that hosts PowerShell to allow you to use it.
-Common PowerShell hosts include the Windows PowerShell console, the Windows PowerShell ISE, the PowerShell 7 console, and VS Code.
-Each host supports the use of profile files.
-
-A profile is a PowerShell script file that a PowerShell host loads and executes automatically every time you start that PowerShell host.
-The script is, in effect, dot-sourced, so any variables, functions, and the like that you define in a profile script remain available in the PowerShell session, which is incredibly handy.
-I use profiles to create PowerShell drives, various useful variables, and a few useful (for me!) functions.
-
-Each PowerShell host has 4 separate profile files as follows:
-
-* This host, this user
-* This host, all users
-* All hosts, this user
-* All hosts, all users
-
-Why so many, you might ask.
-Because having these four profile files allows you numerous deployment opportunities.
-You could, for example, have one profile that defines corporate aliases or standard PS drives for every PowerShell host and user on a machine.
-You could have 'this host' profiles that define host-specific customizations that could differ depending on the PowerShell host.
-For example, in my profile file for VS code, I use `Set-PSReadLineOption` to set token colours depending on which color theme I am using.
-Like so many things in PowerShell, the PowerShell team engineered profiles for every scenario you might come across in deploying PowerShell and PowerShell hosts.
-
-In practice, the "this host, this user" profile is the one you most commonly use, but having all four allows considerable deployment flexibility.
-You have options!
-
-## Where do I find them?
-
-Another frequently asked question is: where are these files and how are they named?
-It turns out, like many things PowerShell, you can find the answer to the question inside PowerShell itself.
-In this case, inside a PowerShell automatic variable, `$PROFILE`.
-
-Automatic variables in PowerShell, are variables created by PowerShell itself and are available for use.
-These variables are created by PowerShell when you start the host.
-For more details on automatic variables see the [automatic variable help text](https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_automatic_variables).
-
-## The `$PROFILE` variable
-
-The `$PROFILE` variable is an automatic variable that PowerShell creates within each session during startup.
-This variable has both a **ToString()** method and four additional note properties that tell you where _this_ host finds its profile files.
-
-To determine the location and fill script name for the four PowerShell scripts, you can do something like this:
+## Discovering the commands available to you
+Once you have thess two modules installed, you can discover the commands in each module:
 
 ```powershell-console
-PS> # what host?   
-PS> $host.Name
-ConsoleHost
-PS> # Where are the profiles?
-PS> $PROFILE | Get-Member -MemberType NoteProperty 
-   TypeName: System.String
-Name                   MemberType   Definition
-----                   ----------   ----------
-AllUsersAllHosts       NoteProperty string AllUsersAllHosts=C:\\Program Files\\PowerShell\\7\\profile.ps1
-AllUsersCurrentHost    NoteProperty string AllUsersCurrentHost=C:\\Program Files\\PowerShell\\7\\Microsoft.PowerShell_profile.ps1
-CurrentUserAllHosts    NoteProperty string CurrentUserAllHosts=C:\\Users\doctordns\\Documents\\PowerShell\\profile.ps1
-CurrentUserCurrentHost NoteProperty string CurrentUserCurrentHost=C:\\Users\\doctordns\\Documents\\PowerShell\\Microsoft.PowerShell_profile.ps1
 
-PS> # What does the $PROFILE variable itself contain?
-PS> $PROFILE
-C:\\Users\\doctordns\\Documents\\PowerShell\\Microsoft.PowerShell_profile.ps1
+PS> # 3. Examine them
+PS> Get-Module -Name Microsoft*.Secret* -List |
+       Format-Table -Property ModuleType*, Ver*, Name, Ps*, Exportedc*
+
+ModuleType Version Name                                  ExportedCmdlets
+---------- ------- ----                                  ---------------
+    Binary 1.1.0   Microsoft.PowerShell.SecretManagement {[Register-SecretVault, Register-SecretVault],
+                                                         [Unregister-SecretVault, Unregister-SecretVault], [Get-SecretVault,   
+                                                         Get-SecretVault], [Set-SecretVaultDefault, Set-SecretVaultDefault],   
+                                                         [Test-SecretVault, Test-SecretVault], [Set-Secret, Set-Secret],       
+                                                         [Set-SecretInfo, Set-SecretInfo], [Get-Secret, Get-Secret],
+                                                         [Get-SecretInfo, Get-SecretInfo], [Remove-Secret, Remove-Secret],
+                                                         [Unlock-SecretVault, Unlock-SecretVault]}
+    Binary 1.0.5   Microsoft.PowerShell.SecretStore      {[Unlock-SecretStore, Unlock-SecretStore], [Set-SecretStorePassword,  
+                                                         Set-SecretStorePassword], [Get-SecretStoreConfiguration,
+                                                         Get-SecretStoreConfiguration], [Set-SecretStoreConfiguration,
+                                                         Set-SecretStoreConfiguration], [Reset-SecretStore,
+                                                         Reset-SecretStore]}
+
 ```
 
-This example is from a Windows 10 client running PowerShell 7 inside VS Code.
-In the example, you can see that the `$PROFILE` variable contains four note properties that contain the location of each profile
-Also, you can see that the `$PROFILE` variable's value is the name of the **CurrentUserCurrentHost** profile.
-For simplicity you can run `Notepad $Profile` to bring up the profile file inside Notepad (or use VS Code!)
+As you can see, both modules have a number of commands you may need to use to manage secrets for your environment.
 
-## What can you do in a profile script?
+## Registering and viewing a secret vault
 
-You can pretty much do anything you want in profile file to create the environment that works best for you.
-I find the profile useful for creating variables and short aliases, PS Drives, and more as you can see below.
-As an example of what you can do in a profile, and to get you started, I have published two sample profile files to GitHub:
+After you have the two modules installed, your next step is to register a secret vault.
+There are several vault options you can take advantage of, for this post, I'll use the built-in default vault.
+You configure the default vault like this:
 
-* A [profile for the PowerShell 7 console](https://github.com/doctordns/PACKT-PS7/blob/master/scripts/goodies/Microsoft.PowerShell_Profile.ps1)
-* A [profile for VSCode](https://github.com/doctordns/PACKT-PS7/blob/master/scripts/goodies/Microsoft.VSCode_profile.ps1)
+```powershell-console
+PS C:\Foo> # 4. Register the default secrets provider
+PS C:\Foo> $Mod = 'Microsoft.PowerShell.SecretStore'
+PS C:\Foo> Register-SecretVault -Name RKSecrets -ModuleName $Mod -DefaultVault
+PS C:\Foo> Get-SecretVault
 
-These samples do a lot of useful things, including:
+Name      ModuleName                       IsDefaultVault
+----      ----------                       --------------
+RKSecrets Microsoft.PowerShell.SecretStore True
+```
+Like the previous step, registering the vault does not create any output by default.
+You can view the vault you just created by using the `Get-SecretVault` command.
 
-* Over-ride some default parameter values
-* Update the Format enumeration limit
-* Set the 'home' directory to a non-standard location
-* Create personal aliases
-* Create a PowerShell credential object
+## Setting a secret
 
-These are all things that make the environment customized to your liking.
-I use some personal aliases as alternatives to standard aliases - if only to save typing.
-Creating personal variables or updating automatic variables can be useful.
+To create a new secret in your secret vault, you use the 1Set-Secret1 command, like this:
 
-While creating a credential object can be useful, it is arguable whether it is a good thing.
-In this case, the credential is for a set of VMs I used in my [most recent PowerShell book](https://smile.amazon.co.uk/Windows-Server-Automation-PowerShell-Cookbook-ebook/dp/B0977JDL7K/ref=sr_1_1?dchild=1&keywords=Windows+Server+Automation+with+PowerShell+Cookbook+-+Fourth+Edition&qid=1624277697&s=books&sr=1-1) to illustrate using PowerShell in an Enterprise.
-As they are all local VMs and are only for testing, creating a much used credential object is useful. 
+```powershell-console
 
-## Be Careful
+PS> # 4. Register the default secrets provider
+PS> $Mod = 'Microsoft.PowerShell.SecretStore'
+PS> Register-SecretVault -Name RKSecrets -ModuleName $Mod -DefaultVault
+PS> # 5. View Secret vault
+PS> Get-SecretVault
 
-It is easy to get carried away with profile files.
-At one point in the PowerShell 3.0 days, my profile file was over 700 lines long.
-I'd just chucked all these cool things I'd found on the Internet (and never used them again)
-As a result, starting PowerShell or the ISE took some time.
-It is so easy to see some cool bits of code and then add it to your profile.
-I suggest you look carefully at each profile on a regular basis and trim it when possible.
+Name      ModuleName                       IsDefaultVault
+----      ----------                       --------------
+RKSecrets Microsoft.PowerShell.SecretStore True
+
+PS C:\Foo> # 6. Set the Admin password secret for Reskit forest
+PS C:\Foo> Set-Secret -Name ReskitAdmin -Secret 'Pa$$w0rd'
+Creating a new RKSecrets vault. A password is required by the current store configuration.
+Enter password:
+**********
+Enter password again for verification:
+**********
+```
+
+The first time you use `Set-Secret` to create a secret, the cmdlet prompts for a vault password.
+Note this password isd NOT stored in the AD - so don't forget it!!!
+
+## Using secrets stored in your secret vault
+
+Now that you have set a password in the RKSecrets vault, you can use the `Get-Secret` cmdlet to retrieve the secret.
+As you can see here, although you set a plain text password, Get-Secret returns the secret as a secure string.
+
+```powershell-console
+PS> # 7. Create a credential object using the secet
+PS> $User = 'Reskit\Administrator'
+PS> $PwSS = Get-Secret ReskitAdmin
+PS> $Cred = [System.Management.Automation.PSCredential]::New($User,$PwSS)
+PS> # 8. Let's cheat and see what the password is first.
+PS> $PW = $Cred.GetNetworkCredential().Password
+PS> "Password for this credential is [$PW]"
+Password for this credential is [Pa$$w0rd]
+PS> # 9. Using the credential against DC1
+PS> $Cmd = {hostname.exe}
+PS> Invoke-Command -ComputerName DC1 -Credential $Cred -ScriptBlock $Cmd
+DC1
+```
+
+As you can see, it is straightforward to create a new credential object using a password retrieved from the vault.
+You can use the credential object's **GetNetworkCredential()** method to retrieve the plain text password.
+The first time you create a vault, the secrets module requires you to specify a vault password.
+Depending on what sequence of commands you enter and how quickly, you may be asked to re-enter your vault password.
+
+## Using Metadata
+
+If you have a large numbers of secrets to manage, you can add additional metadata to help you keep track of the secrets you set.
+Metadata is a simple hash table containing the metadata you wish to apply to a secret.
+Each item in the hash table is a key-value pair.
+The keys can be anything you wish such as the purpose of the script and the script author.
+You use `Set-Secret` to add metadata to an existing (or new) secret.
+To set the metadata, you can use the `Get-SecretInfo` cmdlet.
+Creating and using metadata looks like this:
+
+```powershell-console
+PS> # 10. Setting metadata
+PS> Set-Secret -Name ReskitAdmin -Secret 'Pa$$w0rd' -Metadata @{Purpose="Reskit.Org Enterprise/Domain Admin PW"}
+PS> Get-SecretInfo -Name ReskitAdmin | Select-Object -Property Name, Metadata
+
+Name        Metadata
+----        --------
+ReskitAdmin {[Purpose, Reskit.Org Enterprise/Domain Admin PW]}
+
+PS> # 11. Updating the metadata
+PS> Set-SecretInfo -Name ReskitAdmin -Metadata @{Author = 'DoctorDNS@Gmail.Com';
+                                             Purpose="Reskit.Org Enterprise/Domain Admin PW"}
+PS> # 12. View secret information with metadata
+PS> Get-SecretInfo -Name ReskitAdmin | Select-Object -Property Name, Metadata
+
+Name        Metadata
+----        --------
+ReskitAdmin {[Purpose, Reskit.Org Enterprise/Domain Admin PW], 
+             [Author, DoctorDNS@Gmail.Com]}
+```
+
+As noted, Metadata can be any key/value pair you wish to add to the secret.
+In this case, the code set two metadata items: the purpose of the secret and its author.
+Feel free to add whatever metadata makes sense to you and your organization.
+
 
 ## Summary
 
-Profile are PowerShell scripts you can use to customize your PowerShell environment.
-There are 4 profile files for each host as you can see by examining the `$Profile` automatic variable.
+The two secrets modules provide a great way to use secrets in your PowerShell scripts and keep the secrets secure.
+These two modules work both with Windows PowerShell and PowerShell 7. 
+The default secrets vault works well enough for most cases, but you have options.
+If there is an interest, I can create a further blog post to look at using different secret vaults.
 
-## Tip of the Hat
-
-I based this article on one written for the earlier Scripting Guys blog [How Can I Use Profiles With Windows PowerShell](https://devblogs.microsoft.com/scripting/hey-scripting-guy-how-can-i-use-profiles-with-windows-powershell/).
-It was written by Ed Wilson.
+So stop using plain text secrets in your PowerShell scripts and use the secrets modules.
