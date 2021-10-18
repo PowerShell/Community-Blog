@@ -202,7 +202,7 @@ ReskitAdmin {[Purpose, Reskit.Org Enterprise/Domain Admin PW]}
 
 PS> # 11. Updating the metadata
 PS> Set-SecretInfo -Name ReskitAdmin -Metadata @{Author = 'DoctorDNS@Gmail.Com';
-                                             Purpose="Reskit.Org Enterprise//Domain Admin PW"}
+                                             Purpose="Reskit.Org Enterprise\\Domain Admin PW"}
 PS> # 12. View secret information with metadata
 PS> Get-SecretInfo -Name ReskitAdmin | Select-Object -Property Name, Metadata
 
