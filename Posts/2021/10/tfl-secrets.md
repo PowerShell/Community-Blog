@@ -208,7 +208,7 @@ PS> Get-SecretInfo -Name ReskitAdmin | Select-Object -Property Name, Metadata
 
 Name        Metadata
 ----        --------
-ReskitAdmin {[Purpose, Reskit.Org Enterprise//Domain Admin PW], 
+ReskitAdmin {[Purpose, Reskit.Org Enterprise\\Domain Admin PW], 
              [Author, DoctorDNS@Gmail.Com]}
 ```
 
