@@ -64,7 +64,7 @@ Version Name                                  Repository Description
                                                          SecretManagement coordinates access to the secrets
                                                          through the registered vaults.
                                                          Go to GitHub for more information about the module
-                                                         and to submit issues:https://github.com/powershell/SecretManagement
+                                                         and to submit issues:https:////github.com//powershell//SecretManagement
 
 1.0.4   Microsoft.PowerShell.SecretStore      PSGallery  This PowerShell module is an extension vault for the
                                                          PowerShell SecretManagement module.
@@ -74,7 +74,7 @@ Version Name                                  Repository Description
                                                          A password is required in the default configuration. 
                                                          The configuration can be changed with the provided cmdlets.
                                                          Go to GitHub for more information about this module 
-                                                         and to submit issues: https://github.com/powershell/SecretStore
+                                                         and to submit issues: https:////github.com//powershell//SecretStore
 
 PS> # 2. Install both modules
 PS> Install-Module -Name $Names -Force -AllowClobber
@@ -194,7 +194,7 @@ Creating and using metadata looks like this:
 
 ```powershell-console
 PS> # 10. Setting metadata
-PS> Set-Secret -Name ReskitAdmin -Secret 'Pa$$w0rd' -Metadata @{Purpose="Reskit.Org Enterprise/Domain Admin PW"}
+PS> Set-Secret -Name ReskitAdmin -Secret 'Pa$$w0rd' -Metadata @{Purpose="Reskit.Org Enterprise//Domain Admin PW"}
 PS> Get-SecretInfo -Name ReskitAdmin | Select-Object -Property Name, Metadata
 
 Name        Metadata
@@ -203,17 +203,17 @@ ReskitAdmin {[Purpose, Reskit.Org Enterprise/Domain Admin PW]}
 
 PS> # 11. Updating the metadata
 PS> Set-SecretInfo -Name ReskitAdmin -Metadata @{Author = 'DoctorDNS@Gmail.Com';
-                                             Purpose="Reskit.Org Enterprise/Domain Admin PW"}
+                                             Purpose="Reskit.Org Enterprise//Domain Admin PW"}
 PS> # 12. View secret information with metadata
 PS> Get-SecretInfo -Name ReskitAdmin | Select-Object -Property Name, Metadata
 
 Name        Metadata
 ----        --------
-ReskitAdmin {[Purpose, Reskit.Org Enterprise/Domain Admin PW], 
+ReskitAdmin {[Purpose, Reskit.Org Enterprise//Domain Admin PW], 
              [Author, DoctorDNS@Gmail.Com]}
 ```
 
-As noted, Metadata can be any key/value pair you wish to add to the secret.
+As noted, Metadata can be any key-value pair you wish to add to the secret.
 In this case, the code set two metadata items: the purpose of the secret and its author.
 Feel free to add whatever metadata makes sense to you and your organization.
 
