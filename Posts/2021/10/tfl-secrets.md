@@ -26,7 +26,6 @@ I am not too worried about exposing this password as it is only the password to 
 This means many of the scripts from my books contain the password in clear text.
 While great for books, this is not a best practice in production.
 
-
 Over the years there have been numerous attempts at handling secrets.
 You could store the secrets in an XML file and import the file when you needed those secrets.
 Or, you could force the user to just retype the password every time they want to use it.
