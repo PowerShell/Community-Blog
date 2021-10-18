@@ -193,7 +193,7 @@ Creating and using metadata looks like this:
 
 ```powershell-console
 PS> # 10. Setting metadata
-PS> Set-Secret -Name ReskitAdmin -Secret 'Pa$$w0rd' -Metadata @{Purpose="Reskit.Org Enterprise//Domain Admin PW"}
+PS> Set-Secret -Name ReskitAdmin -Secret 'Pa$$w0rd' -Metadata @{Purpose="Reskit.Org Enterprise\\Domain Admin PW"}
 PS> Get-SecretInfo -Name ReskitAdmin | Select-Object -Property Name, Metadata
 
 Name        Metadata
