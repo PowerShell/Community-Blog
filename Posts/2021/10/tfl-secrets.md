@@ -2,7 +2,7 @@
 post_title: How to Use The Secrets Module
 username: tfl@psp.co.uk
 Categories: PowerShell
-tags: PowerShell, profile
+tags: profile, SecretManagement, passwords
 Summary: Using Profile files with PowerShell 7
 ---
 
