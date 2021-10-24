@@ -2,8 +2,8 @@
 post_title: How to Use The Secrets Module
 username: tfl@psp.co.uk
 Categories: PowerShell
-tags: profile, SecretManagement, passwords
-Summary: Using Profile files with PowerShell 7
+tags: SecretManagement, passwords, credentials
+Summary: Using The Secrets Modules
 ---
 
 **Q:** I have a bunch of scripts we use in production that make use of Windows credentials.
@@ -33,9 +33,8 @@ Speaking personally - I get tired real fast of typing a long, complex, password 
 
 ## What are the Secrets Module?
 
-Early in the development the developers of this feature has but one module.
-A challenge was that users wanted the same ability with respect to managing secrets, but wanted flexibility over which secret store to use.
-The elegant solution involved separating secrets management from secrets storage.
+The developers of this module recognized the challenge that users wanted consistency in managing secredts with flexibility over which secret store to use.
+The solution involves separating secrets management from secrets storage.
 So there there are _two_ modules involved:
 
 * SecretManagement - you use this module in your scripts to make use of secrets.
@@ -47,10 +46,13 @@ You could, in theory, change the secret store and not need to change your script
 
 ## Installing the Modules
 
+If you want to follow along with the code and do not fancy cut/paste, I have created a GitHub Gist for the code you see in this article.
+You can find it [here](https://gist.github.com/doctordns/b1a06f7002675ec2bf8f710d3c066182). 
+
 ```powershell-console
 PS> # 1. Discover the modules
-PS> Find-Module -Name Microsoft.PowerShell.Secret* |
-      Format-Table Version, Name, Description -Wrap -AutoSize
+PS> Find-Module -Name 'Microsoft.PowerShell.Secret*' |
+      Format-Table -Wrap -AutoSize
 
 Version Name                                  Repository Description
 ------- ----                                  ---------- -----------
@@ -71,7 +73,7 @@ Version Name                                  Repository Description
                                                          A password is required in the default configuration. 
                                                          The configuration can be changed with the provided cmdlets.
                                                          Go to GitHub for more information about this module 
-                                                         and to submit issues: https://github.com/powershell/SecretStore
+                                                         and to submit issues: https:////github.com//powershell//SecretStore
 
 PS> # 2. Install both modules
 PS> Install-Module -Name $Names -Force -AllowClobber
@@ -85,7 +87,7 @@ Once you have thess two modules installed, you can discover the commands in each
 ```powershell-console
 
 PS> # 3. Examine them
-PS> Get-Module -Name Microsoft*.Secret* -ListAvailable |
+PS>PS> Get-Module -Name Microsoft*.Secret* -ListAvailable |
        Format-Table -Property ModuleType, Version, Name, ExportedCmdlets
 
 ModuleType Version Name                                  ExportedCmdlets
@@ -106,6 +108,7 @@ ModuleType Version Name                                  ExportedCmdlets
 ```
 
 As you can see, both modules have a number of commands you may need to use to manage secrets for your environment.
+Also - depending on your screen width you may find your output is slightly diffetrent although it should contain the same information.
 
 ## Registering and viewing a secret vault
 
@@ -114,10 +117,10 @@ There are several vault options you can take advantage of, for this post, I'll u
 You configure the default vault like this:
 
 ```powershell-console
-PS C:\Foo> # 4. Register the default secrets provider
-PS C:\Foo> $Mod = 'Microsoft.PowerShell.SecretStore'
-PS C:\Foo> Register-SecretVault -Name RKSecrets -ModuleName $Mod -DefaultVault
-PS C:\Foo> Get-SecretVault
+PS> # 4. Register the default secrets provider
+PS> $Mod = 'Microsoft.PowerShell.SecretStore'
+PS> Register-SecretVault -Name RKSecrets -ModuleName $Mod -DefaultVault
+PS> Get-SecretVault
 
 Name      ModuleName                       IsDefaultVault
 ----      ----------                       --------------
@@ -128,11 +131,13 @@ You can view the vault you just created by using the `Get-SecretVault` command.
 
 ## Setting a secret
 
-To create a new secret in your secret vault, you use the 1Set-Secret1 command, like this:
+To create a new secret in your secret vault, you use the `Set-Secret` command, like this:
 
 ```powershell-console
 
 PS> # 4. Register the default secrets provider
+PS> Import-Module -Name 'Microsoft.PowerShell.SecretManagement'
+PS> Import-Module -Name 'Microsoft.PowerShell.SecretStore'
 PS> $Mod = 'Microsoft.PowerShell.SecretStore'
 PS> Register-SecretVault -Name RKSecrets -ModuleName $Mod -DefaultVault
 PS> # 5. View Secret vault
@@ -151,8 +156,15 @@ Enter password again for verification:
 **********
 ```
 
-The first time you use `Set-Secret` to create a secret, the cmdlet prompts for a vault password.
+This code fragment explicitly loads both of the downloaded modules. 
+If you use PowerShell module automatic loading, this is unnecessary.
+
+Also, the first time you use `Set-Secret` to create a secret, the cmdlet prompts for a vault password.
 Note this password isd NOT stored in the AD - so don't forget it!!!
+
+As an aside - I hope you noticed the bad practice in the above code - using a clear text password in a script file.
+A better approach to this _for production coding_ would be to use Read-Host to have the password passed in. 
+In this case, you see the actual password I set, and later see that this password was indeed saved and retreived correctly.
 
 ## Using secrets stored in your secret vault
 
@@ -161,7 +173,7 @@ As you can see here, although you set a plain text password, Get-Secret returns 
 
 ```powershell-console
 PS> # 7. Create a credential object using the secet
-PS> $User = 'Reskit\Administrator'
+PS> $User = 'Reskit\\Administrator'
 PS> $PwSS = Get-Secret ReskitAdmin
 PS> $Cred = [System.Management.Automation.PSCredential]::New($User,$PwSS)
 PS> # 8. Let's cheat and see what the password is first.
@@ -175,9 +187,12 @@ DC1
 ```
 
 As you can see, it is straightforward to create a new credential object using a password retrieved from the vault.
-You can use the credential object's **GetNetworkCredential()** method to retrieve the plain text password.
-The first time you create a vault, the secrets module requires you to specify a vault password.
+This code creates a new PSCredential object, because that is what PowerShell cmdlets use to authenticate remoting sessions.
+You can use the credential object's `GetNetworkCredential()` method to retrieve the plain text password.
+
+If you are running this code, the first time you create a vault, the secrets module requires you to specify a vault password.
 Depending on what sequence of commands you enter and how quickly, you may be asked to re-enter your vault password.
+d
 
 ## Using Metadata
 
