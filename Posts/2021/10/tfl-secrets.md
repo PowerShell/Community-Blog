@@ -49,10 +49,8 @@ You could, in theory, change the secret store and not need to change your script
 
 ```powershell-console
 PS> # 1. Discover the modules
-PS> $Names =  'Microsoft.PowerShell.SecretManagement',
-              'Microsoft.PowerShell.SecretStore'
-PS> Find-Module -Name $Names |
-      Format-Table -Wrap -AutoSize
+PS> Find-Module -Name Microsoft.PowerShell.Secret* |
+      Format-Table Version, Name, Description -Wrap -AutoSize
 
 Version Name                                  Repository Description
 ------- ----                                  ---------- -----------
