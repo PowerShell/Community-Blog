@@ -71,7 +71,7 @@ Version Name                                  Repository Description
                                                          A password is required in the default configuration. 
                                                          The configuration can be changed with the provided cmdlets.
                                                          Go to GitHub for more information about this module 
-                                                         and to submit issues: https:////github.com//powershell//SecretStore
+                                                         and to submit issues: https://github.com/powershell/SecretStore
 
 PS> # 2. Install both modules
 PS> Install-Module -Name $Names -Force -AllowClobber
