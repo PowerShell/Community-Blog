@@ -85,8 +85,8 @@ Once you have thess two modules installed, you can discover the commands in each
 ```powershell-console
 
 PS> # 3. Examine them
-PS> Get-Module -Name Microsoft*.Secret* -List |
-       Format-Table -Property ModuleType*, Ver*, Name, Ps*, Exportedc*
+PS> Get-Module -Name Microsoft*.Secret* -ListAvailable |
+       Format-Table -Property ModuleType, Version, Name, ExportedCmdlets
 
 ModuleType Version Name                                  ExportedCmdlets
 ---------- ------- ----                                  ---------------
