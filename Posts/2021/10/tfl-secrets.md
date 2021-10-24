@@ -61,7 +61,7 @@ Version Name                                  Repository Description
                                                          SecretManagement coordinates access to the secrets
                                                          through the registered vaults.
                                                          Go to GitHub for more information about the module
-                                                         and to submit issues:https:////github.com//powershell//SecretManagement
+                                                         and to submit issues:https://github.com/powershell/SecretManagement
 
 1.0.4   Microsoft.PowerShell.SecretStore      PSGallery  This PowerShell module is an extension vault for the
                                                          PowerShell SecretManagement module.
