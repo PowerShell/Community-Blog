@@ -164,13 +164,13 @@ Also, the first time you use `Set-Secret` to create a secret, the cmdlet prompts
 Note this password isd NOT stored in the AD - so don't forget it!!!
 
 As an aside - I hope you noticed the bad practice in the above code - using a clear text password in a script file.
-A better approach to this _for production coding_ would be to use Read-Host to have the password passed in. 
+A better approach to this _for production coding_ would be to use `Read-Host` to have the password passed in. 
 In this case, you see the actual password I set, and later see that this password was indeed saved and retreived correctly.
 
 ## Using secrets stored in your secret vault
 
 Now that you have set a password in the RKSecrets vault, you can use the `Get-Secret` cmdlet to retrieve the secret.
-As you can see here, although you set a plain text password, Get-Secret returns the secret as a secure string.
+As you can see here, although you set a plain text password, `Get-Secret` returns the secret as a secure string.
 
 ```powershell-console
 PS> # 7. Create a credential object using the secet
