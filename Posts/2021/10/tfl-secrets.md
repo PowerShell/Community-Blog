@@ -33,7 +33,8 @@ Speaking personally - I get tired real fast of typing a long, complex, password 
 
 ## What are the Secrets Module?
 
-The developers of this module recognized the challenge that users wanted consistency in managing secredts with flexibility over which secret store to use.
+The developers of this module recognized the challenge that users wanted consistency
+in managing secrets with flexibility over which secret store to use.
 The solution involves separating secrets management from secrets storage.
 So there there are _two_ modules involved:
 
@@ -192,7 +193,6 @@ You can use the credential object's `GetNetworkCredential()` method to retrieve 
 
 If you are running this code, the first time you create a vault, the secrets module requires you to specify a vault password.
 Depending on what sequence of commands you enter and how quickly, you may be asked to re-enter your vault password.
-d
 
 ## Using Metadata
 
