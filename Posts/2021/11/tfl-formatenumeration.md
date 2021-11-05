@@ -129,14 +129,14 @@ PS> "Before calling: [$FormatEnumerationLimit]"
 Before calling: [4]#
 PS> # Now call the updated function
 PS> Test-FormatLimit2
-After changing: [2]
+After changing: [1]
 
 Name                    Threads
 ----                    -------
 AggregatorHost          {5240}
-ApplicationFrameHost    {16968, 2848}
+ApplicationFrameHost    {16968…}
 AppVShNotify            {9164}
-Atom.SDK.WindowsService {4064, 4908…}
+Atom.SDK.WindowsService {4064…}
 ```
 
 So with some careful updating of the global variable, you can get the desired result.
