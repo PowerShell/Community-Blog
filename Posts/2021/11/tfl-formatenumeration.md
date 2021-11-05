@@ -109,11 +109,11 @@ To get around this curious scoping, you can re-write the function like this:
 
 ```powershell
 
-function Test-FormatLimit2
+function Test-FormatLimitGlobal
 {
   # Change format enum limit Globally
   $Old = $Global:FormatEnumerationLimit
-  $Global:FormatEnumerationLimit = 2
+  $Global:FormatEnumerationLimit = 1
   "After changing: [$Global:FormatEnumerationLimit]"
   Get-Process | Select-Object -Property Name, Threads -First 4
   # Change it back
