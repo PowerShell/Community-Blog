@@ -33,7 +33,7 @@ However, as you can see, PowerShell shows only four modules shown followed by "â
 The ellipsis tells you that there are more values in this property, except PowerShell does not show them.
 
 If you know the `Format-Table` command, you might be tempted to use the `-Wrap` or the `-AutoSize` parameters, but these would not help.
-It turns out there is no parameter to `Format-Table` or `Format-List` to achieve this ([yet](https://github.com/PowerShell/PowerShell/issues/16360))
+It turns out there is no parameter for `Format-Table` or `Format-List` to control this.
 The trick is to use the `$FormatEnumerationLimit` variable and assign it a higher value.
 
 The `$FormatEnumerationLimit` automatic variable tells PowerShell and the formatting cmdlets how many occurrences to format.
