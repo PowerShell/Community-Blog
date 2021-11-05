@@ -91,7 +91,7 @@ You might, but you would be wrong, as you can see here:
 PS> # Here show the value and call the functin
 PS> "Before calling: [$FormatEnumerationLimit]"
 Before calling: [4]
-PS> Test-FormatLimit1
+PS> Test-FormatLimitLocal
 In Function, limit is: [4]
 After changing: [1]
 
