@@ -28,7 +28,7 @@ pwsh        {System.Diagnostics.ProcessModule (pwsh.exe),
              System.Diagnostics.ProcessModule (KERNELBASE.dll)…}
 ```
 
-This output shows PowerShell getting the process object for `Pwsh.exe` and then passing it to `Format-Table`, which outputs the process name and four of the modules used by that process.
+This output shows PowerShell getting the process object for `Pwsh.exe` and then passing it to `Format-Table`, which outputs the process name and the modules used by that process.
 However, as you can see, PowerShell shows only four modules shown followed by "…" (also known as an ellipsis).
 The ellipsis tells you that there are more values in this property, except PowerShell does not show them.
 
