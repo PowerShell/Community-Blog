@@ -36,7 +36,7 @@ If you know the `Format-Table` command, you might be tempted to use the `-Wrap` 
 It turns out there is no parameter for `Format-Table` or `Format-List` to control this.
 The trick is to use the `$FormatEnumerationLimit` variable and assign it a higher value.
 
-The `$FormatEnumerationLimit` automatic variable tells PowerShell and the formatting cmdlets how many occurrences to format.
+The `$FormatEnumerationLimit` automatic variable tells PowerShell and the formatting cmdlets how many occurrences to include in the formatted output.
 By default, PowerShell sets this variable to four at startup.
 And that is why you see just four processes in output (by default).
 
