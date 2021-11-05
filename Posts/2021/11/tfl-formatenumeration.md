@@ -74,7 +74,7 @@ If you use a format command within a function/script (i.e. a child of the global
 The following code contains a function to illustrate the issue:
 
 ```powershell
-function Test-FormatLimit1
+function Test-FormatLimitLocal
 {
   # Change format enum limit
   "In Function, limit is: [$FormatEnumerationLimit]"
