@@ -69,7 +69,7 @@ I set the limit to 99 in my profile file and that is usually more than sufficien
 ## Scoping of $FormatEnumerationLimit
 
 One interesting thing I found is that `$FormatEnumerationLimit` is scoped differently to my expectations.
-If you use a format command within a function/script (i.e. a child of the global scope), the command only uses the value from the global scope.
+If you use a format command within a function or script (a child of the global scope), the command only uses the value from the global scope.
 
 The following code contains a function to illustrate the issue:
 
