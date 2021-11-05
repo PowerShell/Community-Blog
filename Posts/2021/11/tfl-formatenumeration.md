@@ -2,7 +2,7 @@
 post_title: How to Use $FormatEnumerationLimit
 username: tfl@psp.co.uk
 Categories: PowerShell
-tags: PowerShell, Format, FormatEnumerationLimit variagble
+tags: PowerShell, Format, FormatEnumerationLimit variable
 Summary: Using The $FormatEnumerationLimit variable in PowerShell
 ---
 
