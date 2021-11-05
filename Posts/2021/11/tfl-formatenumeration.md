@@ -37,7 +37,7 @@ It turns out there is no parameter for `Format-Table` or `Format-List` to contro
 The trick is to use the `$FormatEnumerationLimit` variable and assign it a higher value.
 
 The `$FormatEnumerationLimit` automatic variable tells PowerShell and the formatting cmdlets how many occurrences to format.
-By default, PowerShell and Windows PowerShell set this variable to four at startup.
+By default, PowerShell sets this variable to four at startup.
 And that is why you see just four processes in output (by default).
 
 With PowerShell, you can adjust this limit in a script or a profile file.
