@@ -128,7 +128,7 @@ PS> # View the value
 PS> "Before calling: [$FormatEnumerationLimit]"
 Before calling: [4]#
 PS> # Now call the updated function
-PS> Test-FormatLimit2
+PS> Test-FormatLimitGlobal
 After changing: [1]
 
 Name                    Threads
