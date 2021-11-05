@@ -13,7 +13,7 @@ Summary: Using The $FormatEnumerationLimit variable in PowerShell
 This query is one I hear in many PowerShell support forums, and I have encountered this issue a lot over the years.
 What happens is that you issue a command to return objects.
 PowerShell returns the requested objects with properties that are arrays of objects, not a single property value.
-When you pipe those objects to `Format-Table`, by default, PowerShell only shows you the first four
+When you pipe those objects to `Format-Table`, by default, PowerShell only shows you the first four.
 
 Let me illustrate what this looks like (by default):
 
