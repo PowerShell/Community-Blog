@@ -148,3 +148,5 @@ If you need to make changes to any global variable to make a function or script 
 
 The `$FormatEnumerationLimit` variable is a neat feature of PowerShell that allows you to see more occurrences when using `Format-Table`.
 But remember: if you are using this variable in a function or a script, you should be aware of the scoping issue.
+
+You can read more about `$FormatEnumerationLimit`, and other preference variables in [about_Preference_Variables](https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_preference_variables#formatenumerationlimit).
