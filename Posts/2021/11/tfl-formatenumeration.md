@@ -30,7 +30,7 @@ pwsh        {System.Diagnostics.ProcessModule (pwsh.exe),
 
 This output shows PowerShell getting the process object for `Pwsh.exe` and then passing it to `Format-Table`, which outputs the process name and four of the modules used by that process.
 However, as you can see, PowerShell shows only four modules shown followed by "…" (also known as an ellipsis).
-The ellipsis tells you that there are more occurrences in this property, except PowerShell does not show them.
+The ellipsis tells you that there are more values in this property, except PowerShell does not show them.
 
 If you know the `Format-Table` command, you might be tempted to use the `-Wrap` or the `-AutoSize` parameters, but these would not help.
 It turns out there is no parameter to `Format-Table` or `Format-List` to achieve this ([yet](https://github.com/PowerShell/PowerShell/issues/16360))
