@@ -139,10 +139,11 @@ AppVShNotify            {9164}
 Atom.SDK.WindowsService {4064…}
 ```
 
-So with some careful updating of the global variable, you can get the desired result.
-I am unclear whether this is a bug or a feature!
+So, with some careful updating of the global variable, you can get the desired result.
 In general, I teach my students to avoid manipulating global variables from within a script or a function (unless you know what you are doing).
 If you need to make changes to any global variable to make a function or script do what you want, ensure you know how to revert the variable to its original value.
+
+I am unclear whether this is a bug or a feature! To that end, I submitted a [feature request](https://github.com/PowerShell/PowerShell/issues/16360) in the PowerShell source repository. Feel free to add your opinion in the comments or upvote it if you want to see it added.
 
 ## Summary
 
