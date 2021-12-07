@@ -58,7 +58,7 @@ It turns out there is a very simple way: use the `$PSDefaultParameters` automati
 When PowerShell (and Windows PowerShell) starts, it creates the `$PSDefaultParameters` automatic variable.
 The variable has a type: **System.Management.Automation.DefaultParameterDictionary**.
 In other words, the variable is a Powershell hash table.
-By default the variable is empty when you start PowerShell.
+By default, the variable is empty when you start PowerShell.
 
 Each entry in this hash table defines a cmdlet, a parameter and a default value for that parameter.
 The hash table key is the name of the hash table, followed by a ":", and then the name of the parameter.
