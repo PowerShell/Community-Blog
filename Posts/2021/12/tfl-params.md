@@ -70,7 +70,7 @@ If you wanted, for example, to always use **-Wrap** for the `Format-*` cmdlets, 
 $PSDefaultParameterValues.Add('Format-*:Wrap', $True)
 ```
 ## Persist the change in your profile
-Any change you make to the **$PSDefaultParameterValues** variable is only applicable for the current session.
+Any change you make to the `$PSDefaultParameterValues` variable is only applicable for the current session.
 And the variable is subject to normal scoping rules - so changing the value in a script does not affect the session as a whole.
 That means that if you want these changes to occur every time you start a PowerShell console, then you add the appropriate statements in your profile.
 
