@@ -50,7 +50,7 @@ AppHostSvc      Running Provides administrative services for IIS,
 
 ```
 
-So, the question is: how to tell PowerShell to always use -Wrap when using `Format-Table` or `Format-List`.
+So, the question is: how to tell PowerShell to always use `-Wrap` when using `Format-Table` or `Format-List`?
 It turns out there is a very simple way: use the `$PSDefaultParameters` automatic variable.
 
 ## The `$PSDefaultParameters` automatic variable
