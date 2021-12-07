@@ -6,7 +6,7 @@ tags: PowerShell, Default Parameter values, parameters
 Summary: Using The $PSDefaultParameterValues automatic variable
 ---
 
-**Q:** When I use cmdlets like `Receive-Job` and `Format-Table`, how do I change default values of **-Keep** and **-Wrap**?
+**Q:** When I use cmdlets like `Receive-Job` and `Format-Table`, how do I change default values of the **Keep** and **Wrap** parameters?
 
 **A:** Use the `$PSDefaultValues` automatic variable.
 
