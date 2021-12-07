@@ -74,7 +74,7 @@ Any change you make to the `$PSDefaultParameterValues` variable is only applicab
 And the variable is subject to normal scoping rules - so changing the value in a script does not affect the session as a whole.
 That means that if you want these changes to occur every time you start a PowerShell console, then you add the appropriate statements in your profile.
 
-On my development box, I use the following snippet in side my **$Profile** file:
+On my development box, I use the following snippet inside my `$PROFILE` script:
 
 ```powerShell
 $PSDefaultParameterValues.Add('*:AutoSize', $true)
