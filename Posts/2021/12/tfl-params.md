@@ -55,7 +55,7 @@ It turns out there is a very simple way: use the `$PSDefaultParameters` automati
 
 ## The `$PSDefaultParameters` automatic variable
 
-When Powershell (and Windows PowerShell ) starts, it creates the `$PSDefaultParameters' automatic variable.
+When PowerShell (and Windows PowerShell) starts, it creates the `$PSDefaultParameters` automatic variable.
 The variable has a type: **System.Management.Automation.DefaultParameterDictionary**.
 In other words, the variable is a Powershell hash table.
 By default the variable is empty when you start PowerShell.
