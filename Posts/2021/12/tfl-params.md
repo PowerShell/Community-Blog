@@ -77,9 +77,9 @@ That means that if you want these changes to occur every time you start a PowerS
 On my development box, I use the following snippet inside my `$PROFILE` script:
 
 ```powerShell
-$PSDefaultParameterValues.Add('*:AutoSize', $true)
+$PSDefaultParameterValues.Add('Format-*:AutoSize', $true)
+$PSDefaultParameterValues.Add('Format-*:Wrap', $true)
 $PSDefaultParameterValues.Add('Receive-Job:Keep', $true)
-$PSDefaultParameterValues.Add('*:Wrap', $true
 ```
 
 ## Summary
