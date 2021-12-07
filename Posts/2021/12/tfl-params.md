@@ -14,7 +14,7 @@ When I first discovered PowerShell's background jobs feature, I would use `Recei
 And almost too often to count, I pipe objects to `Format-Table` cmdlet only to get truncated output because I forgot to use `-Wrap`.
 I'm sure you all have parameters whose default value you would gladly change - at least for your environment.
 
-I'm sure you have seen this (and know how to use -Wrap), like this:
+I'm sure you have seen this (and know how to use **Wrap**), like this:
 
 ```powershell-console
 PS> # Default output in a narrow terminal window.
