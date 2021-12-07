@@ -61,7 +61,7 @@ In other words, the variable is a Powershell hash table.
 By default, the variable is empty when you start PowerShell.
 
 Each entry in this hash table defines a cmdlet, a parameter and a default value for that parameter.
-The hash table key is the name of the hash table, followed by a ":", and then the name of the parameter.
+The hash table key is the name of the cmdlet, followed by a colon (`:`), and then the name of the parameter.
 The hash table value for this key is the new default value for the parameter.
 
 If you wanted, for example, to always use **-Wrap** for the `Format-*` cmdlets, you could do this:
