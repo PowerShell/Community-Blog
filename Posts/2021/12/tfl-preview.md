@@ -19,7 +19,7 @@ But you can easily turn it back on!
 
 ## Microsoft PowerToys to the rescue??
 
-You can use [Microsoft's Power Toys for Windows](https://docs.microsoft.com/en-us/windows/powertoys) to enable Explorer to preview more file types.
+You can use [Microsoft's Power Toys for Windows](https://docs.microsoft.com/windows/powertoys) to enable Explorer to preview more file types.
 I love these tools - and have them installed on my computers.
 Sadly, PowerToys currently does not enable previewing of PowerShell files.
 
@@ -32,7 +32,7 @@ As a small aside, this setting gets reset each time you upgrade Windows - as a W
 
 ## Enabling Preview of .PS1/.PSD1/.PSM1 files
 
-Once you enable preview mode in Explorer as shown above, when you select a .PS1 file - you see something like this:
+Once you enable preview mode in Explorer as shown above, when you select a `.PS1` file - you see something like this:
 
 ![Viewing a .PS1 file in Preview](./media/tfl-preview/before.png)
 
