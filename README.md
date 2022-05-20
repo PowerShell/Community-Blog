@@ -18,22 +18,20 @@ information, see the [Code of Conduct FAQ](https://opensource.microsoft.com/code
 ## The Purpose of This Blog
 
 The intended purpose of the PowerShell Community Blog is to provide a platform for the PowerShell
-Community to show off the great things you can do with PowerShell and Windows PowerShell. Each
-article should provide a set of (relatively!) simple steps to take, with PowerShell, to achieve some
-task. Blog posts can cover either Windows PowerShell, or the open source PowerShell 7. While we
-welcome deep, deep posts, most posts are likely to be at the 200-300 level. Posts should make clear
-the problem the article helps the reader to solve. In other words, great practical advice on how to
-solve real-world IT professional problems, with a side-helping of technical depth. This blog
-welcomes submissions to the blog both from internal Microsoft teams and external people.
+Community to show off the great things you can do with PowerShell. This blog welcomes submissions
+to the blog both from internal Microsoft teams and external people. Blog posts can cover the open
+source PowerShell 7 or Windows PowerShell. Your post should clearly outline the problem the being
+solved. Your post can cover an advanced topic, but most posts are likely to be at the 200-300 level.
+For advanced topics, consider splitting your subject into a multipart series of posts.
 
 Posts to the blog can discuss products and technologies that are not part of the core PowerShell
 product or even made by Microsoft, as long as the post's content is relevant to PowerShell users and
 is not marketing those products.
 
-The published language for the PowerShell community is English, and mainly American Ennglish,
+The published language for the PowerShell community is English, and mainly American English,
 although posts other variations of English are acceptable. The article review process focuses on the
-language and structure of each article as well as the specific details. If English is not your first
-language, or even if it is, the review process can help to iron out any problems.
+language and structure of each article, as well as the specific details. Even if English is not your
+first language, the review process can help to iron out any problems.
 
 ## How to Interact
 
