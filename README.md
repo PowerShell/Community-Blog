@@ -1,4 +1,10 @@
-# PowerShell Community Blog Repository
+---
+post_title: PowerShell Community Blog README
+username: sewhee@microsoft.com
+Categories: PowerShell Community
+tags: README, Getting Started
+---
+# PowerShell Community Blog
 
 This repository is for submissions for posts to the
 [PowerShell Community Blog](https://devblogs.microsoft.com/powershell-community). We welcome
