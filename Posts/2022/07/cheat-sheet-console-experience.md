@@ -82,7 +82,7 @@ Add code, save, and you are good to go.
 ## PowerShell 7 / PowerShell Core
 
 There's Windows PowerShell, which comes installed by default on any Windows.
-But there's also a [cool version you have to first install](https://github.com/powershell/powershell).
+But there's also a [cool version you have to first install](https://aka.ms/powershell-release?tag=stable).
 It adds great convenience, better performance and the ability to actually like using Visual Studio Code with PowerShell.
 You can grab it via a wide variety of sources, such as the Microsoft Store, Github or your preferred package manager.
 
