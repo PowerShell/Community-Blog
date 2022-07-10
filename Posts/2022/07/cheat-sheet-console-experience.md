@@ -36,8 +36,8 @@ There are a few keybindings that come in handy to know:
 |<kdb>Ctrl</kdb>+<kdb>v</kdb>|Paste your clipboard into the current input/command line|
 |<kdb>Shift</kdb>+<kdb>Enter</kdb>|Type multiline text in your console without executing the command|
 
-Specifically, it is important to get used to not pasting with rightclick - by using CTRL+v instead, you get a single input history for multiple lines, you can preview your input before sending it (helps with those artifacts you get when pasting from Teams) and you stop accidentally overwriting your clipboard by selecting something in the console window.
-​​​​​​​Also, with rightclick, you sometimes get the wrong order.
+Specifically, it is important to get used to not pasting with right-click - by using <kdb>Ctrl</kdb>+<kdb>v</kdb> instead, you get a single input history for multiple lines, you can preview your input before sending it (helps with those artifacts you get when pasting from Teams) and you stop accidentally overwriting your clipboard by selecting something in the console window.
+​​​​​​​Also, with right-click, you sometimes get the wrong order.
 
 Oh, and you can [define your own keybindings](https://github.com/PowerShell/PSReadLine/blob/master/PSReadLine/SamplePSReadLineProfile.ps1) if you want to.
 No need to accept the defaults.
