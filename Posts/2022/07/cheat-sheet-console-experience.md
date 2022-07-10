@@ -1,6 +1,6 @@
 ﻿---
 post_title: Cheat Sheet - Console Experience
-username: Fred
+username: frweinma
 Categories: PowerShell
 tags: PowerShell, Preference Variables, Convenience, Tab Expansion
 Summary: How to have more control of preferences in functions and the role of modules on inheritance. 
