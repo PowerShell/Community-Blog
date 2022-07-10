@@ -143,7 +143,7 @@ Don't do manual labor though, here's the easy way to get data ready to paste to 
 dir | ConvertTo-Csv -Delimiter "`t" | scb
 ```
 
-That "ConvertTo-Csv" is way too much text though. Wouldn't it be nice to make that shorter?
+That `ConvertTo-Csv` is way too much text though. Wouldn't it be nice to make that shorter?
 
 ## Aliases
 
