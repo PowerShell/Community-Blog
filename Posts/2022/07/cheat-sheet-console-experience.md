@@ -196,7 +196,7 @@ Often enough you want to interact with the file system across applications:
 + Open the explorer in the current path?
 
 For all of that there are convenient options.
-From within the shell, "Invoke-Item" or its alias "ii" allow you to open a path in its default application:
+From within the shell, `Invoke-Item` or its alias `ii` allow you to open a path in its default application:
 
 ```powershell
 ii .\report.csv # Probably Excel
