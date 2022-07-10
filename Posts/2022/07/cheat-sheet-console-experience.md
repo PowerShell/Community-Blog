@@ -16,7 +16,7 @@ See below for the most commonly appreciated options.
 ## Tab Completion
 
 The classic complaint we hear is that in Windows, Tab Completion is so much less helpful than for example in Bash.
-This is mostly because "CTRL" + "Space" is hard to discover, unless somebody shows you.
+This is mostly because <kdb>CTRL</kdb>+<kdb>Space</kdb> is hard to discover, unless somebody shows you.
 Same menu choice as in Bash, but you can pick your preferred option using the arrow keys and each option may come with some documentation:​​​​​​
 
 ![Console excerpt, showing a menu of parameter options for dir](./tab-completion.png)
