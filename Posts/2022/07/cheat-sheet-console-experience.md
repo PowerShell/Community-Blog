@@ -204,7 +204,7 @@ ii . # Current path in Explorer
 ```
 
 The other way around works just as convenient:
-​​​​​​​In the Windows Explorer, just type "pwsh.exe" (or "powershell.exe", if you didn't upgrade):
+​​​​​​​In the Windows Explorer, just type `pwsh.exe` (or `powershell.exe`, if you didn't upgrade):
 
 ![The Windows Explorer address bar, with the path replaced with "pwsh.exe"](./explorer.png)
 
