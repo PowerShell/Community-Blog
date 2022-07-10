@@ -214,7 +214,7 @@ When you run a command, often enough you get some nice table, that is easy to re
 
 ![Results of a dir command in a neat table](./format-table.png)
 
-Fortunately, by piping to "FL *", you get to see everything (even if it is a bit much):
+Fortunately, by piping to `FL *`, you get to see everything (even if it is a bit much):
 
 ![Results of a dir command, with a long list of properties, hiding nothing](./format-list.png)
 
