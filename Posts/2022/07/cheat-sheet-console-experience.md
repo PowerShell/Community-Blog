@@ -93,7 +93,7 @@ You can also install it on MacOS or Linux.
 
 Want to customize your prompt to be more colorful / fancy / whatever else you want it to do?
 
-Well, all you need to do is override the function named "prompt" and put it in your profile and that's that.
+Well, all you need to do is override the function named `prompt` and put it in your profile and that's that.
 Don't know how or want to borrow from others to make your life easier?
 
 Give [Powerline (for PowerShell)](https://github.com/Jaykul/PowerLine) a chance.
