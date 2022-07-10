@@ -149,7 +149,7 @@ That `ConvertTo-Csv` is way too much text though. Wouldn't it be nice to make th
 
 In PowerShell, there is an easy way to be lazy: Aliases.
 Use their power to abbreviate your commonly used commands.
-Then put it in your $profile so you don't have to remember to add them.
+Then put it in your `$profile` so you don't have to remember to add them.
 
 ```powershell
 Set-Alias ctc ConvertTo-Csv
