@@ -27,12 +27,14 @@ Same menu choice as in Bash, but you can pick your preferred option using the ar
 
 There are a few keybindings that come in handy to know:
 
-|CTRL + Space|Tab Menu|
-|CTRL + r|Search in your input history|
-|CTRL + a|Select everything in your current input/command line|
-|CTRL + c|Copy everything currently selected in your input/command line to your clipboard|
-|CTRL + v|Paste your clipboard into the current input/command line|
-|SHIFT + Enter|Type multiline text in your console without executing the command|
+|Keybinding|Function|
+|---|---|
+|<kdb>Ctrl</kdb>+<kdb>Space</kdb>|Tab Menu|
+|<kdb>Ctrl</kdb>+<kdb>r</kdb>|Search in your input history|
+|<kdb>Ctrl</kdb>+<kdb>a</kdb>|Select everything in your current input/command line|
+|<kdb>Ctrl</kdb>+<kdb>c</kdb>|Copy everything currently selected in your input/command line to your clipboard|
+|<kdb>Ctrl</kdb>+<kdb>v</kdb>|Paste your clipboard into the current input/command line|
+|<kdb>Shift</kdb>+<kdb>Enter</kdb>|Type multiline text in your console without executing the command|
 
 Specifically, it is important to get used to not pasting with rightclick - by using CTRL+v instead, you get a single input history for multiple lines, you can preview your input before sending it (helps with those artifacts you get when pasting from Teams) and you stop accidentally overwriting your clipboard by selecting something in the console window.
 ​​​​​​​Also, with rightclick, you sometimes get the wrong order.
