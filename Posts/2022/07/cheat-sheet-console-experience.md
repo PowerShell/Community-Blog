@@ -45,7 +45,7 @@ No need to accept the defaults.
 ## Packages
 
 There are plenty of PowerShell packages out there that can make console life a lot less painful.
-Use Find-Module to search for them and Install-Module to install them. Example:
+Use `Find-Module` to search for them and `Install-Module` to install them. Example:
 
 ```powershell
 Find-Module *SQL*
