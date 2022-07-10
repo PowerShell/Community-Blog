@@ -179,7 +179,9 @@ Using the example above with `ConvertTo-Csv`, there is only a single parameter t
 
 A lot more tools have been created to help being lazy & comfortable than could possibly all be listed, but here a few more projects out there that can help make console life more comfortable:
 
-|[AZ.Tools.Predictor](https://docs.microsoft.com/en-us/powershell/azure/az-predictor?view=azps-8.0.0)|Predictive intellisense for the AZ modules|
+|Tool|Description|
+|---|---|
+|[AZ.Tools.Predictor](https://docs.microsoft.com/powershell/azure/az-predictor)|Predictive intellisense for the AZ modules|
 |[TabExpansionPlusPlus](https://www.powershellgallery.com/packages/TabExpansionPlusPlus/1.2)|Adds tab completion for classic commandline tools such as ROBOCOPY|
 |[PSUtil](https://www.powershellgallery.com/packages/PSUtil)|Adds keybindings, aliases and other conveniences|
 |[oh-my-posh](https://ohmyposh.dev/)|Transform your prompt, alternative to the Powerline module shown above|
