@@ -171,7 +171,7 @@ Like where you can either specify "--help" or "-h"?
 Well, PowerShell takes that a step further:
 You only need to type a parameter so far until there's only one possibility what parameter it could be.
 
-Using the example above with "ConvertTo-Csv", there is only a single parameter that starts with "D", so that's enough to specify it.
+Using the example above with `ConvertTo-Csv`, there is only a single parameter that starts with "D", so that's enough to specify it.
 
 > Actually, there is a common parameter named "Debug", but those don't count here.
 
