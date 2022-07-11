@@ -1,13 +1,10 @@
-﻿---
+---
 post_title: Cheat Sheet - Console Experience
 username: frweinma
-Categories: PowerShell
+categories: PowerShell
 tags: PowerShell, Preference Variables, Convenience, Tab Expansion
-Summary: How to have more control of preferences in functions and the role of modules on inheritance. 
+summary: How to have more control of preferences in functions and the role of modules on inheritance. 
 ---
-
-# Cheat Sheet: Console Experience
-
 PowerShell can take some getting used to.
 Especially if you come at it from a different Shell and don't see any way to get your good old experience back.
 However, hidden behind that plain white on blue shell, there is actually a wide range of customization options that help make your life less painful.
@@ -17,7 +14,7 @@ See below for the most commonly appreciated options.
 
 The classic complaint we hear is that in Windows, Tab Completion is so much less helpful than for example in Bash.
 This is mostly because <kdb>CTRL</kdb>+<kdb>Space</kdb> is hard to discover, unless somebody shows you.
-Same menu choice as in Bash, but you can pick your preferred option using the arrow keys and each option may come with some documentation:​​​​​​
+Same menu choice as in Bash, but you can pick your preferred option using the arrow keys and each option may come with some documentation:
 
 ![Console excerpt, showing a menu of parameter options for dir](./tab-completion.png)
 
@@ -37,7 +34,8 @@ There are a few keybindings that come in handy to know:
 |<kdb>Shift</kdb>+<kdb>Enter</kdb>|Type multiline text in your console without executing the command|
 
 Specifically, it is important to get used to not pasting with right-click - by using <kdb>Ctrl</kdb>+<kdb>v</kdb> instead, you get a single input history for multiple lines, you can preview your input before sending it (helps with those artifacts you get when pasting from Teams) and you stop accidentally overwriting your clipboard by selecting something in the console window.
-​​​​​​​Also, with right-click, you sometimes get the wrong order.
+
+Also, with right-click, you sometimes get the wrong order.
 
 Oh, and you can [define your own keybindings](https://github.com/PowerShell/PSReadLine/blob/master/PSReadLine/SamplePSReadLineProfile.ps1) if you want to.
 No need to accept the defaults.
@@ -64,7 +62,7 @@ The key to ultimate customization is to have a way to define code that runs on e
 Now if only there were a way to do that in PowerShell ...
 
 ```powershell
-$profile​​​​​​​
+$profile
 ```
 
 Yeah, that simple. As long as that file exists, it will be run.
@@ -87,7 +85,8 @@ It adds great convenience, better performance and the ability to actually like u
 You can grab it via a wide variety of sources, such as the Microsoft Store, Github or your preferred package manager.
 
 You can also install it on MacOS or Linux.
-​​​​​​​You should do so, it's awesome.
+
+You should do so, it's awesome.
 
 ## Prompt
 
@@ -203,8 +202,8 @@ ii .\report.csv # Probably Excel
 ii . # Current path in Explorer
 ```
 
-The other way around works just as convenient:
-​​​​​​​In the Windows Explorer, just type `pwsh.exe` (or `powershell.exe`, if you didn't upgrade):
+The other way around works just as convenient.
+In the Windows Explorer, just type `pwsh.exe` (or `powershell.exe`, if you didn't upgrade):
 
 ![The Windows Explorer address bar, with the path replaced with "pwsh.exe"](./explorer.png)
 
