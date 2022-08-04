@@ -1,6 +1,6 @@
 ---
 post_title: Password Expiry Notification Using Teams and Graph API
-username: farismalaeb
+username: farisnt
 categories: PowerShell
 tags: GraphAPI, Teams, PowerShell
 summary: This post's intent is to show how to use Graph API through PowerShell to send a Teams message.
