@@ -473,5 +473,5 @@ kasini3000 is first development code for "kaiiit's Hotel".
 
 "kaiiit" said:
 Submitting a task is to order food;
-waiting is the task running;
+waiting food is the task running;
 and serving food is the actual result of the screen. . .
