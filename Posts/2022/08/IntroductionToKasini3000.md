@@ -1,7 +1,7 @@
 ﻿
 ---
 
-post_title: Introduction To Kasini3000
+post_title: PowerShell Automation:Introduction To Kasini3000
 username: chuanjiao10
 categories: PowerShell
 tags: Ansible , pipeline ,winrm, SSH ,psremoting
