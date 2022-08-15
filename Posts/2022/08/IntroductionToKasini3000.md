@@ -4,7 +4,7 @@
 post_title: PowerShell Automation:Introduction To Kasini3000
 username: chuanjiao10
 categories: PowerShell
-tags: Ansible , pipeline ,winrm, SSH ,psremoting
+tags: Ansible , pipeline , winrm , SSH , psremoting , automation , devops
 summary: devops automation operation and maintenance tool for script.Similar to Puppet, SaltStack, Ansible, pipeline.
 
 ---
@@ -464,6 +464,13 @@ k_run_ip_port_winscp2bash_user_pwd.ps1 #only run one-line command
 
 ---
 
+## devops
+
+jenkins ---> pipeline(or script plugin) ---> powershell or pwsh on win/linux --->kasini3000
+
+powershell gitlab client ---> shellhook ---> kasini3000
+
+---
 ## final
 "kaiiit's Hotel"（kasini3000） supports multi-cloud platform use, has multiple databases client, supports aws-powershell, azure-powershell to pass objects, supports devops (as jenkins & gitlab backend) Welcome to submit translation and pr, welcome to gitee wiki to see.
 
