@@ -1,3 +1,5 @@
+# Becoming a contributor
+
 ## Prerequisites
 
 Before your post can be published, you need to have a WordPress account. Use the following steps to
@@ -16,9 +18,9 @@ create an account.
    - Add a brief Bio explaining who you are / what your PowerShell experience is
    - Add a profile picture (optional)
 
-Your account will automatically be added as a **Subscriber** in WordPress. The Blog admins will need
-to change that to **Author** before your post can be published. The Blog admins will review your
-profile before you can be elevated to Author status.
+By default, your account is added as a **Subscriber** in WordPress. We will review your profile
+before you can be elevated to **Author** status. Your WordPress account must have **Author**
+permission before your post can be published.
 
 ## Getting started with GitHub and VS Code
 

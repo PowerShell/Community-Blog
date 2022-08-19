@@ -1,10 +1,12 @@
+# Creating a new post
+
 1. Always create a _working branch_ in your local repo before starting a new article. Avoid working
    in the `main` branch.
 1. Create a new `.md` file in `Posts/YYYY/MM` directory. For example, posts scheduled to be
    published in February of 2021 go in the `Posts/2021/02` folder. Create the monthly folder if it
-   does not exist yet.
+   doesn't exist yet.
    - Filenames should only use the following characters: A-Z (upper and lower), 0-9, and hyphen (`-`)
-   - Do not use spaces or special characters in filenames
+   - Don't use spaces or special characters in filenames
    - Separate words in the filename with hyphens
    - The filename must include the `.md` file extension
 1. Write the blog post!
@@ -24,7 +26,7 @@
 
    - `categories` and `tags` are comma-separated lists. `categories` need to be pre-existing. You
      can add more `categories` and `tags` in the blog dashboard.
-   - `featured_image` is optional. It will replace the blue PS icon next to the blog post with your
+   - `featured_image` is optional. This image replaces the blue PS icon next to the blog post with your
      selected image.
 
    - PowerShell code snippet:
@@ -47,8 +49,8 @@
 
 1. Read and following the rules in the
    [Reviewer's Guide](https://github.com/PowerShell/Community-Blog/wiki/Reviewers-Guide). Edit your
-   post based on these rules before submitting the PR. This will save the reviewers a lot of time
-   and your post can be approved more quickly.
+   post based on these rules before submitting the PR. This saves the reviewers a lot of time and
+   your post can be approved more quickly.
 
 ## Publishing draft to blog
 

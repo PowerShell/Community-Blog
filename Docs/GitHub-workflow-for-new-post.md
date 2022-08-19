@@ -1,3 +1,5 @@
+# GitHub workflow for a new post
+
 The following image illustrates the workflow for using Git and GitHub to create a new post for the
 Community blog. The steps shown in red are a one-time action and are covered in
 [Setup GitHub for local workflow](https://github.com/PowerShell/Community-Blog/wiki/Setup-GitHub-for-Local-Workflow).

@@ -1,10 +1,12 @@
+# Ideas for a new post
+
 ## Share your experiences
 
 Ideas for posts can come from anywhere, but the best posts come from your own experience. Think
 about a time when you solved a unique problem using PowerShell or learned something new about
 PowerShell. Personal stories make good content.
 
-Blog posts should be your own original content. It is acceptable to reuse content you posted to
+Blog posts should be your own original content. It's acceptable to reuse content you posted to
 another blog as long as you own the rights to reuse that content.
 
 ## Update a post from the Scripting Blog
@@ -34,8 +36,8 @@ on that label.
 
 The intended purpose of this blog is to provide a blogging platform for the PowerShell Community,
 both internal and external to Microsoft's PowerShell team. Posts to the blog can discuss products
-and technologies that are not part of the core PowerShell product or even made by Microsoft, as long
-as the content is relevant to PowerShell users and is not marketing those products.
+and technologies that aren't part of the core PowerShell product or even made by Microsoft, as long
+as the content is relevant to PowerShell users and isn't marketing those products.
 
 Acceptance of any blog post is done at the sole discretion of the Blog admins.
 
@@ -43,6 +45,6 @@ Acceptable posts meet one or more of the following criteria:
 
 - Show how to use PowerShell to solve a specific problem or scenario
 - Explain PowerShell usage in more detail than provided in the documentation
-- Does not contain marketing materials or product announcements
+- Doesn't contain marketing materials or product announcements
   - Examples using non-Microsoft products and modules are allowed as long as the purpose is to
     demonstrate a solution

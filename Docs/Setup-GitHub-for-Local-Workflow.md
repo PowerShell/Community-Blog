@@ -1,3 +1,5 @@
+# Setting up Git/GitHub for working locally
+
 To contribute to the blog, you can make and edit Markdown files locally by cloning the corresponding
 **PowerShell/Community-Blog** repository. Microsoft requires you to fork the repository into your
 own GitHub account so that you have read/write permissions there to store your proposed changes.

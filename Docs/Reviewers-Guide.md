@@ -1,3 +1,5 @@
+# Reviewer's Guide
+
 This is a summary of rules to apply when writing new or updating existing articles. See other
 articles in the Contributor's Guide for detailed explanations and examples of these rules.
 
@@ -48,7 +50,7 @@ summary: <Summary of the post - short one-line description>
   - Variable `$counter`
   - Syntactic examples `Verb-Noun -Parameter`
   - File paths `C:\Program Files\PowerShell`, `/usr/bin/pwsh`
-  - URLs that are not meant to be clickable in the document
+  - URLs that aren't meant to be clickable in the document
   - Property or parameter values
 - Use bold for property names, parameter names, class names, module names, entity names, object or
   type names
@@ -67,7 +69,7 @@ summary: <Summary of the post - short one-line description>
 - DO NOT use the H1 header - WordPress automatically puts the title at the top of the post
 - Use [ATX Headers](https://github.github.com/gfm/#atx-headings) only
 - Use sentence case for all headers
-- Do not skip levels - no H3 without an H2
+- Don't skip levels - no H3 without an H2
 - Max depth of H3 or H4
 - Blank line before and after
 
