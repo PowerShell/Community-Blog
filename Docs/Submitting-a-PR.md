@@ -1,3 +1,5 @@
+# Submitting a Pull Request (PR)
+
 1. Create your a new MD file for your post
 
    - Always create a _working branch_ in your local repo before starting a new article. Avoid
@@ -5,7 +7,7 @@
    - Create the new post in the folder for the current month (E.g. `Posts/2021/02` for February of
      2021).
    - All images you want to include go in the `media` folder of the current month.
-     - If the media folder does not exist, create it.
+     - If the media folder doesn't exist, create it.
      - Create a subfolder that matches the name of you post's MD file in the `media` folder.
 
 1. Write your content in markdown.
@@ -13,7 +15,7 @@
    - Be sure to include the YAML frontmatter in your file.
    - Follow the guidance in our
      [Reviewer's Guide](https://github.com/PowerShell/Community-Blog/wiki/Reviewers-Guide).
-   - You do not need to repeat the title as an H1 header. The first header in your post should be
+   - You don't need to repeat the title as an H1 header. The first header in your post should be
      H2. This header DOES NOT need to be the first lin of you post after the frontmatter.
 
 1. Push your _working branch_ to your fork in GitHub.
