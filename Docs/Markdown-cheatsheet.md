@@ -121,7 +121,7 @@ This is a sentence with `code example` in between.
   github repo, simply add them in the standard markdown format as shown below. remember to add alt
   text for all your images)
 
-  ![alttext](https://devblogsarchiv.wpengine.com/wp-content/uploads/2020/02/allmycomments.jpg)
+  ![alttext][1]
 
   If you want images from public site, to be copied over to your blog's media folder, then follow
   the steps mentioned in the images in private repo section.
@@ -136,7 +136,8 @@ This is a sentence with `code example` in between.
   1. Link to the image using the standard markdown syntax:
 
      ```markdown
-     ![alt-text](./media/<post-filename>/image-name.ext)
+     ![alt-text][2]
+     ```
 
 ### Videos
 
@@ -175,24 +176,14 @@ To align the video use `<p>` tag as shown below:
 </p>
 ```
 
-
 ### Links
 
-Links can be added using standard markdown link ref. See example below.
+Links can be added using standard markdown link format. See example below.
 
 ```markdown
 [tidy up the ASP.NET Core shared framework](https://blogs.msdn.microsoft.com/webdev/2018/10/29/a-first-look-at-changes-coming-in-asp-net-core-3-0/),
 Json.NET is being removed from the shared framework and now needs to be added as a package.
 ```
-
-### Call To Action Button
-
-A call to action button should be used when you want to highlight a specific action in your post.
-This helps focus clicks on one specific high value action you want your readers to take, compared to
-the many links showcased in your post.
-
-The CTA button can be added anywhere in your post using the below shortcode. Apart from the obvious
-button text and click URL, it has 2 areas of customizations like alignment and color.
 
 ### Tables
 
@@ -213,3 +204,49 @@ This is what the basic table will look like:
 | Paragraph |    Text     |    And more |
 
 You can use HTML tags if you need more attributes for a table.
+
+## Blog-specific formatting
+
+### Embedding media files
+
+The blogging platform supports embedded media (videos, audio, podcasts, etc.) in your posts. You can
+add embedded media using the WordPress editor after the PR has been merged. Or you can use special
+markup in your Markdown source in GitHub. If you want to do this, add a comment to your PR
+requesting assistance from a Blog admin to create the proper link.
+
+### Alert boxes
+
+Similar to the Docs platform, our WordPress platform supports Alert boxes used for calling out
+important information. You can use the following syntax in your Markdown post to create an alert.
+
+```markdown
+[alert type="note" heading="Note"]
+Information the user should notice even if skimming.
+[/alert]
+
+[alert type="tip" heading="Tip"]
+Optional information to help a user be more successful.
+[/alert]
+
+[alert type="important" heading="Important"]
+Essential information required for user success.
+[/alert]
+
+[alert type="caution" heading="Caution"]
+Negative potential consequences of an action.
+[/alert]
+
+[alert type="warning" heading="Warning"]
+Dangerous certain consequences of an action.
+[/alert]
+```
+
+Tou can also customize the header as appropriate. This is what each alert type looks like - with and
+without a header.
+
+![Alerts][3]
+
+<!-- link references -->
+[1]: https://devblogsarchiv.wpengine.com/wp-content/uploads/2020/02/allmycomments.jpg
+[2]: ./media/<post-filename>/image-name.ext
+[3]: ./media/Markdown-cheetsheet/alerts.png

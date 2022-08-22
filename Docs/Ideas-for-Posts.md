@@ -11,13 +11,12 @@ another blog as long as you own the rights to reuse that content.
 
 ## Update a post from the Scripting Blog
 
-There is a lot of useful content on the old
-[Scripting Blog](https://devblogs.microsoft.com/scripting), but the information may be incomplete,
-no longer accurate, or needs to be updated for the current version of PowerShell.
+There is a lot of useful content on the old [Scripting Blog][1], but the information may be
+incomplete, no longer accurate, or needs to be updated for the current version of PowerShell.
 
 If you find a post on the old blog that you think could be updated, create a new issue using the
-[Request update to old post from The Scripting Blog](https://github.com/PowerShell/Community-Blog/issues/new?assignees=&labels=post-update&template=Request_Update.md&title=Update+request)
-issue template. Include the following information:
+[Request update to old post from The Scripting Blog][2] issue template. Include the following
+information:
 
 - Link to the post in the old blog
 - Description of what needs to be changed
@@ -29,8 +28,7 @@ Then you can start working on a rewrite or you wait for someone else to create a
 Anyone can submit ideas for new posts or requests for updates to existing posts, but not everyone is
 ready to write that post. Issues that are labeled `up-for-grabs` are open to anyone who might be
 interested in writing that post. You can get a complete list of these issues by
-[filtering the view](https://github.com/PowerShell/Community-Blog/issues?q=is%3Aissue+is%3Aopen+label%3Aup-for-grabs)]
-on that label.
+[filtering the view][3] on that label.
 
 ## Acceptable content ideas
 
@@ -48,3 +46,8 @@ Acceptable posts meet one or more of the following criteria:
 - Doesn't contain marketing materials or product announcements
   - Examples using non-Microsoft products and modules are allowed as long as the purpose is to
     demonstrate a solution
+
+<!-- link references -->
+[1]: https://devblogs.microsoft.com/scripting
+[2]: https://github.com/PowerShell/Community-Blog/issues/new?assignees=&labels=post-update&template=Request_Update.md&title=Update+request
+[3]: https://github.com/PowerShell/Community-Blog/issues?q=is%3Aissue+is%3Aopen+label%3Aup-for-grabs
