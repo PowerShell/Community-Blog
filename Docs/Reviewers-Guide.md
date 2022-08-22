@@ -59,15 +59,14 @@ summary: <Summary of the post - short one-line description>
 - Italic - use underscore `_`
   - Only used for emphasis, not for semantic markup
 - Line breaks at 100 columns - helps when reviewing diffs
-  - Use the [Reflow Markdown](https://marketplace.visualstudio.com/items?itemName=marvhen.reflow-markdown)
-    extension in VS Code to help
+  - Use the [Reflow Markdown][1] extension in VS Code to help
 - No hard tabs - use spaces only
 - No trailing spaces on lines
 
 ### Headers
 
 - DO NOT use the H1 header - WordPress automatically puts the title at the top of the post
-- Use [ATX Headers](https://github.github.com/gfm/#atx-headings) only
+- Use [ATX Headers][2] only
 - Use sentence case for all headers
 - Don't skip levels - no H3 without an H2
 - Max depth of H3 or H4
@@ -94,7 +93,7 @@ summary: <Summary of the post - short one-line description>
 ## Terminology
 
 - PowerShell vs. Windows PowerShell vs. PowerShell Core
-- See [Product Terminology](https://docs.microsoft.com/powershell/scripting/community/contributing/powershell-style-guide#product-terminology)
+- See [Product Terminology][3]
 
 ## Linking to other websites
 
@@ -104,3 +103,8 @@ summary: <Summary of the post - short one-line description>
 - Image links should have unique alt text
 - No bare URLs - Use standard markdown link syntax `[text of link](https://site.domain/path/to/page#anchor)`
 - The link text should be the title of the page or the anchor that you link to
+
+<!-- link references -->
+[1]: https://marketplace.visualstudio.com/items?itemName=marvhen.reflow-markdown
+[2]: https://github.github.com/gfm/#atx-headings
+[3]: https://docs.microsoft.com/powershell/scripting/community/contributing/powershell-style-guide#product-terminology

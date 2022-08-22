@@ -10,7 +10,7 @@
    - Separate words in the filename with hyphens
    - The filename must include the `.md` file extension
 1. Write the blog post!
-   - Use [GitHub flavored markdown](https://github.com/PowerShell/Community-Blog/wiki/Markdown-cheatsheet).
+   - Use [GitHub flavored markdown][1].
    - The blog post **MUST** have this header:
 
      ```yaml
@@ -47,10 +47,9 @@
      ```
      ~~~
 
-1. Read and following the rules in the
-   [Reviewer's Guide](https://github.com/PowerShell/Community-Blog/wiki/Reviewers-Guide). Edit your
-   post based on these rules before submitting the PR. This saves the reviewers a lot of time and
-   your post can be approved more quickly.
+1. Read and following the rules in the [Reviewer's Guide][2]. Edit your post based on these rules
+   before submitting the PR. This saves the reviewers a lot of time and your post can be approved
+   more quickly.
 
 ## Publishing draft to blog
 
@@ -59,3 +58,7 @@ changes to improve grammar and readability. They may also require specific chang
 publish. Once the pull request is merged, the post is automatically copied to WordPress as a draft.
 From there, the Blog admins will verify that the post renders correctly, make any formatting changes
 required, and publish the post.
+
+<!-- link references -->
+[1]: ./Markdown-cheatsheet.md
+[2]: ./Reviewers-Guide.md

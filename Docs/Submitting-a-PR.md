@@ -13,8 +13,7 @@
 1. Write your content in markdown.
 
    - Be sure to include the YAML frontmatter in your file.
-   - Follow the guidance in our
-     [Reviewer's Guide](https://github.com/PowerShell/Community-Blog/wiki/Reviewers-Guide).
+   - Follow the guidance in our [Reviewer's Guide][1].
    - You don't need to repeat the title as an H1 header. The first header in your post should be
      H2. This header DOES NOT need to be the first lin of you post after the frontmatter.
 
@@ -42,3 +41,6 @@ Once your PR has been reviewed and approved, it will be merged. Once merged the 
 automatically copied to WordPress where the WP admins will preview the rendering. They may have to
 make minor changes to fix issues created by the translation to WordPress. If the Preview is good,
 the post will be published.
+
+<!-- link references -->
+[1]: https://github.com/PowerShell/Community-Blog/wiki/Reviewers-Guide
