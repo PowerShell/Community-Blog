@@ -30,8 +30,8 @@ In addition to that, we will work with a couple of Windows API functions, listed
 
 The last two commands are not mandatory, because the Interop Services will wrap the handles in
 something called **Safe Handle**. This handle is released by the Garbage Collector at the end, but
-is not only a good practice, it creates the habit of monitoring object's lifecycles. If we are
-looking into interoperating with Windows more often, we need to get used on how it manages memory,
+it's not only a good practice, it creates the habit of monitoring object's lifecycles. If we are
+looking into interoperating with Windows more often, we need to get used to how it manages memory,
 to avoid unexpected behavior.
 
 If you want a series of posts based on **PinVoke** and interoperability, let me know in the
@@ -89,7 +89,7 @@ public static extern int RegOpenKeyExW(
 );
 ```
 
-The first line in square brackets is called **DllImport Attribute**. Is what tells PinVoke which DLL
+The first line in square brackets is called **DllImport Attribute**. It's what tells PinVoke which DLL
 contains the definition for **RegOpenKeyExW**. `CharSet = CharSet.Unicode` defines Unicode as our
 encoding, and `SetLastError = true` will set the last error with the corresponding Win32 error, if
 the function call fails. Setting the last error is crucial for debugging and troubleshooting these
@@ -247,12 +247,12 @@ parameter **bWatchSubtree** is false, the function will monitor only the key spe
 parameter is true, the function monitors subtrees, but if an event is triggered, it will not inform
 which key was modified.
 
-Is there a way of getting more information about Registry Events? Yes[^3], but this is topic for
+Is there a way of getting more information about Registry Events? Yes[^3], but this is a topic for
 another post.
 
 ## Conclusion
 
-I hope this post made calling Windows API Functions with PowerShell, less intimidating. Once you get
+I hope this post made calling Windows API Functions with PowerShell less intimidating. Once you get
 used to Platform Invoke, you will need a bigger toolbox to store your new tools.
 
 Thank you for following along, once again, and I will see you next time!
