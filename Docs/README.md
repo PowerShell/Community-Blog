@@ -6,7 +6,7 @@ Participation in this blog is governed by the [Microsoft Open Source Code of Con
 [.NET Foundation Code of Conduct][2]. For more information, see the [Code of Conduct FAQ][3].
 
 Making contributions to the blog is very similar to making contributions to docs.microsoft.com. To
-get started, you the following things:
+get started, you require the following things:
 
 1. A WordPress account (see [Becoming a contributor][4])
 1. A GitHub account
