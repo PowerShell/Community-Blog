@@ -43,8 +43,8 @@ In this example the `Foreach-Object { $_ }` cmdlet does nothing more than:
 
 To visualize the order of the items that go through the `Foreach-Object { $_ }` cmdlet you might use the `Trace-Command` cmdlet but that might overwhelm you with data. Instead, using two simple `ForEach-Object` (alias `%`) test commands show you exactly where your measure points are and what goes in and come out the specific cmdlet in between.
 
-1;  `%{Write-Host 'In:' $_; $_ }`
-2;  `%{Write-Host 'out:' $_; $_ }`
+- `%{Write-Host 'In:' $_; $_ }`
+- `%{Write-Host 'out:' $_; $_ }`
 
 Notice that `...; $_ }` in the end of the command will place the current item back on the pipeline.
 In the MVCE (minimal complete verifiable example) below, the cmdlet at the start of the pipeline  (`Get-Content .\Input.txt`) has been replaced with 4 hardcoded input items (`1,2,3,4`)  and the cmdlet at the end of the pipeline  (`Set-Content .\Output.txt`) with`Out-Null` which simply purges the actual output of the pipeline so that only the two test cmdlets produce an output.
