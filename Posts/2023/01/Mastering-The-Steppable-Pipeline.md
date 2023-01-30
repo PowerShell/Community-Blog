@@ -239,16 +239,17 @@ With the steppable pipeline technique, you might even have multiple output pipel
 
 ```PowerShell
 $Pipeline = @{}
-Import-Csv .\MyLarge.csv | ForEach-Object -Process {
-    $Letter = $_.LastName[0].ToString().ToUpper()
-    if (!$Pipeline.Contains($Letter)) {
-        $Pipeline[$Letter] = { Export-CSV -notype -Path .\$Letter.csv }.GetSteppablePipeline()
-        $Pipeline[$Letter].Begin($True)
+Import-Csv .\MyLarge.csv |
+    ForEach-Object -Process {
+        $Letter = $_.LastName[0].ToString().ToUpper()
+        if (!$Pipeline.Contains($Letter)) {
+            $Pipeline[$Letter] = { Export-CSV -notype -Path .\$Letter.csv }.GetSteppablePipeline()
+            $Pipeline[$Letter].Begin($True)
+        }
+        $Pipeline[$Letter].Process($_)
+    } -End {
+        foreach ($Key in $Pipeline.Keys) { $Pipeline[$Key].End() }
     }
-    $Pipeline[$Letter].Process($_)
-} -End {
-    foreach ($Key in $Pipeline.Keys) { $Pipeline[$Key].End() }
-}
 ```
 
 **Explanation:**
