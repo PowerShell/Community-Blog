@@ -223,7 +223,7 @@ Import-Csv .\MyLarge.csv | ForEach-Object -Begin { $Index = 0 } -Process {
 } -End { $Pipeline.End() }
 ```
 
-Every 10,000 (`$BatchSize`) entries, the modules (`%`) is zero and a new pipeline is created for the expression `{ Export-Csv -notype -Path .\Batch$BatchNr.csv }`.
+Every 10,000 (`$BatchSize`) entries, the modulus (`%`) is zero and a new pipeline is created for the expression `{ Export-Csv -notype -Path .\Batch$BatchNr.csv }`.
 
 * The `$Pipeline.Begin($True)` invokes the `Begin` block of the steppable pipeline  which opens an new `csv` file named `.\Batch$BatchNr.csv` and writes the headers to the file
 * The `$Pipeline.Process($_)` invokes the `Process` block of the steppable pipeline using the current item (`$_`) which is appended to the `csv` file
