@@ -13,7 +13,7 @@ In comparison to the pipes in CMD, PowerShell streams *objects* through the pipe
 
 ## One-at-a-time `process`
 
-The explanation below elaborations on the **one-at-a-time processing** section of the [About pipelines](https://learn.microsoft.com/powershell/module/microsoft.powershell.core/about/about_pipelines) document.
+The following explanation describes the **one-at-a-time processing** section of the [About pipelines](https://learn.microsoft.com/powershell/module/microsoft.powershell.core/about/about_pipelines#one-at-a-time-processing) document.
 A good analogy of the pipeline is a physical assembly line where each consecutive line station could be compared with a PowerShell cmdlet. At a specific station and time, some something is done to one item while the next item is prepared  at the prior station. E.g. at a station, a component is soldered at the item while the next item is already being unpacked at the prior station. Items iterate through the pipeline like:
 
 **Iteration: `n`**
