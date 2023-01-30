@@ -199,7 +199,7 @@ Wrapping a cmdlet pipeline into another (`ForEach-Object`) pipeline is very expe
 
 ## The steppable pipeline
 
-Unfortunately, it is not always possible to create a single syntactical pipeline as you might e.g. need different branches for different parameters, as output paths, along the road. Consider a very large `csv` file which you want to cut in smaller batch files. The obvious approach is:
+Unfortunately, it is not always possible to create a single syntactical pipeline. For example, you might need different branches for different parameters values or as output paths. Consider a very large `csv` file that you want to cut in smaller files. The obvious approach is to split it into files with a maximum number of lines:
 
 ```PowerShell
 $BatchSize = 10000
