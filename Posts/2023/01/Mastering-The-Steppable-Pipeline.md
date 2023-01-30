@@ -128,8 +128,7 @@ PowerShell converts each row into a new object, duplicating the header informati
 
 ### Missing properties
 
-A limitation of the PowerShell pipeline is that even each object in the pipeline contains all the member (including properties) information about the current item ( named `$PSItem` or just `$_`). It still might not be enough to define a unified output headers for all the object that might follow.
-Consider the following two objects being converted to a Csv list:
+Consider the following two objects being output to a table:
 
 ```PowerShell
 $a = [pscustomobject]@{ name='John'; address='home'}
