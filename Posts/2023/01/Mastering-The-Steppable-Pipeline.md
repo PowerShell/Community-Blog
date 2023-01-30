@@ -124,7 +124,7 @@ Objects in the PowerShell pipeline contain more than just the value of the item.
 $Data = $DataTable | Foreach-Object { $_ }
 ```
 
-The memory usage will considerably increase because each `PSNoteProperty` has an overhead of 48 bytes even if you item value is just a few bytes. Anyways, this shouldn't be an issue if you stream your object through the pipeline as there will only be a few object in the pipeline at a certain time.
+PowerShell converts each row into a new object, duplicating the header information for each row. The memory usage considerably increases even if the value is just a few bytes. This extra overhead shouldn't be an issue if you stream the objects through the pipeline because there will only be a few objects in the pipeline at any time.
 
 ### Missing properties
 
