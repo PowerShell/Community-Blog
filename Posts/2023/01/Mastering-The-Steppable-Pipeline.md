@@ -36,7 +36,7 @@ Cmdlets act like stations in the assembly line, taken a simple example:
 Get-Content .\Input.txt | Foreach-Object { $_ } | Set-Content .\Output.txt
 ```
 
-In this example the `Foreach-Object { $_ }` cmdlet does nothing else than:
+In this example the `Foreach-Object { $_ }` cmdlet does nothing more than:
 
 * picking up each item from the pipeline that has been output by the prior cmdlet `Get-Content .\Input.txt`
 * placing it back on the pipeline as an input for the next cmdlet `Set-Content .\Output.txt`.
