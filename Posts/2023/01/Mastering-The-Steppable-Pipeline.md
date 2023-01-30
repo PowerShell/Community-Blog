@@ -231,7 +231,7 @@ Every 10,000 (`$BatchSize`) entries, the modulus (`%`) is zero and a new pipelin
 
 (Note that it is important to end the pipeline but there is no harm in invoking the `$Pipeline.End()` multiple times.)
 
-It is a little more code, but if you measure the results you will see that in this situation the later script is more that 50 times faster than the one with the wrapped cmdlet pipeline.
+It is a little more code, but if you measure the results you will see that in this situation the later script is more than 50 times faster than the one with the wrapped cmdlet pipeline.
 
 ### Multiple output pipelines
 
