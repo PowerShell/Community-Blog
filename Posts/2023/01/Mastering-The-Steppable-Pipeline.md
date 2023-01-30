@@ -25,7 +25,7 @@ Station 1 | Station 2 | Station 3
 
 **Iteration: `n + 1`**
 
-```Console
+```
  item 4  --> item 3  --> item 2
 Station 1 | Station 2 | Station 3
 ```
