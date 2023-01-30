@@ -195,7 +195,7 @@ With this understanding of the pipeline, you can see why you shouldn't wrap a cm
 }
 ```
 
-Wrapping a cmdlet pipeline into another (`ForEach-Object`) pipeline is very expensive because you're also invoking the `begin` and `end` block of `MyCmdlet` which will open and close the concerned log file for each specific item instead of only once (at the beginning and the end of the pipeline). The performance degradation appears with native cmdlets along with `Export-Csv -append` and `Add-Content`. See also [PowerShell scripting performance considerations](https://learn.microsoft.com/powershell/scripting/dev-cross-plat/performance/script-authoring-considerations#avoid-wrapping-cmdlet-pipelines)
+Wrapping a cmdlet pipeline into another (`ForEach-Object`) pipeline is very expensive because you're also invoking the `begin` and `end` block of `MyCmdlet`. This will open and close the log file for each item instead of only once at the beginning and the end of the pipeline. The performance degradation can happend with any cmdlet that takes pipeline input. See also [PowerShell scripting performance considerations](https://learn.microsoft.com/powershell/scripting/dev-cross-plat/performance/script-authoring-considerations#avoid-wrapping-cmdlet-pipelines).
 
 ## The steppable pipeline
 
