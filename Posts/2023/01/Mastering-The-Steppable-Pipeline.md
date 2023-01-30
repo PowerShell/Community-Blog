@@ -216,15 +216,20 @@ But as stated this before, this will open and close each output file (`.\Batch$B
 
 ```PowerShell
 $BatchSize = 10000
-Import-Csv .\MyLarge.csv | ForEach-Object -Begin { $Index = 0 } -Process {
-    if ($Index % $BatchSize -eq 0) {
-        $BatchNr = [math]::Floor($Index++/$BatchSize)
-        $Pipeline = { Export-Csv -notype -Path .\Batch$BatchNr.csv }.GetSteppablePipeline()
-        $Pipeline.Begin($True)
+Import-Csv .\MyLarge.csv |
+    ForEach-Object -Begin {
+        $Index = 0
+    } -Process {
+        if ($Index % $BatchSize -eq 0) {
+            $BatchNr = [math]::Floor($Index++/$BatchSize)
+            $Pipeline = { Export-Csv -notype -Path .\Batch$BatchNr.csv }.GetSteppablePipeline()
+            $Pipeline.Begin($True)
+        }
+        $Pipeline.Process($_)
+        if ($Index++ % $BatchSize -eq 0) { $Pipeline.End() }
+    } -End {
+        $Pipeline.End()
     }
-    $Pipeline.Process($_)
-    if ($Index++ % $BatchSize -eq 0) { $Pipeline.End() }
-} -End { $Pipeline.End() }
 ```
 
 Every 10,000 (`$BatchSize`) entries, the modulus (`%`) is zero and a new pipeline is created for the expression `{ Export-Csv -notype -Path .\Batch$BatchNr.csv }`.
