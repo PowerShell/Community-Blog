@@ -119,9 +119,7 @@ In this situation, chocking the pipeline and reading the complete file first avo
 
 ### Heavy objects
 
-PowerShell objects are optimized for the pipeline in a way that all the information to be able to process an object as a single item are included. Meaning not just the value of the item but also properties as the name and the type of the item.
-As a comparison, take the `DataTable` object, which is a .Net object by itself. The header of `DataTable` object contains the column (property) names and types where each row in the `DataTable` only contains the value of each column. If you convert a `DataTable` into a list of PowerShell objects, like:
-
+Objects in the PowerShell pipeline contain more than just the value of the item. They also include properties such as the name and type of the item and of all the properties. Take, for example, the .NET `DataTable` object. The header of a `DataTable` object contains the column (property) names and types where each row in the `DataTable` only contains the value of each column. If you convert a `DataTable` into a list of PowerShell objects, like:
 ```PowerShell
 $Data = $DataTable | Foreach-Object { $_ }
 ```
