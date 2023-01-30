@@ -203,10 +203,13 @@ Unfortunately, it is not always possible to create a single syntactical pipeline
 
 ```PowerShell
 $BatchSize = 10000
-Import-Csv .\MyLarge.csv | ForEach-Object -Begin { $Index = 0 } -Process {
-    $BatchNr = [math]::Floor($Index++/$BatchSize)
-    $_ | Export-Csv -append .\Batch$BatchNr.csv
-}
+Import-Csv .\MyLarge.csv |
+    ForEach-Object -Begin { 
+        $Index = 0
+    } -Process {
+        $BatchNr = [math]::Floor($Index++/$BatchSize)
+        $_ | Export-Csv -Append .\Batch$BatchNr.csv
+    }
 ```
 
 But as stated this before, this will open and close each output file (`.\Batch$BatchNr.csv` ) 10,000 times where it only needs to be opened and closed once per output file. So, the solution here is to use a steppable pipeline which lets you independently define the processing blocks for the required output stream:
