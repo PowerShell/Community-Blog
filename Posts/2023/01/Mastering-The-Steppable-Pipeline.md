@@ -128,6 +128,7 @@ PowerShell converts each row into a new object, duplicating the header informati
 
 ### Missing properties
 
+Nevertheless, there is a pitfall in using the pipeline.
 Consider the following two objects being output to a table:
 
 ```PowerShell
