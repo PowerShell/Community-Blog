@@ -225,9 +225,10 @@ Import-Csv .\MyLarge.csv | ForEach-Object -Begin { $Index = 0 } -Process {
 
 Every 10,000 (`$BatchSize`) entries, the modulus (`%`) is zero and a new pipeline is created for the expression `{ Export-Csv -notype -Path .\Batch$BatchNr.csv }`.
 
-* The `$Pipeline.Begin($True)` invokes the `Begin` block of the steppable pipeline  which opens an new `csv` file named `.\Batch$BatchNr.csv` and writes the headers to the file
-* The `$Pipeline.Process($_)` invokes the `Process` block of the steppable pipeline using the current item (`$_`) which is appended to the `csv` file
-* The `$Pipeline.End()`invokes the `End` block of the steppable pipeline which closes the `csv` file named `.\Batch$BatchNr.csv` which holds a total of 10,000 entries.  
+* The `$Pipeline.Begin($True)` invokes the `Begin` block of the steppable pipeline, which opens an new `csv` file named `.\Batch$BatchNr.csv` and writes the headers to the file.
+* The `$Pipeline.Process($_)` invokes the `Process` block of the steppable pipeline using the current item (`$_`), which is appended to the `csv` file.
+* The `$Pipeline.End()`invokes the `End` block of the steppable pipeline which closes the `csv` file named `.\Batch$BatchNr.csv`. This file holds a total of 10,000 entries.  
+
 (Note that it is important to end the pipeline but there is no harm in invoking the `$Pipeline.End()` multiple times.)
 
 It is a little more code, but if you measure the results you will see that in this situation the later script is more that 50 times faster than the one with the wrapped cmdlet pipeline.
