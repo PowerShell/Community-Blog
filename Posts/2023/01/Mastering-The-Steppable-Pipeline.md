@@ -71,7 +71,7 @@ As you can imagine, this conserves memory as there are only a few items in the p
 
 ## Chocking the pipeline
 
-The previous section explains how a cmdlet would perform if correctly implemented for the middle of a pipeline but there are a few statements that might "**choke**" the pipeline, meaning that the items are no longer processed **one-at-the-time** but somewhere piled up in memory and eventually processed **all-in-once**. This happens for:
+The previous section explains how a cmdlet would perform if correctly implemented for the middle of a pipeline but there are a few statements that might "**choke**" the pipeline, meaning that the items are no longer processed **one-at-the-time** but piled up in memory and eventually processed **all-at-once**. This happens for:
 
 * **Assigning the pipeline to a variable**, e.g.:
 
