@@ -170,7 +170,7 @@ function MyCmdlet {
 }
 ```
 
-Using the above cmdlet example with the command like `1..9 | MyCmdlet`, the log file is *only opened once* at the start of the pipeline, than each item in the pipeline is process one-at-a-time and at the end the log file is closed (*once*).
+When running this example cmdlet in a pipeline like `1..9 | MyCmdlet`, the log file is *only opened once* at the start, then each item in the pipeline is processed one-at-a-time, and the log file is closed (*once*) at the end.
 Note that when there are no `Begin`, `Process` and  `End` processing blocks defined in a function, the content of the function is assigned to the `End` block. See also: [about Functions Advanced Methods](https://learn.microsoft.com/powershell/module/microsoft.powershell.core/about/about_functions_advanced_methods)
 
 A similar pipeline can be created with the common [`Foreach-Object`](https://learn.microsoft.com/powershell/module/microsoft.powershell.core/foreach-object) cmdlet using the `-Begin`, `-Process` and `-End` parameters to define the corresponding process blocks:
