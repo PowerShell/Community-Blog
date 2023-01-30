@@ -187,7 +187,7 @@ A similar pipeline can be created with the common [`Foreach-Object`](https://lea
 
 ### Performance
 
-With the above explanation of the pipeline, you might understand now why you shouldn't wrap cmdlet pipeline in other pipeline, like:
+With this understanding of the pipeline, you can see why you shouldn't wrap a cmdlet pipeline inside another pipeline, like:
 
 ```PowerShell
 1..9 | ForEach-Object {
