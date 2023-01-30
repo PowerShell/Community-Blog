@@ -109,7 +109,9 @@ Out: 3
 Out: 4
 ```
 
-Note that in general you should try to avoid chocking the pipeline, but their are few exceptions where it might be even required to chock the pipeline. E.g. where you want to read and write back to the same file as in the above "using parenthesis" example. This is because in a smooth pipeline, each item is process one-at-the-time, meaning that the `Get-Content` and `Set-Content` both concurrently processing an item in the pipeline which will result to an expecting error:
+In general, you should avoid chocking the pipeline, but their are few exceptions where it might be required. For example, where you want to read and write back to the same file as in the previous "using parenthesis" example.
+
+In a smooth pipeline, each item is processed one-at-the-time, meaning that `Get-Content` and `Set-Content` are concurrently processing items in the pipeline. This causes the following error:
 
 > The process cannot access the file '.\Data.txt' because it is being used by another process.  
 
