@@ -66,7 +66,7 @@ In: 4
 Out: 4
 ```
 
-This proves that each item (e.g. `Out: 1`) is ejected from the `Foreach-Object { $_ }` command prior the next item (`In: 2`)  is injected into it.
+This proves that each item flows out of the pipeline (`Out: 1`) before the next item (`In: 2`) is injected into it.
 As you can imaging, this conserves memory as there are only a few items in the pipeline at a certain time.
 
 ## Chocking the pipeline
