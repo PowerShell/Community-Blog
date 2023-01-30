@@ -47,7 +47,7 @@ To visualize the order of the items that go through the `Foreach-Object { $_ }` 
 - `%{Write-Host 'out:' $_; $_ }`
 
 Notice that `...; $_ }` in the end of the command will place the current item back on the pipeline.
-In the MVCE (minimal complete verifiable example) below, the cmdlet at the start of the pipeline  (`Get-Content .\Input.txt`) has been replaced with 4 hardcoded input items (`1,2,3,4`)  and the cmdlet at the end of the pipeline  (`Set-Content .\Output.txt`) with`Out-Null` which simply purges the actual output of the pipeline so that only the two test cmdlets produce an output.
+In the following example, the cmdlet at the start of the pipeline  (`Get-Content .\Input.txt`) has been replaced with 4 hardcoded input items (`1,2,3,4`)  and the cmdlet at the end of the pipeline  (`Set-Content .\Output.txt`) with `Out-Null` which simply purges the actual output of the pipeline so that only the two test cmdlets produce an output.
 
 ```PowerShell
 1,2,3,4 | %{Write-Host 'In:' $_; $_ } | Foreach-Object { $_ } | %{Write-Host 'Out:' $_; $_ } | Out-Null
