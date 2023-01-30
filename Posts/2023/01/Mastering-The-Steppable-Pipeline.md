@@ -18,7 +18,7 @@ A good analogy of the pipeline is a physical assembly line where each consecutiv
 
 **Iteration: `n`**
 
-```Console
+```
  item 3  --> item 2  --> item 1
 Station 1 | Station 2 | Station 3
 ```
