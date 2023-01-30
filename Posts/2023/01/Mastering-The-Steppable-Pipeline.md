@@ -115,7 +115,7 @@ In a smooth pipeline, each item is processed one-at-the-time, meaning that `Get-
 
 > The process cannot access the file '.\Data.txt' because it is being used by another process.  
 
-In this situation, chocking the pipeline and reading all the files first, will avoid the above error.
+In this situation, chocking the pipeline and reading the complete file first avoids the error.
 
 ### Heavy objects
 
