@@ -8,7 +8,7 @@ summary: The PowerShell pipeline explained from the beginning to the end.
 
 # Mastering the (steppable) pipeline
 
-Before stepping into the *steppable* pipeline, it is essential that you have a good understanding of how *and when* exactly items are processed by a [cmdlet](https://learn.microsoft.com/powershell/scripting/developer/cmdlet/cmdlet-overview) in the pipeline. The PowerShell pipeline might just look like a syntactical sugar but it is a lot more than that. In fact, it really *acts* like a pipeline were each item flows through and is handled by each cmdlet one-at-a-time.
+Before stepping into the *steppable* pipeline, it is essential that you have a good understanding of how *and when* exactly items are processed by a [cmdlet](https://learn.microsoft.com/powershell/scripting/developer/cmdlet/cmdlet-overview) in the pipeline. The PowerShell pipeline might just look like syntactical sugar but it is a lot more than that. In fact, it really *acts* like a pipeline where each item flows through and is handled by each cmdlet one-at-a-time.
 In comparison to the legacy CMD pipes, PowerShell able to stream *objects* through the pipeline.
 
 ## One-at-a-time `process`
