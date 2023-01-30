@@ -146,7 +146,7 @@ Jane
 ```
 
 Notice that there is no `phone` column, meaning that the `phone='123'` property is missing from the results. This is due to the one-at-a-time processing. At the moment the `Format-Table` cmdlet receives object `$a` it is supposed to process it immediately by writing it to the console and release it so that it can process the next item. The issue is that the `Format-Table` cmdlet is unaware of the next object `$b` because it hasn't entered the pipeline yet. The initial output, based on `$a`, has already been written to the console.
-In other words, a cmdlet written for one-at-a-time processing bases its output on the first object received from the pipeline. This also implies that if you change the order of the items in the pipeline (e.g. with `$a,  $b  Sort-Object | Format-Table`) properties might reappear and/or disappear.  
+In other words, a cmdlet written for one-at-a-time processing bases its output on the first object received from the pipeline. This also implies that if you change the order of the items in the pipeline (for example, `$a,  $b | Sort-Object | Format-Table`) properties might appear differently.
 
 ### Processing blocks
 
