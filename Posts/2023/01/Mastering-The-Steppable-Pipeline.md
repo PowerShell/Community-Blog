@@ -86,9 +86,11 @@ The previous section explains how a cmdlet would perform if correctly implemente
   (Get-Content .\Data.txt | Foreach-Object { $_ }) | Set-Content .\Data.txt
   ```
 
-* **Some specific cmdlets might choke the pipeline due to their nature**
+* **Some cmdlets might choke the pipeline by design:**
 
-In general, a well defined cmdlet should write single records to the pipeline (see also [Strongly Encouraged Development Guidelines](https://learn.microsoft.com/powershell/scripting/developer/cmdlet/strongly-encouraged-development-guidelines)). Yet this is not always possible, take e.g. the `Sort-Object` cmdlet which is supposed to sort the object which might result is a new list where the last item ends up first. To determine what item comes first, you will need to wait for the very last item to be able to release the first one. This will be visual from the simple test commands used before:
+  In general, a well defined cmdlet should write single records to the pipeline. See the [Strongly Encouraged Development Guidelines](https://learn.microsoft.com/powershell/scripting/developer/cmdlet/strongly-encouraged-development-guidelines) article.
+
+  Yet this is not always possible. Take, for example, the `Sort-Object` cmdlet, which is supposed to sort an object collection. This might result is a new list where the last item ends up first. To determine what item comes first, you must collect all items before they can be sorted. This is visible from the simple test commands used before:
 
 ```PowerShell
 1,2,3,4 | %{Write-Host 'In:' $_; $_ } | Sort-Object | %{Write-Host 'Out:' $_; $_ } | Out-Null
