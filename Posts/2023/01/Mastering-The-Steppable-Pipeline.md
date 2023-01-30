@@ -150,7 +150,7 @@ In other words, a cmdlet written for one-at-a-time processing bases its output o
 
 ### Processing blocks
 
-As you might have noticed, some actions, like outputting a header, are only required only ones. As in the analogy with the assembly line, heating up a soldering gun is only required ones when the pipeline is started, cleaning up the station is only required when the pipeline is completed. Similar time consuming ("expensive") actions could be required for a cmdlet as e.g. open and closing a file. These actions are respectively defined in the `Begin` - and  `End` block of a cmdlet. The actual processing is defined in the `Process` block of cmdlet.
+As you might have noticed, some actions, like outputting a header, are only required once. As in the analogy with the assembly line, heating up a soldering gun is only required once, when the pipeline is started. Cleaning up the station is only required when the pipeline is completed. Similar time consuming or expensive actions could be required for a cmdlet, such as opening and closing a file. These actions are respectively defined in the `Begin` and  `End` blocks of a cmdlet. The actual processing of items is defined in the `Process` block of cmdlet.
 A well defined pipeline PowerShell cmdlet might look like this:
 
 ```PowerShell
