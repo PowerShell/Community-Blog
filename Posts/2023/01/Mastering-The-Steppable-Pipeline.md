@@ -235,7 +235,7 @@ It is a little more code, but if you measure the results you will see that in th
 
 ### Multiple output pipelines
 
-With the steppable pipeline technique, you might even have multiple output pipelines open at ones. Consider that for the very large `csv` file in the previous example, you do not want batches of 10,000 entries but divide the entries over 26 files based on the first letter of the `LastName` property:
+With the steppable pipeline technique, you might even have multiple output pipelines open at once. Consider that for the very large `csv` file in the previous example, you do not want batches of 10,000 entries but divide the entries over 26 files based on the first letter of the `LastName` property:
 
 ```PowerShell
 $Pipeline = @{}
