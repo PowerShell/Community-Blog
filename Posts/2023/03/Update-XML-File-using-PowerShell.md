@@ -1,135 +1,136 @@
 ---
-post_title: Update XML File using PowerShell
+post_title: Update XML files using PowerShell
 username: sorastog
 categories: PowerShell
 tags: PowerShell, XML, Configuration
-summary: This posts explains how to update XML file using PowerShell
+summary: This posts explains how to update XML files using PowerShell
 ---
 
-# Update XML File using PowerShell
+There are many blogs on internet already speaking about updating XML files in PowerShell, but I
+felt need of one consolidated blog where complex XML files can also be updated with long complex
+hierarchy of XML nodes and attributes.
 
-There are many blogs on internet already speaking about updating XML files in PowerShell, but I felt need of one consolidated blog where complex XML files can also be updated with long complex Hierarchy of XML nodes and attributes.
-Below is an XML example which we will try in this blog to update at various level of node Hierarchy.
+Below is an XML example which we will try in this blog to update at various level of node hierarchy.
 
 ## Sample Code
 
-```PowerShell
-   <?xml version="1.0" encoding="utf-8"?>
-    <Data version="2.0">
-      <Roles>
-        <Role Name="ManagementServer" Value="OldManagementServer" />
-      </Roles>
-      <SQL>
-        <Instance Server="OldSQLServer" Instance="MSSQLSERVER" Version="SQL Server 2012">
-          <Variable Name="SQLAdmin" Value="Domain\OldSQlAdmin" />
-          <Variable Name="SQLUser" Value="domain\sqluser" />
-       </Instance>
-     </SQL>
-     <VMs>
-       <VM Type="ClientVM">
-         <VMName>ClientVM</VMName>
-       </VM>
-       <VM Type="DNSServerVM">
-         <VMName>OldDNSServer</VMName>
-       </VM>
-     </VMs>
-   </Data>
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<Data version="2.0">
+  <Roles>
+    <Role Name="ManagementServer" Value="OldManagementServer" />
+  </Roles>
+  <SQL>
+    <Instance Server="OldSQLServer" Instance="MSSQLSERVER" Version="SQL Server 2012">
+      <Variable Name="SQLAdmin" Value="Domain\OldSQlAdmin" />
+      <Variable Name="SQLUser" Value="domain\sqluser" />
+    </Instance>
+  </SQL>
+  <VMs>
+    <VM Type="ClientVM">
+      <VMName>ClientVM</VMName>
+    </VM>
+    <VM Type="DNSServerVM">
+      <VMName>OldDNSServer</VMName>
+    </VM>
+  </VMs>
+</Data>
 ```
 
-## Steps to Follow
-We will target to update Roles, Variables and VMName etc in this XML file. Below are the steps given separately on how we can update nodes and their attributes at various levels.
-1. Define the variable which are required to be modified:-
+## Steps to follow
 
-```PowerShell
-    $path = 'C:\Users\sorastog\Desktop\blog\Variable.xml'
-     
-    $ManagementServer = 'NewManagementServer'
-    $SQLServer = 'NewSQLServer'
-    $SQLAdmin = 'Domain\NewSQlAdmin'
-    $DNSServerVMName = 'NewDNSServer'
-```
+We will update the nodes in this XML file to use a new management, SQL, and DNS servers. Below are
+the steps given separately on how we can update the nodes and their attributes at various levels.
 
-2. Reading the content of XML file.
+1. Define the variables which need to be modified:
 
-```PowerShell
-    $xml = [xml](Get-Content $path)
-```
+   ```powershell
+   $path             = 'C:\Users\sorastog\Desktop\blog\Variable.xml'
+   $ManagementServer = 'NewManagementServer'
+   $SQLServer        = 'NewSQLServer'
+   $SQLAdmin         = 'Domain\NewSQlAdmin'
+   $DNSServerVMName  = 'NewDNSServer'
+   ```
 
-3.  Update ‘ManagementServer’: Changing Attribute value of node at level 3 based on ‘Name’ attribute on same level.
+1. Reading the content of XML file.
 
-```PowerShell
-    $node = $xml.Data.Roles.Role | where {$_.Name -eq 'ManagementServer'}
-    $node.Value = $ManagementServer
-```
+   ```powershell
+   $xml = [xml](Get-Content -Path $path)
+   ```
 
-4. Update ‘SQLServer’: Changing Attribute value of node at level 3.
+1. Update `ManagementServer`: Change the attribute **Value** of nodes at level 3 based on the
+   **Name** attribute on the same level.
 
-```PowerShell
-    $node = $xml.Data.SQL.Instance
-    $node.Server = $SQLServer
-```
-5. Update ‘SQLAdmin’: Changing Attribute value of node at level 4 based on ‘Name’ attribute on same level.
+   ```powershell
+   $node = $xml.Data.Roles.Role | 
+       Where-Object -Process { $_.Name -eq 'ManagementServer' }
+   $node.Value = $ManagementServer
+   ```
 
-```PowerShell
-    $node = $xml.Data.SQL.Instance.Variable | where {$_.Name -eq 'SQLAdmin'}
-    $node.Value = $SQLAdmin
-```
+1. Update `SQLServer`: Change the attribute **Value** of a node at level 3.
 
-6. Update ‘DNSServerVM’: Changing Attribute value of node at level 4 based on ‘VMType’ attribute at above level.
+   ```powershell
+   $node        = $xml.Data.SQL.Instance
+   $node.Server = $SQLServer
+   ```
 
-```PowerShell
-    $node = $xml.Data.VMs.VM | where {$_.Type -eq 'DNSServerVM'}
-    $node.VMName = $DNSServerVMName    $node.Server = $SQLServer
-```
+1. Update `SQLAdmin`: Change the attribute **Value** of nodes at level 4 based on the **Name**
+   attribute on the same level.
 
-7. Saving changes to XML file.
+   ```powershell
+   $node = $xml.Data.SQL.Instance.Variable |
+       Where-Object -Process { $_.Name -eq 'SQLAdmin' }
+   $node.Value = $SQLAdmin
+   ```
 
-```PowerShell
-    $xml.Save($path)
-```
+1. Update `DNSServerVM`: Change the attribute **Value** of nodes at level 4 based on the **VMType**
+   attribute at the level above.
+
+   ```powershell
+   $node = $xml.Data.VMs.VM |
+       Where-Object -Process { $_.Type -eq 'DNSServerVM' }
+   $node.VMName = $DNSServerVMName
+   ```
+
+1. Save changes to the XML file.
+
+   ```powershell
+   $xml.Save($path)
+   ```
 
 ## Output
-The final PowerShell script would look like below:-
 
-```PowerShell
-    $path = 'C:\Data.xml'     
+The final PowerShell script would look like below:
 
+```powershell
+$path             = 'C:\Data.xml'
+$ManagementServer = 'NewManagementServer'
+$SQLServer        = 'NewSQLServer'
+$SQLAdmin         = 'Domain\NewSQlAdmin'
+$DNSServerVMName  = 'NewDNSServer'
 
-    $ManagementServer = 'NewManagementServer'
+$xml = [xml](Get-Content $path)
 
-    $SQLServer = 'NewSQLServer'
+$node = $xml.Data.Roles.Role |
+    Where-Object -Process  { $_.Name -eq 'ManagementServer' }
+$node.Value = $ManagementServer
 
-    $SQLAdmin = 'Domain\NewSQlAdmin'
+$node        = $xml.Data.SQL.Instance
+$node.Server = $SQLServer
 
-    $DNSServerVMName = 'NewDNSServer'
-     
+$node = $xml.Data.SQL.Instance.Variable |
+    Where-Object -Process  { $_.Name -eq 'SQLAdmin' }
+$node.Value = $SQLAdmin
 
-    $xml = [xml](Get-Content $path)
+$node = $xml.Data.VMs.VM |
+    Where-Object -Process  { $_.Type -eq 'DNSServerVM' }
+$node.VMName = $DNSServerVMName
 
-       
-
-   $node = $xml.Data.Roles.Role | where {$_.Name -eq 'ManagementServer'}
-
-   $node.Value = $ManagementServer
-       
-
-   $node = $xml.Data.SQL.Instance
-
-   $node.Server = $SQLServer
-    
-
-   $node = $xml.Data.SQL.Instance.Variable | where {$_.Name -eq 'SQLAdmin'}
-
-   $node.Value = $SQLAdmin
-    
-
-   $node = $xml.Data.VMs.VM | where {$_.Type -eq 'DNSServerVM'}
-
-   $node.VMName = $DNSServerVMName
-    
-
-   $xml.Save($path)
+$xml.Save($path)
 ```
 
-Hope this will help you to update even complex XML files with multiple nodes and complex Hierarchy. If there are some XML nodes that you would like to update and the category is not included in this blog, please reply to this post and I will add it.
+Hope this will help you to update even complex XML files with multiple nodes and deep hierarchies.
+If there are some XML nodes that you would like to update and the category is not included in this
+blog, please reply to this post and I will add it.
+
 Till Then, Happy Scripting :)
