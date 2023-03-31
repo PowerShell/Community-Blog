@@ -1,136 +1,106 @@
 ---
-post_title: Update XML files using PowerShell
+post_title: Update Configuration files using PowerShell
 username: sorastog
 categories: PowerShell
 tags: PowerShell, XML, Configuration
-summary: This posts explains how to update XML files using PowerShell
+summary: This posts explains how to update Configuration files using PowerShell
 ---
 
-There are many blogs on internet already speaking about updating XML files in PowerShell, but I
-felt need of one consolidated blog where complex XML files can also be updated with long complex
-hierarchy of XML nodes and attributes.
-
-Below is an XML example which we will try in this blog to update at various level of node hierarchy.
+Hi Readers,
+We will see in this post on how we can edit web.config or other configuration files using PowerShell. There are already several posts available on internet which shows this functionality, however I faced difficulties in updating connection string in the configuration file as they are not direct. Below steps will help you in updating the connection strings as well.
 
 ## Sample Code
 
+Sample configuration file is shown below. Other sections of web.config file are not shown in this blog for simplicity.
+
 ```xml
-<?xml version="1.0" encoding="utf-8"?>
-<Data version="2.0">
-  <Roles>
-    <Role Name="ManagementServer" Value="OldManagementServer" />
-  </Roles>
-  <SQL>
-    <Instance Server="OldSQLServer" Instance="MSSQLSERVER" Version="SQL Server 2012">
-      <Variable Name="SQLAdmin" Value="Domain\OldSQlAdmin" />
-      <Variable Name="SQLUser" Value="domain\sqluser" />
-    </Instance>
-  </SQL>
-  <VMs>
-    <VM Type="ClientVM">
-      <VMName>ClientVM</VMName>
-    </VM>
-    <VM Type="DNSServerVM">
-      <VMName>OldDNSServer</VMName>
-    </VM>
-  </VMs>
-</Data>
+   <configuration>
+     <connectionStrings>
+       <add name="TestDBEntities" connectionString="metadata=res://*/TestProject.csdl|res://*/TestProject.ssdl|res://*/TestProject.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=SQL01;initial catalog=TestDB;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+     </connectionStrings>
+     <appSettings>
+       <add key="SCVMMServerName" value="VMM01" />
+       <add key="SCVMMServerPort" value="8100" />
+     </appSettings>
+   </configuration>
 ```
+
+We will try to update ‘appSettings’ section and connectionStrings section of this configuration file.
 
 ## Steps to follow
 
-We will update the nodes in this XML file to use a new management, SQL, and DNS servers. Below are
-the steps given separately on how we can update the nodes and their attributes at various levels.
+1. Read configuration file in a XML variable
 
-1. Define the variables which need to be modified:
+```powershell
+   $webConfig = 'C:\inetpub\wwwroot\VMMService\Web.config'
+   $doc = (Get-Content $webConfig) -as [Xml]
+```
 
-   ```powershell
-   $path             = 'C:\Users\sorastog\Desktop\blog\Variable.xml'
-   $ManagementServer = 'NewManagementServer'
-   $SQLServer        = 'NewSQLServer'
-   $SQLAdmin         = 'Domain\NewSQlAdmin'
-   $DNSServerVMName  = 'NewDNSServer'
-   ```
+1. Update ‘appSettings’ Section
 
-1. Reading the content of XML file.
+```powershell
+   $obj = $doc.configuration.appSettings.add | where {$_.Key -eq 'SCVMMServerName'}
+   $obj.value = 'CPVMM02'
+```
 
-   ```powershell
-   $xml = [xml](Get-Content -Path $path)
-   ```
+1. Add new ‘appSetting’. You will need to create an XmlElement and append it as a child node to ‘appSettings’
 
-1. Update `ManagementServer`: Change the attribute **Value** of nodes at level 3 based on the
-   **Name** attribute on the same level.
+```powershell
+   $newAppSetting = $doc.CreateElement(“add”)
+   $doc.configuration.appSettings.AppendChild($newAppSetting)
+   $newAppSetting.SetAttribute(“key”,”SCVMMIPAdress”);
+   $newAppSetting.SetAttribute(“value”,”10.10.10.10″);
+```
 
-   ```powershell
-   $node = $xml.Data.Roles.Role | 
-       Where-Object -Process { $_.Name -eq 'ManagementServer' }
-   $node.Value = $ManagementServer
-   ```
+1. Update ‘connectionStrings’ section. Here is the tweak, you have to read the root element and then modify the connection string as shown below:-
 
-1. Update `SQLServer`: Change the attribute **Value** of a node at level 3.
+```powershell
+   $root = $doc.get_DocumentElement();
+   $newCon = $root.connectionStrings.add.connectionString.Replace('data source=SQL01','data source=SQL02');
+   $root.connectionStrings.add.connectionString = $newCon
+```
 
-   ```powershell
-   $node        = $xml.Data.SQL.Instance
-   $node.Server = $SQLServer
-   ```
+1. Save the configuration file
 
-1. Update `SQLAdmin`: Change the attribute **Value** of nodes at level 4 based on the **Name**
-   attribute on the same level.
-
-   ```powershell
-   $node = $xml.Data.SQL.Instance.Variable |
-       Where-Object -Process { $_.Name -eq 'SQLAdmin' }
-   $node.Value = $SQLAdmin
-   ```
-
-1. Update `DNSServerVM`: Change the attribute **Value** of nodes at level 4 based on the **VMType**
-   attribute at the level above.
-
-   ```powershell
-   $node = $xml.Data.VMs.VM |
-       Where-Object -Process { $_.Type -eq 'DNSServerVM' }
-   $node.VMName = $DNSServerVMName
-   ```
-
-1. Save changes to the XML file.
-
-   ```powershell
-   $xml.Save($path)
-   ```
+```powershell
+   1: $doc.Save($webConfig)
+```
 
 ## Output
 
-The final PowerShell script would look like below:
+The combined code will look like below:-
 
 ```powershell
-$path             = 'C:\Data.xml'
-$ManagementServer = 'NewManagementServer'
-$SQLServer        = 'NewSQLServer'
-$SQLAdmin         = 'Domain\NewSQlAdmin'
-$DNSServerVMName  = 'NewDNSServer'
+   $webConfig = 'C:\inetpub\wwwroot\TestService\Web.config'
+   $doc = (Get-Content $webConfig) -as [Xml]
+   $obj = $doc.configuration.appSettings.add | where {$_.Key -eq 'SCVMMServerName'}
+   $obj.value = 'CPVMM02'
 
-$xml = [xml](Get-Content $path)
-
-$node = $xml.Data.Roles.Role |
-    Where-Object -Process  { $_.Name -eq 'ManagementServer' }
-$node.Value = $ManagementServer
-
-$node        = $xml.Data.SQL.Instance
-$node.Server = $SQLServer
-
-$node = $xml.Data.SQL.Instance.Variable |
-    Where-Object -Process  { $_.Name -eq 'SQLAdmin' }
-$node.Value = $SQLAdmin
-
-$node = $xml.Data.VMs.VM |
-    Where-Object -Process  { $_.Type -eq 'DNSServerVM' }
-$node.VMName = $DNSServerVMName
-
-$xml.Save($path)
+   $newAppSetting = $doc.CreateElement("add")
+   $doc.configuration.appSettings.AppendChild($newAppSetting)
+   $newAppSetting.SetAttribute("key","SCVMMIPAdress");
+   $newAppSetting.SetAttribute("value","10.10.10.10");
+ 
+   $root = $doc.get_DocumentElement();
+   $newCon = $root.connectionStrings.add.connectionString.Replace('data source=SQL01','data source=SQL02');
+   $root.connectionStrings.add.connectionString = $newCon
+ 
+   $doc.Save($webConfig)
 ```
 
-Hope this will help you to update even complex XML files with multiple nodes and deep hierarchies.
-If there are some XML nodes that you would like to update and the category is not included in this
-blog, please reply to this post and I will add it.
+The updated XML will contain modified values as shown below:-
 
-Till Then, Happy Scripting :)
+```xml
+    <configuration>
+     <connectionStrings>
+         <add name="TestDBEntities" connectionString="metadata=res://*/TestProject.csdl|res://*/TestProject.ssdl|res://*/TestProject.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=SQL02;initial catalog=TestDB;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+     </connectionStrings>
+     <appSettings>
+         <add key="SCVMMServerName" value="CPVMM02" />
+         <add key="SCVMMServerPort" value="8100" />
+         <add key="SCVMMIPAdress" value="10.10.10.10" />
+     </appSettings>
+    </configuration>
+```
+
+Let me know if there are some sections of configuration file which you are finding difficult to update and I will add them here in this blog 🙂 Happy Scripting!!!
