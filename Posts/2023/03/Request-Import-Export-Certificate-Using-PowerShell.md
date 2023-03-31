@@ -2,7 +2,7 @@
 post_title: Request, Export and Import Certificates using PowerShell
 username: sorastog
 categories: PowerShell
-tags: PowerShell, Certificates, Automation
+tags: PowerShell,Certificates,Automation
 summary: This posts explains how to Request, Export and Import Certificates using PowerShell
 ---
 

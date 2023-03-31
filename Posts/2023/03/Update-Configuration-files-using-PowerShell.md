@@ -2,7 +2,7 @@
 post_title: Update Configuration files using PowerShell
 username: sorastog
 categories: PowerShell
-tags: PowerShell, XML, Configuration
+tags: PowerShell,XML,Configuration
 summary: This posts explains how to update Configuration files using PowerShell
 ---
 
