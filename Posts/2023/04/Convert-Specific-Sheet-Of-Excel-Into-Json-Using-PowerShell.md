@@ -38,117 +38,116 @@ Follow below steps to see how you can read Class 6 data from Science sheet:-
 
 1. Input Parameters
 
-The script accepts 3 parameters
+   The script accepts 3 parameters
 
-- $InputFileFullPath: This is path of input excel file.
-- $SubjectName: This is name of the sheet inside excel file.
-- $ClassName: This is name of the table within excel sheet.
+   - $InputFileFullPath: This is path of input excel file.
+   - $SubjectName: This is name of the sheet inside excel file.
+   - $ClassName: This is name of the table within excel sheet.
 
-```powershell
-$InputFileFullPath = "C:\Data\ABCDSchool.xlsx"
-$SubjectName = "Science"
-$ClassName = "Class 6"
-```
+   ```powershell
+   $InputFileFullPath = "C:\Data\ABCDSchool.xlsx"
+   $SubjectName = "Science"
+   $ClassName = "Class 6"
+   ```
 
 1. Open excel file and read the *Science* sheet
 
-```powershell
-$excelApplication = New-Object -ComObject Excel.Application
-$excelApplication.DisplayAlerts = $false
-$Workbook = $excelApplication.Workbooks.Open($InputFileFullPath)
+   ```powershell
+   $excelApplication = New-Object -ComObject Excel.Application
+   $excelApplication.DisplayAlerts = $false
+   $Workbook = $excelApplication.Workbooks.Open($InputFileFullPath)
 
-$sheet = $Workbook.Sheets | Where-Object {$_.Name -eq $SubjectName}
-if (-not $sheet) {
-    throw "Could not find subject '$SubjectName' in the workbook"
-}
-```
+   $sheet = $Workbook.Sheets | Where-Object {$_.Name -eq $SubjectName}
+   if (-not $sheet) {
+       throw "Could not find subject '$SubjectName' in the workbook"
+   }
+   ```
 
 1. Grab *Class 6* table within *Science* sheet to work with
 
-```powershell
-$found = $sheet.Cells.Find($ClassName) #find the cell where Class name is mentioned
-$beginAddress = $Found.Address(0,0,1,1).Split("!")[1]
-$beginRowAddress = $beginAddress.Substring(1,2)
-$startHeaderRowNumber = [int]$beginRowAddress + 1 #header row starts 1 row after the class name 
-$startDataRowNumber = $startHeaderRowNumber + 1 #student data row starts 1 rows after header row
-$beginColumnAddress = $beginAddress.Substring(0,1)
-$startColumnHeaderNumber = [BYTE][CHAR]$beginColumnAddress - 65 + 1 #ASCII number of column
-```
+   ```powershell
+   $found = $sheet.Cells.Find($ClassName) #find the cell where Class name is mentioned
+   $beginAddress = $Found.Address(0,0,1,1).Split("!")[1]
+   $beginRowAddress = $beginAddress.Substring(1,2)
+   $startHeaderRowNumber = [int]$beginRowAddress + 1 #header row starts 1 row after the class name
+   $startDataRowNumber = $startHeaderRowNumber + 1 #student data row starts 1 rows after header row
+   $beginColumnAddress = $beginAddress.Substring(0,1)
+   $startColumnHeaderNumber = [BYTE][CHAR]$beginColumnAddress - 65 + 1 #ASCII number of column
+   ```
 
 1. Extract Header Columns Name (Logical Seat Location, Actual Seat Location, LAN Port #, Monitor
    Cable Port, Student Name, Student#, Room Type)
 
-```powershell
-$Headers = @{}
-$numberOfColumns = 0
-$foundHeaderValue = $true
-while ($foundHeaderValue -eq $true) {
-    $headerCellValue = $sheet.Cells.Item($startHeaderRowNumber, $numberOfColumns+$startColumnHeaderNumber).Text 
-    if ($headerCellValue.Trim().Length -eq 0) {
-        $foundHeaderValue = $false
-    } else {
-        $numberOfColumns++
-        if($Headers.ContainsValue($headerCellValue))
-        {
-            #do not add any duplicate column again.
-        }
-        else
-        {            
-            $Headers.$numberOfColumns = $headerCellValue
-        }
-    }
-}
-```
+   ```powershell
+   $Headers = @{}
+   $numberOfColumns = 0
+   $foundHeaderValue = $true
+   while ($foundHeaderValue -eq $true) {
+       $headerCellValue = $sheet.Cells.Item($startHeaderRowNumber, $numberOfColumns+$startColumnHeaderNumber).Text
+       if ($headerCellValue.Trim().Length -eq 0) {
+           $foundHeaderValue = $false
+       } else {
+           $numberOfColumns++
+           if($Headers.ContainsValue($headerCellValue))
+           {
+               #do not add any duplicate column again.
+           }
+           else
+           {
+               $Headers.$numberOfColumns = $headerCellValue
+           }
+       }
+   }
+   ```
 
 1. Extract Data Rows (Class 6 Student Information Rows)
 
-```powershell
-$rowNumber = $startDataRowNumber
-$finish = $false
-while($finish -eq $false)
-{
-    if ($rowNumber -gt 1) {
-        $result = @{}        
-        foreach ($columnNumber in $Headers.GetEnumerator()) {
-            $columnName = $columnNumber.Value
-            $cellValue = $sheet.Cells.Item($rowNumber, $columnNumber.Name+($startColumnHeaderNumber-1)).Value2 # student data row, student data column number
-            if($cellValue -eq $null)
-            {
-                $finish = $true
-                break;
-            }
-            $result.Add($columnName.Trim(),$cellValue.Trim())
-        }
-        if($finish -eq $false)
-        {
-            $result.Add("RowNumber",$rowNumber) #adding excel sheet row number for validation        
-            $results += $result
-            $rowNumber++
-        }
-    }
-}
-```
+   ```powershell
+   $rowNumber = $startDataRowNumber
+   $finish = $false
+   while($finish -eq $false)
+   {
+       if ($rowNumber -gt 1) {
+           $result = @{}
+           foreach ($columnNumber in $Headers.GetEnumerator()) {
+               $columnName = $columnNumber.Value
+               $cellValue = $sheet.Cells.Item($rowNumber, $columnNumber.Name+($startColumnHeaderNumber-1)).Value2 # student data row, student data column number
+               if($cellValue -eq $null)
+               {
+                   $finish = $true
+                   break;
+               }
+               $result.Add($columnName.Trim(),$cellValue.Trim())
+           }
+           if($finish -eq $false)
+           {
+               $result.Add("RowNumber",$rowNumber) #adding excel sheet row number for validation
+               $results += $result
+               $rowNumber++
+           }
+       }
+   }
+   ```
 
 1. Create JSON file and close excel file
 
-```powershell
-$inputFileName = Split-Path $InputFileFullPath -leaf
-$jsonOutputFileName = "$($inputFileName.Split(".")[0])-$SubjectName-$ClassName.json"
-$jsonOutputFileFullPath = [System.IO.Path]::GetFullPath($jsonOutputFileName) #Output file name will be "ABCDSchool-Science-Class 6.json" 
+   ```powershell
+   $inputFileName = Split-Path $InputFileFullPath -leaf
+   $jsonOutputFileName = "$($inputFileName.Split(".")[0])-$SubjectName-$ClassName.json"
+   $jsonOutputFileFullPath = [System.IO.Path]::GetFullPath($jsonOutputFileName) #Output file name will be "ABCDSchool-Science-Class 6.json"
 
-
-Write-Host "Converting sheet '$SubjectName' to '$jsonOutputFileFullPath'"
-$ignoreOutput = $results | ConvertTo-Json | Out-File -Encoding ASCII -FilePath $jsonOutputFileFullPath
-$ignoreOutput = $excelApplication.Workbooks.Close()
-$ignoreOutput = [void][System.Runtime.InteropServices.Marshal]::ReleaseComObject($excelApplication) 
-```
+   Write-Host "Converting sheet '$SubjectName' to '$jsonOutputFileFullPath'"
+   $ignoreOutput = $results | ConvertTo-Json | Out-File -Encoding ASCII -FilePath $jsonOutputFileFullPath
+   $ignoreOutput = $excelApplication.Workbooks.Close()
+   $ignoreOutput = [void][System.Runtime.InteropServices.Marshal]::ReleaseComObject($excelApplication)
+   ```
 
 ## Output
 
 Full code goes like this
 
 ```powershell
-param 
+param
 (
     [Parameter(Mandatory=$true)]
     [string]$InputFileFullPath, #excel name
@@ -168,22 +167,22 @@ $sheet = $Workbook.Sheets | Where-Object {$_.Name -eq $SubjectName}
 if (-not $sheet) {
     throw "Could not find subject '$SubjectName' in the workbook"
 }
-    
+
 #grab the table within sheet to work with
 $found = $sheet.Cells.Find($ClassName) #find the cell where Class name is mentioned
 $beginAddress = $Found.Address(0,0,1,1).Split("!")[1]
 $beginRowAddress = $beginAddress.Substring(1,2)
-$startHeaderRowNumber = [int]$beginRowAddress + 2 #header row starts 1 row after the class name 
+$startHeaderRowNumber = [int]$beginRowAddress + 2 #header row starts 1 row after the class name
 $startDataRowNumber = $startHeaderRowNumber + 1 #student data row starts 1 rows after header row
 $beginColumnAddress = $beginAddress.Substring(0,1)
 $startColumnHeaderNumber = [BYTE][CHAR]$beginColumnAddress - 65 + 1 #ASCII number of column
-    
+
 #Extract Header Columns Name
 $Headers = @{}
 $numberOfColumns = 0
 $foundHeaderValue = $true
 while ($foundHeaderValue -eq $true) {
-    $headerCellValue = $sheet.Cells.Item($startHeaderRowNumber, $numberOfColumns+$startColumnHeaderNumber).Text 
+    $headerCellValue = $sheet.Cells.Item($startHeaderRowNumber, $numberOfColumns+$startColumnHeaderNumber).Text
     if ($headerCellValue.Trim().Length -eq 0) {
         $foundHeaderValue = $false
     } else {
@@ -193,12 +192,12 @@ while ($foundHeaderValue -eq $true) {
             #do not add any duplicate column again.
         }
         else
-        {            
+        {
             $Headers.$numberOfColumns = $headerCellValue
         }
     }
 }
-    
+
 #Extract Student Information Rows
 $results = @()
 $rowNumber = $startDataRowNumber
@@ -206,7 +205,7 @@ $finish = $false
 while($finish -eq $false)
 {
     if ($rowNumber -gt 1) {
-        $result = @{}        
+        $result = @{}
         foreach ($columnNumber in $Headers.GetEnumerator()) {
             $columnName = $columnNumber.Value
             $cellValue = $sheet.Cells.Item($rowNumber, $columnNumber.Name+($startColumnHeaderNumber-1)).Value2 # student data row, student data column number
@@ -219,13 +218,13 @@ while($finish -eq $false)
         }
         if($finish -eq $false)
         {
-            $result.Add("RowNumber",$rowNumber) #adding excel sheet row number for validation        
+            $result.Add("RowNumber",$rowNumber) #adding excel sheet row number for validation
             $results += $result
             $rowNumber++
         }
     }
 }
-    
+
 #input excel and output json file name
 $inputFileName = Split-Path $InputFileFullPath -leaf
 $jsonOutputFileName = "$($inputFileName.Split(".")[0])-$SubjectName-$ClassName.json"
@@ -235,10 +234,11 @@ $jsonOutputFileFullPath = [System.IO.Path]::GetFullPath($jsonOutputFileName)
 Write-Host "Converting sheet '$SubjectName' to '$jsonOutputFileFullPath'"
 $ignoreOutput = $results | ConvertTo-Json | Out-File -Encoding ASCII -FilePath $jsonOutputFileFullPath
 $ignoreOutput = $excelApplication.Workbooks.Close()
-$ignoreOutput = [void][System.Runtime.InteropServices.Marshal]::ReleaseComObject($excelApplication)    
+$ignoreOutput = [void][System.Runtime.InteropServices.Marshal]::ReleaseComObject($excelApplication)
 ```
 
 The output JSON file will look like below
+
 ![Output-Json][04]
 
 ```json
