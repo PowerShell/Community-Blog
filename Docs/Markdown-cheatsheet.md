@@ -7,7 +7,7 @@ All posts must have the following YAML blog at the top of the markdown file.
 ```yaml
 ---
 post_title: 'Post Title'
-username: Author username as seen in wordpress, not github ID
+username: Author username as seen in wordpress, not GitHub ID
 categories: existingcategory1, existingcategory2
 tags: tag1,tag2
 featured_image: check instructions below
@@ -15,7 +15,7 @@ summary: summary of the post
 ---
 ```
 
-Fill in all sections of the header. The `post_title`, `summary`, and `user_login` are required
+Fill in all sections of the header. The `post_title`, `summary`, and `username` are required
 fields.
 
 For featured image, please follow the guidance for images below.
@@ -105,21 +105,22 @@ $Now
 ~~~
 
 ### Code within text
+
 Code within a paragraph can be added using single-backticks. See example below.
 
 ```markdown
-This is a sentence with `code example` in between.
+This is a sentence with `inline code` in between.
 ```
 
-This is a sentence with `code example` in between.
+This is a sentence with `inline code` in between.
 
 ### Images
 
-- Images in public space e.g. public github repo
+- Images in public space e.g. public GitHub repo
 
   If the images are in a public space like docs, or already in the blog media folder, or a public
-  github repo, simply add them in the standard markdown format as shown below. remember to add alt
-  text for all your images)
+  GitHub repo, simply add them in the standard markdown format as shown below. Remember to add alt
+  text for all your images.
 
   ![alttext][1]
 
@@ -136,29 +137,26 @@ This is a sentence with `code example` in between.
   1. Link to the image using the standard markdown syntax:
 
      ```markdown
-     ![alt-text][2]
+     ![alt-text](./media/<post-filename>/image-name.ext)
      ```
 
 ### Videos
 
-For videos directly uploaded to the WordPress media folder, you can add the video links in github
-with this video shortcode.
+For videos directly uploaded to the WordPress media folder, you can add the video links in GitHub
+with this `video` shortcode.
 
 ```markdown
 [video src="https://devblogs.microsoft.com/powershell/wp-content/uploads/sites/30/2020/05/PSNativePSPathResolution.mp4"]
 ```
 
-For videos uploaded to the github repo, if you add a link to the video in github repo, we don't yet
-have a way to bring it into the media folder in WordPress. So all such videos will need to be
-uploaded to the WordPress media library then added to the draft in WordPress, or added to the draft
-in github via the video shortcode, example shown above.
+For videos uploaded to the GitHub repo, if you add a link to the video in GitHub repo, we don't yet
+have a way to bring it into the media folder in WordPress. So all such videos need to be uploaded to
+the WordPress media library then added to the draft in WordPress, or added to the draft in GitHub
+via the video shortcode, example shown above.
 
 #### YouTube Videos
 
-Here is how you can add YouTube Videos - with / without `iframe` or Videos on Channel 9 as well, as
-long as you use the `iframe` tag.
-
-Typically YouTube embed code looks like this :
+You can add YouTube videos. The typical YouTube embed code looks like this :
 
 ```html
 <iframe width="320" height="240" src="https://www.youtube.com/embed/hLFyycJVo0I" frameborder="0"
@@ -166,13 +164,12 @@ allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
 </iframe>
 ```
 
-#### Video alignment
-
-To align the video use `<p>` tag as shown below:
+You can use the `iframe` shortcode for simpler syntax. To align the video use `<p>` tag as shown
+in this example:
 
 ```html
 <p align="right">
-[iframe src="https://www.YouTube.com/embed/hLFyycJVo0I" width="320" height="240"]
+[iframe src="https://www.youtube.com/embed/hLFyycJVo0I" width="320" height="240"]
 </p>
 ```
 
@@ -241,12 +238,11 @@ Dangerous certain consequences of an action.
 [/alert]
 ```
 
-Tou can also customize the header as appropriate. This is what each alert type looks like - with and
-without a header.
+You can also customize the heading as appropriate. The following image shows what each alert type
+looks like (with and without a heading).
 
-![Alerts][3]
+![Alerts][2]
 
 <!-- link references -->
 [1]: https://devblogsarchiv.wpengine.com/wp-content/uploads/2020/02/allmycomments.jpg
-[2]: ./media/<post-filename>/image-name.ext
-[3]: ./media/Markdown-cheetsheet/alerts.png
+[2]: ./media/Markdown-cheetsheet/alerts.png
