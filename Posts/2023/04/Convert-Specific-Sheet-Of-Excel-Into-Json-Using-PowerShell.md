@@ -8,13 +8,13 @@ summary: This posts explains how to Convert Specific Table of Excel Sheet to JSO
 
 # Summary
 
-There is an excellent [Github script](https://github.com/chrisbrownie/Convert-ExcelSheetToJson/blob/master/Convert-ExcelSheetToJson.ps1) available which helps in converting a full excel sheet to JSON. The table is from the start of the page i.e. from A1 cell (as shown in image below).
+There is an excellent [Github script][01] available which helps in converting a full excel sheet to JSON. The table is from the start of the page i.e. from A1 cell (as shown in image below).
 
-![Image-Showing-One-Excel-Sheet](./media/Convert-Specific-Sheet-Of-Excel-Into-Json-Using-PowerShell/Image1-OneExcelSheet.png)
+![Image-Showing-One-Excel-Sheet][02]
 
 I had a little different requirement. I had to convert a specific table among various tables available within a sheet in an excel file as shown in image below.
 
-![Image-Showing-Multiple-Tables-In-One-Excel-Sheet](./media/Convert-Specific-Sheet-Of-Excel-Into-Json-Using-PowerShell/Image2-MultipleTablesInOneSheet.png)
+![Image-Showing-Multiple-Tables-In-One-Excel-Sheet][03]
 
 Our requirement is to read Class 6 students data.
 In above screenshot, there are multiple sheets within the excel workbook. There are multiple tables like Class1, Class2 …. Class 10 and so on inside the Science sheet.
@@ -233,7 +233,7 @@ $ignoreOutput = [void][System.Runtime.InteropServices.Marshal]::ReleaseComObject
 ```
 
 The output JSON file will look like below
-![Output-Json](./media/Convert-Specific-Sheet-Of-Excel-Into-Json-Using-PowerShell/Image3-OutputJson.png)
+![Output-Json][04]
 
 ```json
 [
@@ -311,3 +311,9 @@ The output JSON file will look like below
 ```
 
 Feel free to drop your feedback and inputs on this page. Till then, Happy Scripting!!!
+
+<!-- Link Reference Definitions -->
+[01]: https://github.com/chrisbrownie/Convert-ExcelSheetToJson/blob/master/Convert-ExcelSheetToJson.ps1
+[02]: ./media/Convert-Specific-Sheet-Of-Excel-Into-Json-Using-PowerShell/Image1-OneExcelSheet.png
+[03]: ./media/Convert-Specific-Sheet-Of-Excel-Into-Json-Using-PowerShell/Image2-MultipleTablesInOneSheet.png
+[04]: ./media/Convert-Specific-Sheet-Of-Excel-Into-Json-Using-PowerShell/Image3-OutputJson.png
