@@ -6,18 +6,14 @@ tags: PowerShell, Excel, Json, Automation
 summary: This posts explains how to Convert Specific Table of Excel Sheet to JSON
 ---
 
-# Summary
-
-There is an excellent [Github script][01] available which helps in converting a full Excel sheet to
-JSON. The script expects the table to be at the start of the sheet; that is, to have the first
-header in the `A1` cell (as shown in image below).
-
-![Image-Showing-One-Excel-Sheet][02]
+There is an excellent [script on GitHub][01] that helps to convert a full Excel sheet to JSON. The
+script expects the table to be at the start of the sheet; that is, to have the first header in the
+`A1` cell.
 
 I had a little different requirement. I had to convert a specific table among various tables
 available within a sheet in an Excel file as shown in image below.
 
-![Image-Showing-Multiple-Tables-In-One-Excel-Sheet][03]
+![Screenshot of an Excel sheet showing a table in the middle of a sheet instead of at the start][02]
 
 Our requirement is to read `Class 6` students' data. In the above screenshot, there are multiple
 sheets within the Excel workbook. There are multiple tables like `Class 1`, `Class 2`, and so
@@ -291,8 +287,6 @@ $null = [System.Runtime.InteropServices.Marshal]::ReleaseComObject(
 
 The output JSON file will look like below:
 
-![Output-Json][04]
-
 ```json
 [
     {
@@ -372,6 +366,4 @@ Feel free to drop your feedback and inputs on this page. Till then, Happy Script
 
 <!-- Link Reference Definitions -->
 [01]: https://github.com/chrisbrownie/Convert-ExcelSheetToJson/blob/master/Convert-ExcelSheetToJson.ps1
-[02]: ./media/Convert-Specific-Sheet-Of-Excel-Into-Json-Using-PowerShell/Image1-OneExcelSheet.png
-[03]: ./media/Convert-Specific-Sheet-Of-Excel-Into-Json-Using-PowerShell/Image2-MultipleTablesInOneSheet.png
-[04]: ./media/Convert-Specific-Sheet-Of-Excel-Into-Json-Using-PowerShell/Image3-OutputJson.png
+[02]: ./media/Convert-Specific-Sheet-Of-Excel-Into-Json-Using-PowerShell/Image-MultipleTablesInOneSheet.png
