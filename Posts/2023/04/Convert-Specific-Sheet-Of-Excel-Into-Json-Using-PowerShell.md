@@ -14,16 +14,16 @@ JSON. The table is from the start of the page i.e. from `A1` cell (as shown in i
 ![Image-Showing-One-Excel-Sheet][02]
 
 I had a little different requirement. I had to convert a specific table among various tables
-available within a sheet in an excel file as shown in image below.
+available within a sheet in an Excel file as shown in image below.
 
 ![Image-Showing-Multiple-Tables-In-One-Excel-Sheet][03]
 
 Our requirement is to read **Class 6** students data. In above screenshot, there are multiple sheets
-within the excel workbook. There are multiple tables like **Class 1**, **Class 2**, and so on
+within the Excel workbook. There are multiple tables like **Class 1**, **Class 2**, and so on
 inside the **Science** sheet.
 
 As our requirement is to read **Class 6** students data from **Science** sheet, lets look closely at how
-the data is available in excel sheet.
+the data is available in Excel sheet.
 
 - Name of the class is at row 44.
 - Column Header is at row 45.
@@ -40,9 +40,9 @@ Follow below steps to see how you can read **Class 6** data from **Science** she
 
    The script accepts 3 parameters
 
-   - `$InputFileFullPath`: This is path of input excel file.
-   - `$SubjectName`: This is name of the sheet inside excel file.
-   - `$ClassName`: This is name of the table within excel sheet.
+   - `$InputFileFullPath`: This is path of input Excel file.
+   - `$SubjectName`: This is name of the sheet inside Excel file.
+   - `$ClassName`: This is name of the table within Excel sheet.
 
    ```powershell
    $InputFileFullPath = 'C:\Data\ABCDSchool.xlsx'
@@ -50,7 +50,7 @@ Follow below steps to see how you can read **Class 6** data from **Science** she
    $ClassName         = 'Class 6'
    ```
 
-1. Open excel file and read the **Science** sheet
+1. Open Excel file and read the **Science** sheet
 
    ```powershell
    $excelApplication = New-Object -ComObject Excel.Application
@@ -135,7 +135,7 @@ Follow below steps to see how you can read **Class 6** data from **Science** she
            }
 
            if ($finish -eq $false) {
-               # Adding excel sheet row number for validation
+               # Adding Excel sheet row number for validation
                $result.Add("RowNumber",$rowNumber)
                $results += $result
                $rowNumber++
@@ -144,7 +144,7 @@ Follow below steps to see how you can read **Class 6** data from **Science** she
    }
    ```
 
-1. Create JSON file and close excel file
+1. Create JSON file and close Excel file
 
    ```powershell
    $inputFileName = Split-Path $InputFileFullPath -leaf
@@ -258,7 +258,7 @@ while ($finish -eq $false) {
         }
 
         if ($finish -eq $false) {
-            # Adding excel sheet row number for validation
+            # Adding Excel sheet row number for validation
             $result.Add("RowNumber",$rowNumber)
             $results += $result
             $rowNumber++
@@ -267,7 +267,7 @@ while ($finish -eq $false) {
 }
 #endregion Extract Student Information Rows
 
-#region Create JSON file and close excel file
+#region Create JSON file and close Excel file
 $inputFileName = Split-Path $InputFileFullPath -leaf
 $inputFileName = $inputFileName.Split('.')[0]
 # Output file name will be "ABCDSchool-Science-Class 6.json"
@@ -283,7 +283,7 @@ $null = $excelApplication.Workbooks.Close()
 $null = [System.Runtime.InteropServices.Marshal]::ReleaseComObject(
     $excelApplication
 )
-#endregion Create JSON file and close excel file
+#endregion Create JSON file and close Excel file
 ```
 
 The output JSON file will look like below
