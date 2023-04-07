@@ -9,7 +9,8 @@ summary: This posts explains how to Convert Specific Table of Excel Sheet to JSO
 # Summary
 
 There is an excellent [Github script][01] available which helps in converting a full Excel sheet to
-JSON. The table is from the start of the page i.e. from `A1` cell (as shown in image below).
+JSON. The script expects the table to be at the start of the sheet; that is, to have the first
+header in the `A1` cell (as shown in image below).
 
 ![Image-Showing-One-Excel-Sheet][02]
 
@@ -18,16 +19,16 @@ available within a sheet in an Excel file as shown in image below.
 
 ![Image-Showing-Multiple-Tables-In-One-Excel-Sheet][03]
 
-Our requirement is to read `Class 6` students data. In above screenshot, there are multiple sheets
-within the Excel workbook. There are multiple tables like `Class 1`, `Class 2`, and so on
-inside the **Science** sheet.
+Our requirement is to read `Class 6` students' data. In the above screenshot, there are multiple
+sheets within the Excel workbook. There are multiple tables like `Class 1`, `Class 2`, and so
+on inside the **Science** sheet.
 
-As our requirement is to read `Class 6` students data from **Science** sheet, lets look closely at how
-the data is available in Excel sheet.
+As our requirement is to read `Class 6` students data from **Science** sheet, lets look closely at
+how the data is available in the Excel sheet.
 
-- Name of the class is at row 44.
-- Column Header is at row 45.
-- Data starts from row 46.
+- The name of the class is at row 44.
+- The column headers are on row 45.
+- The data starts from row 46.
 
 [alert type="note" heading="Note"]
 The tables can be at any location (any column and any row) within the sheet. The only fixed
@@ -36,15 +37,15 @@ identifier is **ClassName** which is `Class 6` in this example.
 
 ## Steps to follow
 
-Follow below steps to see how you can read `Class 6` data from **Science** sheet:-
+Follow these steps to see how you can read `Class 6` data from **Science** sheet:
 
-1. Input Parameters
+1. Handle input parameters.
 
-   The script accepts 3 parameters
+   The script accepts 3 parameters:
 
-   - `$InputFileFullPath`: This is path of input Excel file.
-   - `$SubjectName`: This is name of the sheet inside Excel file.
-   - `$ClassName`: This is name of the table within Excel sheet.
+   - `$InputFileFullPath` - This is path of the input Excel file.
+   - `$SubjectName` - This is name of the sheet inside the Excel file.
+   - `$ClassName` - This is name of the table within the Excel sheet.
 
    ```powershell
    $InputFileFullPath = 'C:\Data\ABCDSchool.xlsx'
@@ -52,7 +53,7 @@ Follow below steps to see how you can read `Class 6` data from **Science** sheet
    $ClassName         = 'Class 6'
    ```
 
-1. Open Excel file and read the **Science** sheet
+1. Open the Excel file and read the **Science** sheet.
 
    ```powershell
    $excelApplication = New-Object -ComObject Excel.Application
@@ -66,7 +67,7 @@ Follow below steps to see how you can read `Class 6` data from **Science** sheet
    }
    ```
 
-1. Grab `Class 6` table within **Science** sheet to work with
+1. Grab the `Class 6` table within the **Science** sheet to work with.
 
    ```powershell
    # Find the cell where Class name is mentioned
@@ -82,8 +83,8 @@ Follow below steps to see how you can read `Class 6` data from **Science** sheet
    $startColumnHeaderNumber = [BYTE][CHAR]$beginColumnAddress - 65 + 1
    ```
 
-1. Extract Header Columns Name (**Logical Seat Location**, **Actual Seat Location**, **LAN Port #**,
-   **Monitor Cable Port**, **Student Name**, **Student#**, **Room Type**)
+1. Extract the header column names (**Logical Seat Location**, **Actual Seat Location**,
+   **LAN Port #**, **Monitor Cable Port**, **Student Name**, **Student#**, and **Room Type**)
 
    ```powershell
    $Headers          = @{}
@@ -109,7 +110,7 @@ Follow below steps to see how you can read `Class 6` data from **Science** sheet
    }
    ```
 
-1. Extract Data Rows (`Class 6` Student Information Rows)
+1. Extract the data (`Class 6` student information rows).
 
    ```powershell
    $results   = @{}
@@ -146,7 +147,7 @@ Follow below steps to see how you can read `Class 6` data from **Science** sheet
    }
    ```
 
-1. Create JSON file and close Excel file
+1. Create the JSON file and close the Excel file.
 
    ```powershell
    $inputFileName = Split-Path $InputFileFullPath -leaf
@@ -166,9 +167,9 @@ Follow below steps to see how you can read `Class 6` data from **Science** sheet
    )
    ```
 
-## Output
+## Putting it all together
 
-Full code goes like this
+The full code goes like this:
 
 ```powershell
 param (
@@ -288,7 +289,7 @@ $null = [System.Runtime.InteropServices.Marshal]::ReleaseComObject(
 #endregion Create JSON file and close Excel file
 ```
 
-The output JSON file will look like below
+The output JSON file will look like below:
 
 ![Output-Json][04]
 
