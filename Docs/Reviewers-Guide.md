@@ -107,4 +107,4 @@ summary: <Summary of the post - short one-line description>
 <!-- link references -->
 [1]: https://marketplace.visualstudio.com/items?itemName=marvhen.reflow-markdown
 [2]: https://github.github.com/gfm/#atx-headings
-[3]: https://docs.microsoft.com/powershell/scripting/community/contributing/powershell-style-guide#product-terminology
+[3]: https://learn.microsoft.com/powershell/scripting/community/contributing/product-terminology
