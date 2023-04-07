@@ -18,23 +18,25 @@ available within a sheet in an Excel file as shown in image below.
 
 ![Image-Showing-Multiple-Tables-In-One-Excel-Sheet][03]
 
-Our requirement is to read **Class 6** students data. In above screenshot, there are multiple sheets
-within the Excel workbook. There are multiple tables like **Class 1**, **Class 2**, and so on
+Our requirement is to read `Class 6` students data. In above screenshot, there are multiple sheets
+within the Excel workbook. There are multiple tables like `Class 1`, `Class 2`, and so on
 inside the **Science** sheet.
 
-As our requirement is to read **Class 6** students data from **Science** sheet, lets look closely at how
+As our requirement is to read `Class 6` students data from **Science** sheet, lets look closely at how
 the data is available in Excel sheet.
 
 - Name of the class is at row 44.
 - Column Header is at row 45.
 - Data starts from row 46.
 
-Note - The tables can be at any location (any column and any row) within the sheet. The only fixed
-identifier is TableName which is **Class 6** in this example.
+[alert type="note" heading="Note"]
+The tables can be at any location (any column and any row) within the sheet. The only fixed
+identifier is **ClassName** which is `Class 6` in this example.
+[/alert]
 
 ## Steps to follow
 
-Follow below steps to see how you can read **Class 6** data from **Science** sheet:-
+Follow below steps to see how you can read `Class 6` data from **Science** sheet:-
 
 1. Input Parameters
 
@@ -64,7 +66,7 @@ Follow below steps to see how you can read **Class 6** data from **Science** she
    }
    ```
 
-1. Grab **Class 6** table within **Science** sheet to work with
+1. Grab `Class 6` table within **Science** sheet to work with
 
    ```powershell
    # Find the cell where Class name is mentioned
@@ -107,7 +109,7 @@ Follow below steps to see how you can read **Class 6** data from **Science** she
    }
    ```
 
-1. Extract Data Rows (**Class 6** Student Information Rows)
+1. Extract Data Rows (`Class 6` Student Information Rows)
 
    ```powershell
    $results   = @{}
