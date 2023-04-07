@@ -8,24 +8,29 @@ summary: This posts explains how to Convert Specific Table of Excel Sheet to JSO
 
 # Summary
 
-There is an excellent [Github script][01] available which helps in converting a full excel sheet to JSON. The table is from the start of the page i.e. from A1 cell (as shown in image below).
+There is an excellent [Github script][01] available which helps in converting a full excel sheet to
+JSON. The table is from the start of the page i.e. from A1 cell (as shown in image below).
 
 ![Image-Showing-One-Excel-Sheet][02]
 
-I had a little different requirement. I had to convert a specific table among various tables available within a sheet in an excel file as shown in image below.
+I had a little different requirement. I had to convert a specific table among various tables
+available within a sheet in an excel file as shown in image below.
 
 ![Image-Showing-Multiple-Tables-In-One-Excel-Sheet][03]
 
-Our requirement is to read Class 6 students data.
-In above screenshot, there are multiple sheets within the excel workbook. There are multiple tables like Class1, Class2 …. Class 10 and so on inside the Science sheet.
+Our requirement is to read Class 6 students data. In above screenshot, there are multiple sheets
+within the excel workbook. There are multiple tables like Class1, Class2 …. Class 10 and so on
+inside the Science sheet.
 
-As our requirement is to read Class 6 students data from Science sheet, lets look closely at how the data is available in excel sheet.
+As our requirement is to read Class 6 students data from Science sheet, lets look closely at how
+the data is available in excel sheet.
 
 - Name of the class is at row 44.
 - Column Header is at row 45.
 - Data starts from row 46.
 
-Note - The tables can be at any location (any column and any row) within the sheet. The only fixed identifier is TableName which is *Class 6* in this example.
+Note - The tables can be at any location (any column and any row) within the sheet. The only fixed
+identifier is TableName which is *Class 6* in this example.
 
 ## Steps to follow
 
@@ -70,7 +75,8 @@ $beginColumnAddress = $beginAddress.Substring(0,1)
 $startColumnHeaderNumber = [BYTE][CHAR]$beginColumnAddress - 65 + 1 #ASCII number of column
 ```
 
-1. Extract Header Columns Name (Logical Seat Location, Actual Seat Location, LAN Port #, Monitor Cable Port, Student Name, Student#, Room Type)
+1. Extract Header Columns Name (Logical Seat Location, Actual Seat Location, LAN Port #, Monitor
+   Cable Port, Student Name, Student#, Room Type)
 
 ```powershell
 $Headers = @{}
