@@ -59,7 +59,7 @@ Param(
 )
 ```
 
-If you notice above, we've defined a non-mandatory parameter that is of type `[String]`. If you notice above, we've defined a non-mandatory parameter that is of type `[String]`. This is a guardrail because any other type causes an error to be thrown.
+If you notice above, we've defined a non-mandatory parameter that is of type `[String]`. This is a guardrail because any other type causes an error to be thrown.
 We have added further restrictions (guardrails) on this parameter by employing a `[ValidateSet()]` attribute, which limits the valid input to _only_ those items that are
 a member of the set. Provide `Horse` to the animal parameter and, even though it is a string, it produces an error because it's not a member of the approved set of inputs.
 
