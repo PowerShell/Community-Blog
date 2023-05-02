@@ -9,7 +9,7 @@ summary: This posts explains taking user experience into account when designing 
 PowerShell, being built on .NET and object-oriented in nature, is a _fantastic_ language for developing
 tooling that you can deliver to your end users. These may be fellow technologists, or they could also be
 non-technical users within your organization. This could also be a tool you wish to share with the community,
-either via your own Github or by publishing to the PowerShell Gallery.
+either via your own GitHub or by publishing to the PowerShell Gallery.
 
 ## What Are You Doing?
 
@@ -59,7 +59,7 @@ Param(
 )
 ```
 
-If you notice above, we've defined a non-mandatory parameter that is of type `[String]`. If you notice above, we've defined a non-mandatory parameter that is of type `[String]`. This is a guardrail because any other type causes an error to be thrown.
+If you notice above, we've defined a non-mandatory parameter that is of type `[String]`. This is a guardrail because any other type causes an error to be thrown.
 We have added further restrictions (guardrails) on this parameter by employing a `[ValidateSet()]` attribute, which limits the valid input to _only_ those items that are
 a member of the set. Provide `Horse` to the animal parameter and, even though it is a string, it produces an error because it's not a member of the approved set of inputs.
 
