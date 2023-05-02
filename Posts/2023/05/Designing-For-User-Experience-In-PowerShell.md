@@ -85,8 +85,13 @@ The `[ValidateScript()]` attribute is extremely powerful. It allows you to run a
 Let's check out a _very_ simple example:
 
 ```powershell
-    [CmdletBinding()] Param( [Parameter()] [ValidateScript({ Test-Path $_ })]
-    [String] $InputFile )
+[CmdletBinding()] 
+Param( 
+    [Parameter()]
+    [ValidateScript({ Test-Path $_ })]
+    [String]
+    $InputFile
+)
 ```
 
 By using `Test-Path $_` in the Scriptblock of our `[ValidateScript()]` attribute we are instructing
