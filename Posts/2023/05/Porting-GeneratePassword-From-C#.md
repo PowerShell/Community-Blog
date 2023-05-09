@@ -29,18 +29,18 @@ not have any security warranties, nor is intended for misuse.
 Once installed, open **ILSpy**, click on **File** and **Open from GAC...**.
 On the search bar, type **System.Web**, select the assembly, and click **Open**.
 
-![File menu](./Media/Porting-GeneratePassword-From-C#/File-OpenFromGAC.png)
-![Open from GAC menu](./Media/Porting-GeneratePassword-From-C#/OpenFromGACMenu.png)
+![File menu](./Media/Porting-GeneratePassword-From-Csharp/File-OpenFromGAC.png)
+![Open from GAC menu](./Media/Porting-GeneratePassword-From-Csharp/OpenFromGACMenu.png)
 
 Once loaded, expand the **System.Web** assembly tree, and the **System.Web.Security** namespace.
 Inside **System.Web.Security**, look for the **Membership** class, click on it, and the decompiled
 code should appear on the right pane.
 
-![Membership class](./Media/Porting-GeneratePassword-From-C#/MembershipClass.png)
+![Membership class](./Media/Porting-GeneratePassword-From-Csharp/MembershipClass.png)
 
 Scroll down until you find the **GeneratePassword** method, and expand it.
 
-![GeneratePassword method](./Media/Porting-GeneratePassword-From-C#/GeneratePasswordMethod.png)
+![GeneratePassword method](./Media/Porting-GeneratePassword-From-Csharp/GeneratePasswordMethod.png)
 
 
 ## Porting to PowerShell
@@ -539,7 +539,7 @@ function New-StrongPassword {
 
 Now all that's left is to call our function:
 
-![New-StrongPassword](./Media/Porting-GeneratePassword-From-C#/Result.png)
+![New-StrongPassword](./Media/Porting-GeneratePassword-From-Csharp/Result.png)
 
 ## Conclusion
 
