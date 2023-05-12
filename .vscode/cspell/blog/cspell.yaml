@@ -1,0 +1,26 @@
+name: blog
+description: >
+  This cSpell configuration is for terminology used on the Blog. Only add to the dictionary defined
+  here if the terms aren't for general PowerShell. If they apply to PowerShell more broadly,
+  contribute those changes back to the psdocs configuration and dictionaries in the
+  MicrosoftDocs/PowerShell-Docs repository, not here.
+
+dictionaryDefinitions:
+  - name: blog-terms
+    description: >
+      Dictionary of common terms used in the blog.. Add entries to this dictionary for words used
+      in blog posts but not broader PowerShell or other documentation.
+    path: ./dictionaries/blog-terms.txt
+
+# These settings are applied to combinations of language (file type) and locale. For any given file
+# and locale, all matching dictionaries are applied.
+languageSettings:
+  # Any Markdown file
+  - languageId: markdown
+    locale: '*'
+    dictionaries:
+      - blog-terms
+  - languageId: yaml
+    locale: '*'
+    dictionaries:
+      - blog-terms
