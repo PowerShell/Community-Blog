@@ -7,24 +7,23 @@ summary: This post shows how to measure script execution time in PowerShell
 ---
 
 Most of the time while developing PowerShell scripts we don't need to worry about performance, or
-execution time, after all, scripts were made to run automation in the background.
-However, as your scripts become more sophisticated, and you need to work with complex data or big
-data sizes, performance becomes something to keep in mind.
-Measuring a script execution time is the first step towards script optimization.
+execution time. After all, scripts were made to run automation in the background. However, as your
+scripts become more sophisticated, and you need to work with complex data or big data sizes,
+performance becomes something to keep in mind. Measuring a script execution time is the first step
+towards script optimization.
 
 ## Measure-Command
 
-PowerShell has a built-in Cmdlet called `Measure-Command` which measure the execution time of
-other Cmdlets, or script blocks.
-It has two parameters:
+PowerShell has a built-in cmdlet called `Measure-Command`, which measures the execution time of
+other cmdlets, or script blocks. It has two parameters:
 
-- Expression: The script block to be measured.
-- InputObject: Optional input to be passed to the script block. You can use `$_` or `$PSItem` to
+- **Expression**: The script block to be measured.
+- **InputObject**: Optional input to be passed to the script block. You can use `$_` or `$PSItem` to
   access them.
 
 Besides the two parameters, objects in the pipeline are also passed to the script block.
-`Measure-Command` returns an object of type `System.TimeSpan`, giving us more flexibility on
-how to work with the result.
+`Measure-Command` returns an object of type `System.TimeSpan`, giving us more flexibility on how to
+work with the result.
 
 ```powershell
 Measure-Command { foreach ($number in 1..1000) { <# Do work #> } }
@@ -47,8 +46,9 @@ TotalMilliseconds : 8.5034
 Using the pipeline or the **InputObject** parameter.
 
 ```powershell
-1..1000 | Measure-Command -Expression { foreach ($number in $_) { <# Do work #> } } | `
-Select-Object TotalMilliseconds
+1..1000 |
+    Measure-Command -Expression { foreach ($number in $_) { <# Do work #> } } |
+    Select-Object TotalMilliseconds
 ```
 
 ```powershell-console
@@ -58,8 +58,8 @@ TotalMilliseconds
 ```
 
 ```powershell
-Measure-Command -InputObject (1..1000) -Expression { $_ | % { <# Do work #> } } | `
-Select-Object TotalMilliseconds
+Measure-Command -InputObject (1..1000) -Expression { $_ | % { <# Do work #> } } |
+    Select-Object TotalMilliseconds
 ```
 
 ```powershell-console
@@ -95,8 +95,8 @@ TotalMilliseconds : 15.5838
 Current variable value: 10.
 ```
 
-To overcome this, you can use the invocation operator `&` and enclose the script block
-in `{}`, to execute in a separate context.
+To overcome this, you can use the invocation operator `&` and enclose the script block in `{}`, to
+execute in a separate context.
 
 ```powershell
 $studyVariable = 0
@@ -120,8 +120,8 @@ TotalMilliseconds : 8.6542
 Current variable value: 0.
 ```
 
-It's also worth remember that if your script block modifies system resources,
-files, databases or any other static data, the object gets modified.
+It's also worth remember that if your script block modifies system resources, files, databases or
+any other static data, the object gets modified.
 
 ```powershell
 $scriptBlock = {
@@ -147,7 +147,6 @@ TotalMinutes      : 0.000198296666666667
 TotalSeconds      : 0.0118978
 TotalMilliseconds : 11.8978
 
-
 FullName : C:\SuperCoolFolder
 ```
 
@@ -155,13 +154,13 @@ As a cool exercise, try figuring out why the output from `New-Item` didn't show 
 
 ## Output and Alternatives
 
-`Measure-Command` returns a `System.TimeStamp` object, but not the result from the script.
-If your study also includes the result, there are two ways you can go about it.
+`Measure-Command` returns a `System.TimeSpan` object, but not the result from the script. If your
+study also includes the result, there are two ways you can go about it.
 
 ### Saving the output in a variable
 
-We know that scripts executed with `Measure-Object` runs in the current scope. So we could
-assign the result to a variable, and work with it.
+We know that scripts executed with `Measure-Object` runs in the current scope. So we could assign
+the result to a variable, and work with it.
 
 ```powershell
 $range = 1..100
@@ -174,8 +173,8 @@ $scriptBlock = {
     }
 }
 
-Measure-Command -InputObject (1..100) -Expression $scriptBlock | `
-Format-List TotalMilliseconds
+Measure-Command -InputObject (1..100) -Expression $scriptBlock |
+    Format-List TotalMilliseconds
 Write-Host "The count of even numbers in 1..100 is $evenCount."
 ```
 
@@ -187,13 +186,13 @@ The count of even numbers in 1..100 is 50.
 
 ### Custom Function
 
-If you are serious about the performance variable, and want to keep the script block
-as clean as possible, we could elaborate our own function, and shape the output as we want.
+If you are serious about the performance variable, and want to keep the script block as clean as
+possible, we could elaborate our own function, and shape the output as we want.
 
-The `Measure-Command` Cmdlet uses an object called `System.Diagnostics.Stopwatch`.
-It works like a real stopwatch, and we control it using its methods, like `Start()`, `Stop()`, etc.
-All we need to do is start it before executing our script block, stop it after execution finishes,
-and collect the result from the **Elapsed** property.
+The `Measure-Command` Cmdlet uses an object called `System.Diagnostics.Stopwatch`. It works like a
+real stopwatch, and we control it using its methods, like `Start()`, `Stop()`, etc. All we need to
+do is start it before executing our script block, stop it after execution finishes, and collect the
+result from the **Elapsed** property.
 
 ```powershell
 function Measure-CommandEx {
@@ -224,10 +223,10 @@ function Measure-CommandEx {
 
             # Starting the stopwatch.
             $stopWatch.Start()
-    
+
             # Creating the '$_' variable.
-            $dollrUn = New-Object -TypeName psvariable -ArgumentList @('_', $InputObject)
-    
+            $dollarUn = New-Object -TypeName psvariable -ArgumentList @('_', $InputObject)
+
             <#
                 Overload is:
                     InvokeWithContext(
@@ -236,8 +235,8 @@ function Measure-CommandEx {
                         object[] args
                     )
             #>
-            $result.AddRange($Expression.InvokeWithContext($null, $dollrUn, $null))
-    
+            $result.AddRange($Expression.InvokeWithContext($null, $dollarUn, $null))
+
             $stopWatch.Stop()
         }
         else {
