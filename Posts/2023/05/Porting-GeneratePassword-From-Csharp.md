@@ -2,6 +2,7 @@
 post_title: 'Porting System.Web.Security.Membership.GeneratePassword() to PowerShell'
 username: francisconabas
 categories: PowerShell
+post_slug: porting-system-web-security-membership-generatepassword-to-powershell
 tags: PowerShell, Automation, Password, Portability, C#
 summary: This post shows how to port a C# method into PowerShell
 ---
@@ -530,20 +531,20 @@ function New-StrongPassword {
             $array = New-Object -TypeName 'System.Byte[]' -ArgumentList $Length
             $array2 = New-Object -TypeName 'System.Char[]' -ArgumentList $Length
             $num = 0
-            [void][14].GetBytes($array)
+            [void](New-Object -TypeName 'System.Security.Cryptography.RNGCryptoServiceProvider').GetBytes($array)
 
             for ($i = 0; $i -lt $Length; $i++) {
                 $num2 = [int]$array[$i] % 87
                 if ($num2 -lt 10) {
-                    $array2[$i] = [char][07]
+                    $array2[$i] = [char](48 + $num2)
                     continue
                 }
                 if ($num2 -lt 36) {
-                    $array2[$i] = [char][08]
+                    $array2[$i] = [char](65 + $num2 - 10)
                     continue
                 }
                 if ($num2 -lt 62) {
-                    $array2[$i] = [char][09]
+                    $array2[$i] = [char](97 + $num2 - 36)
                     continue
                 }
                 $array2[$i] = $global:punctuations[$num2 - 62]
