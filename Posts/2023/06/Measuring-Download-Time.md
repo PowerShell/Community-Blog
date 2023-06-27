@@ -2,6 +2,7 @@
 post_title: 'Measuring average download time'
 username: francisconabas
 categories: PowerShell
+post_slug: measuring-download-time
 tags: PowerShell, Automation, Performance, Measure-Command
 summary: This post shows how to measure average download time with PowerShell
 ---
