@@ -124,8 +124,7 @@ This method uses the following workflow:
 Here is what this implementation looks like:
 
 ```powershell
-$uri = New-Object -TypeName 'System.Uri' `
--ArgumentList 'https://www.myawesomeserver.com/Files/BitsDefinition.txt'
+$uri = [uri]'https://www.contoso.com/Files/BitsDefinition.txt'
 
 $stopwatch = New-Object -TypeName 'System.Diagnostics.Stopwatch'
 
