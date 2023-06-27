@@ -28,8 +28,11 @@ For us, it also serves as an easy way of downloading files. Here is how you down
 web server using BITS:
 
 ```powershell
-Start-BitsTransfer -Source 'https://www.myawesomeserver.com/Files/BitsDefinition.txt' `
--Destination 'C:\BitsDefinition.txt'
+$startBitsTransferSplat = @{
+    Source = 'https://www.contoso.com/Files/BitsDefinition.txt'
+    Destination = 'C:\BitsDefinition.txt'
+}
+Start-BitsTransfer @startBitsTransferSplat
 ```
 
 Another great advantage of BITS is that it shows progress, which can be useful while
