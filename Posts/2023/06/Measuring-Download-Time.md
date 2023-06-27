@@ -126,7 +126,7 @@ Here is what this implementation looks like:
 ```powershell
 $uri = [uri]'https://www.contoso.com/Files/BitsDefinition.txt'
 
-$stopwatch = New-Object -TypeName 'System.Diagnostics.Stopwatch'
+$stopwatch = [System.Diagnostics.Stopwatch]::new()
 
 $request = [System.Net.HttpWebRequest]::Create($uri)
 
