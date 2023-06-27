@@ -107,7 +107,7 @@ return $average
 Great, now we can run the test as many times as we want and get consistent results. This looping
 system will also serve as a skeleton for the other methods we will try.
 
-### `System.Net.HttpWebRequest`
+### System.Net.HttpWebRequest
 
 Using `Start-BitsTransfer` is great because it's easy to set up, however is not the most efficient
 way. BITS transfers have some overhead involved to start, maintain and cleanup jobs, manage
