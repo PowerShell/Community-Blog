@@ -398,7 +398,7 @@ TotalSeconds      : 0.281999
 TotalMilliseconds : 281.999
 ```
 
-Native:
+**Native**:
 
 ```powershell-console
 Days              : 0
