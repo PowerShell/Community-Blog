@@ -139,11 +139,10 @@ $stopwatch.Restart()
 $responseStream = $request.GetResponse().GetResponseStream()
 $tempFilePath = [System.IO.Path]::GetTempFileName()
 
-$targetStream = New-Object -TypeName 'System.IO.FileStream' `
--ArgumentList @($tempFilePath, 'Create')
+$targetStream = [System.IO.FileStream]::new($tempFilePath, 'Create')
 
 # You can experiment with the size of the byte array to try to get the best performance.
-$buffer = New-Object 'System.Byte[]' -ArgumentList 10Kb
+$buffer = [System.Byte[]]::new(10Kb)
 
 # Reading data and writing to the file stream, until there is no more data to read.
 do {
@@ -167,7 +166,7 @@ return $stopwatch.Elapsed
 There are definitely more steps, and more points of failure, so how does it perform against
 the BITS method? Here are the results of both methods, using the same file and 10 iterations.
 
-BITS:
+**BITS**:
 
 ```powershell-console
 Days              : 0
@@ -183,7 +182,7 @@ TotalSeconds      : 0.6575274
 TotalMilliseconds : 657.5274
 ```
 
-`HttpWebRequest`:
+**HttpWebRequest**:
 
 ```powershell-console
 Days              : 0
@@ -287,20 +286,10 @@ namespace Utilities
 Then we can use `Add-Type` to compile, and import this type in PowerShell.
 
 ```powershell
-# If the code was saved in a file.
 Add-Type -TypeDefinition (Get-Content -Path 'C:\WinHttpHelper.cs' -Raw)
-
-# If it was saved using a here-string.
-Add-Type -TypeDefinition @'
-<# Code goes gere #>
-'@
-
-# Or
-
-Add-Type -TypeDefinition $typeSignature
 ```
 
-After that, the method is similar to the .NET one, with a little more steps.
+After that, the method is similar to the .NET one, with a few more steps.
 It makes sense being alike, because at some point .NET will call a Windows API. Note that
 `Winhttp.dll` is not the only API that can be used to download files. This is what the PowerShell
 code looks like:
