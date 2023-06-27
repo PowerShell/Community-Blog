@@ -536,7 +536,7 @@ Speed    TimeSpan
 ## Conclusion
 
 If you got to this point I hope you had as much fun as I did. You can find all the code we wrote
-compiled on a script in my [GitHub page][01]
+in my [GitHub page][01].
 
 Until the next one, happy scripting!
 
