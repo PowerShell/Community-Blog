@@ -329,9 +329,8 @@ if (![Utilities.WinHttp]::WinHttpReceiveResponse($hRequest, [IntPtr]::Zero)) {
 
 # Creating the temp file memory stream.
 $tempFilePath = [System.IO.Path]::GetTempFileName()
-$arguments = @($tempFilePath, 'Create')
-$fileStream = New-Object -TypeName 'System.IO.FileStream' -ArgumentList $arguments
-    
+$fileStream = [System.IO.FileStream]::new($tempFilePath, 'Create')
+
 # Reading data until there is no more data available.
 do {
     # Querying if there is data available.
