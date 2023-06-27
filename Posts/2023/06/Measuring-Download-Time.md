@@ -76,8 +76,7 @@ of times, and calculating the average, this way we have more reliable results.
 ```powershell
 # Changing the progress preference to hide the progress bar.
 $ProgressPreference = 'SilentlyContinue'
-$payloadUrl = 'https://www.myawesomeserver.com/Files/BitsDefinition.txt'
-$destination = 'C:\BitsDefinition.txt'
+$payloadUrl = 'https://www.contoso.com/Files/BitsDefinition.txt'
 $stopwatch = New-Object -TypeName 'System.Diagnostics.Stopwatch'
 $elapsedTime = [timespan]::Zero
 $iterationNumber = 3
@@ -86,18 +85,21 @@ $iterationNumber = 3
 # but this can also be accomplished with a for loop.
 foreach ($iteration in 1..$iterationNumber) {
     $tempFilePath = [System.IO.Path]::GetTempFileName()
-    
+
     $stopwatch.Restart()
-    Start-BitsTransfer -Source $payloadUrl -Destination $destination
+    Start-BitsTransfer -Source $payloadUrl -Destination $tempFilePath
     $stopwatch.Stop()
-    
+
     Remove-Item -Path $tempFilePath
     $elapsedTime = $elapsedTime.Add($stopwatch.Elapsed)
 }
 
 # Timespan.Divide is not available on .NET Framework.
-if ($Host.Version -ge [version]'6.0') { $average = $elapsedTime.Divide($IterationNumber) }
-else { $average = [timespan]::new($elapsedTime.Ticks / $IterationNumber) }
+if ($PSVersionTable.PSVersion -ge [version]'6.0') {
+    $average = $elapsedTime.Divide($IterationNumber)
+} else { $
+    average = [timespan]::new($elapsedTime.Ticks / $IterationNumber)
+}
 
 return $average
 ```
