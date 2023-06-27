@@ -40,7 +40,7 @@ downloading big files. In our case however, we want to know how long does it tak
 download a file. For this we will use a handy object of type `System.Diagnostics.Stopwatch`.
 
 ```powershell
-$stopwatch = New-Object -TypeName 'System.Diagnostics.Stopwatch'
+$stopwatch = [System.Diagnostics.Stopwatch]::new()
 
 $stopwatch.Start()
 $startBitsTransferSplat = @{
