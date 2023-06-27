@@ -382,7 +382,7 @@ return $stopwatch.Elapsed
 
 Now with all this extra work you might be asking, how does it perform?
 
-`HttpWebRequest`:
+**HttpWebRequest**:
 
 ```powershell-console
 Days              : 0
