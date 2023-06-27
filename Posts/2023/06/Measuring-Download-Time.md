@@ -19,7 +19,7 @@ We will focus on three methods, ranging from the easiest to the most complex, an
 their pros and cons. These methods are the `Start-BitsTransfer` Cmdlet, using .NET with the
 `System.Net` namespace, and using the Windows native API.
 
-### `Start-BitsTransfer`
+### Start-BitsTransfer
 
 BITS, or Background Intelligent Transfer Service is a Windows service that manages content transfer
 using HTTP or SMB. It was designed to manage the many aspects of content transfer, including cost,
