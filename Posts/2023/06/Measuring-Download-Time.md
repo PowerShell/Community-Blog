@@ -43,8 +43,11 @@ download a file. For this we will use a handy object of type `System.Diagnostics
 $stopwatch = New-Object -TypeName 'System.Diagnostics.Stopwatch'
 
 $stopwatch.Start()
-Start-BitsTransfer -Source 'https://www.myawesomeserver.com/Files/BitsDefinition.txt' `
--Destination 'C:\BitsDefinition.txt'
+$startBitsTransferSplat = @{
+    Source = 'https://www.contoso.com/Files/BitsDefinition.txt'
+    Destination = 'C:\BitsDefinition.txt'
+}
+Start-BitsTransfer @startBitsTransferSplat
 $stopwatch.Stop()
 
 Write-Output $stopwatch.Elapsed
