@@ -500,8 +500,7 @@ be as cool as those internet speed measuring websites? Well, We have the time, a
 file size, and we can calculate the speed:
 
 ```powershell
-$uri = New-Object -TypeName 'System.Uri' `
--ArgumentList 'https://www.myawesomeserver.com/Files/BitsDefinition.txt'
+$uri = [uri]'https://www.contoso.com/Files/BitsDefinition.txt'
 
 # Getting the total file size in bytes.
 $totalSizeBytes = [System.Net.HttpWebRequest]::Create($uri).GetResponse().ContentLength
