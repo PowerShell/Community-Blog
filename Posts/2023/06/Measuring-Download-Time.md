@@ -67,8 +67,8 @@ TotalSeconds      : 0.8165482
 TotalMilliseconds : 816.5482
 ```
 
-Awesome, we now have a baseline to build our script upon. First thing we will change is the file,
-since we are more interested on the speed, we can use temporary files to download, that also
+Awesome, we now have a baseline to build our script upon. First thing we will change is the file.
+Since we are more interested on the speed we can use temporary files to download. That also
 gives us the opportunity of cleaning up at the end. For this we will use a static method from
 `System.IO.Path` called `GetTempFileName`. Other thing we must think is on running the test a number
 of times, and calculating the average, this way we have more reliable results.
