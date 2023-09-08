@@ -255,8 +255,8 @@ with <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> and then selecting **Develope
 
 ### Listing and opening running processes
 
-Now we need to list all running processes, and open them using the `OpenProcess` function. The
-handle returned by this function will be used to list the processes handle list.
+Now we need to list all running processes, and open them using the `OpenProcess` method. The handle
+returned by this method will be used to list the process's handle list.
 
 ```powershell
 # These variables represent OS constants. We add them here to improve readability.
