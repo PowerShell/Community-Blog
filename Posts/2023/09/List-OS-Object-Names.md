@@ -9,7 +9,7 @@ summary: This post shows how to list the object names who have open handles with
 
 As our knowledge of the Windows operating system grows, we often need to understand how processes
 request, utilize, and dispose of operating system resources. This is nothing new, tools like
-the Task Manager or Process Explorer shows a comprehensive view of these relations.
+the Task Manager or Process Explorer show a comprehensive view of these relations.
 However, we don't need a complicated application to explore this lower level of abstraction, all
 we need is our trusty PowerShell console, and a bit of imagination.
 
