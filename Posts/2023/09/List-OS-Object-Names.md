@@ -27,12 +27,16 @@ by Pavel Yosifovich. This is one of the posts I keep in my browser's bookmarks.
 As explained previously, we are going to define function signatures, and structs using C#. Due to
 similarities between C# and PowerShell, this should be relatively familiar.
 
+First we start with the enumerations. These are for making function calls more understandable.
+
 ```csharp
 namespace Utilities
 {
     using System;
     using System.Runtime.InteropServices;
 
+    // This one lists the possible process information we can get
+    // with 'NtQueryInformationProcess'.
     public enum PROCESSINFOCLASS
     {
         ProcessBasicInformation = 0,
@@ -43,12 +47,33 @@ namespace Utilities
         ProcessHandleInformation = 51
     }
 
+    // This one is similar to the previous enumeration, but lists
+    // possible information we can get from objects.
     public enum OBJECT_INFORMATION_CLASS
     {
         ObjectNameInformation = 1,
         ObjectTypeInformation = 2
     }
 
+    /* Code continues bellow */
+}
+```
+
+Now we define the structs. There are the structures that will hold the information
+we want to query.
+
+```csharp
+namespace Utilities
+{
+    using System;
+    using System.Runtime.InteropServices;
+
+    /* Above code */
+
+    // Often when using functions from 'ntdll.dll' we see this
+    // structure. It exists to hold a string that can be
+    // easily manipulated by the lower levels of the operating
+    // system.
     [StructLayout(LayoutKind.Sequential)]
     public struct UNICODE_STRING
     {
@@ -59,6 +84,9 @@ namespace Utilities
         public string Buffer;
     }
 
+    // This structure is part of 'OBJECT_TYPE_INFORMATION'.
+    // We wont use it, but we need to specify it so the final
+    // struct alignment is in line with the original.
     [StructLayout(LayoutKind.Sequential)]
     public struct GENERIC_MAPPING {
         public uint GenericRead;
@@ -67,6 +95,9 @@ namespace Utilities
         public uint GenericAll;
     }
 
+    // This structure holds information about objects.
+    // It's what's returned when we use the option
+    // 'ObjectTypeInformation' when querying 'NtQueryObject'.
     [StructLayout(LayoutKind.Sequential)]
     public struct OBJECT_TYPE_INFORMATION
     {
@@ -95,6 +126,9 @@ namespace Utilities
         public uint DefaultNonPagedPoolCharge;
     }
 
+    // This structure holds information about a process open
+    // handles. An array of these structures is what we are
+    // going to work with.
     [StructLayout(LayoutKind.Sequential)]
     public struct PROCESS_HANDLE_TABLE_ENTRY_INFO
     {
@@ -107,6 +141,8 @@ namespace Utilities
         public uint Reserved;
     }
 
+    // This structure is what is returned when we use the option
+    // 'ProcessHandleInformation' when querying 'NtQueryInformationProcess'
     [StructLayout(LayoutKind.Sequential)]
     public struct PROCESS_HANDLE_SNAPSHOT_INFORMATION
     {
@@ -115,8 +151,28 @@ namespace Utilities
         public IntPtr Handles;
     }
 
+    /* Code continues bellow */
+
+}
+```
+
+Lastly we define the functions.
+
+```csharp
+namespace Utilities
+{
+    using System;
+    using System.Runtime.InteropServices;
+
+    /* Above code */
+
+    // We need a class to hold members like methods (functions).
     public class ProcessAndThread
     {
+        // This function returns information about processes.
+        // The 'DllImport' attribute tells the runtime in which module
+        // this function is defined, if we want to set the last error,
+        // and optionally the encoding.
         [DllImport("ntdll.dll", SetLastError = true, CharSet = CharSet.Unicode)]
         public static extern int NtQueryInformationProcess(
             IntPtr ProcessHandle,
@@ -126,6 +182,8 @@ namespace Utilities
             out uint ReturnLength
         );
 
+        // This is similar to the previous one, but returns information about
+        // objects being used by processes.
         [DllImport("ntdll.dll", SetLastError = true, CharSet = CharSet.Unicode)]
         public static extern int NtQueryObject(
             IntPtr Handle,
@@ -135,6 +193,9 @@ namespace Utilities
             out uint ReturnLength
         );
 
+        // This function opens a handle to a process. We need to use it instead
+        // of the .NET APIs because the handles it uses are only references to
+        // native handles, and not the handles themselves.
         [DllImport("kernel32.dll", SetLastError = true)]
         public static extern IntPtr OpenProcess(
              uint processAccess,
@@ -142,6 +203,8 @@ namespace Utilities
              uint processId
         );
 
+        // This function duplicates a handle opened by a process.
+        // We need to duplicate the handle to be able to query it.
         [DllImport("kernel32.dll", SetLastError=true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool DuplicateHandle(
@@ -154,9 +217,15 @@ namespace Utilities
             uint dwOptions
         );
 
+        // This function returns a handle to the current process.
+        // We need it so the OS can associate the duplicated handle
+        // with it.
         [DllImport("kernel32.dll", SetLastError = true)]
         public static extern IntPtr GetCurrentProcess();
 
+        // This function closes a handle opened by certain functions.
+        // Is important to close all handles where necessary to avoid
+        // memory leaks.
         [DllImport("kernel32.dll", SetLastError = true)]
         public static extern bool CloseHandle(IntPtr hObject);
     }
