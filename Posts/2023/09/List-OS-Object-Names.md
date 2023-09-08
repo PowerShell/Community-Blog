@@ -19,8 +19,8 @@ To achieve this, and to keep it fun, we are going to use a set of documented and
 documented Windows APIs. Although it's possible to achieve this using 100% PowerShell, to improve
 simplicity we are going to use a bit of C# for the function signatures and value types, like
 structs.
-This post draws inspiration from a blog post by Pavel Yosifovich, that can me accessed [here][01].
-This is one of the posts I keep in my browser's bookmarks.
+This post draws inspiration from the blog post [How can I close a handle in another process?][01]
+by Pavel Yosifovich. This is one of the posts I keep in my browser's bookmarks.
 
 ## Signatures
 
