@@ -25,7 +25,7 @@ by Pavel Yosifovich. This is one of the posts I keep in my browser's bookmarks.
 ## Signatures
 
 As explained previously, we are going to define function signatures, and structs using C#. Due to
-similarities between C# and PowerShell, this shouldn't be complicated to understand.
+similarities between C# and PowerShell, this should be relatively familiar.
 
 ```csharp
 namespace Utilities
