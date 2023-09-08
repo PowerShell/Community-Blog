@@ -303,7 +303,6 @@ memory we need to allocate. Then we loop trying to get the information until we 
 
 ```powershell
 foreach ($process in $process_list) {
-
     <# ~ Previous code ~ #>
 
     # Querying for the first time to get the buffer size.
