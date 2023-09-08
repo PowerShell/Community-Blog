@@ -204,9 +204,9 @@ $process_list = Get-Process
 
 foreach ($process in $process_list) {
 
-    # 'vmmemCmZygote' is a special protected process used by the Container Manager.
-    # Due its nature we can't query information about it, so if you use containers,
-    # or the Windows Sandbox include this line to skip it.
+    # 'vmmemCmZygote' is a special protected process used by the Container
+    # Manager. Due its nature we can't query information about it, so if you
+    # use containers or the Windows Sandbox, include this line to skip it.
     if ($process.Name -eq 'vmmemCmZygote') { continue }
 
     # The desired access. We want the ability to query process information,
