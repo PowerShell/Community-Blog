@@ -298,8 +298,8 @@ foreach ($process in $process_list) {
 ### Querying process information
 
 The next stage is to list all open handles for the current process in the loop. Since the number
-of handles varies, this is a two-part operation. First we call the function to know how much
-memory we need to allocate, then we loop trying to get the information until we succeed.
+of handles varies, this is a two-part operation. First, we call the function to know how much
+memory we need to allocate. Then we loop trying to get the information until we succeed.
 
 ```powershell
 foreach ($process in $process_list) {
