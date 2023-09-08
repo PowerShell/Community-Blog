@@ -403,7 +403,7 @@ foreach ($process in $process_list) {
             [ref]$bytes_needed            # The size needed.
         )
         
-        # Either if the function fails or succeeds, we need to close our handle.
+        # We always need to close our handle, regardless of success or failure.
         [void][Utilities.ProcessAndThread]::CloseHandle($h_target)
 
         # Something went wrong, continuing to the next handle.
