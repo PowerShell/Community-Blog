@@ -16,9 +16,9 @@ we need is our trusty PowerShell console, and a bit of imagination.
 ## Method
 
 To achieve this, and to keep it fun, we are going to use a set of documented and partially
-documented Windows APIs, and although it's possible to achieve this using 100% PowerShell, to
-improve simplicity we are going to use a bit of C#, just for the function signatures, and
-value types, like structs.
+documented Windows APIs. Although it's possible to achieve this using 100% PowerShell, to improve
+simplicity we are going to use a bit of C# for the function signatures and value types, like
+structs.
 This post draws inspiration from a blog post by Pavel Yosifovich, that can me accessed [here][01].
 This is one of the posts I keep in my browser's bookmarks.
 
