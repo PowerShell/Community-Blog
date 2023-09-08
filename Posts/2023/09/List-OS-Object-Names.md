@@ -250,8 +250,8 @@ catch { }
 
 The `try-catch` block here catches any exceptions in case we run this script more than once, since
 the type was added already. But if you made changes to the C# code, you need to close the PowerShell
-session and open it again. In Visual Code you can accomplish this by reloading the window with
-Ctrl + Shift + P → Developer: Reload Window.
+session and open it again. In Visual Code you can accomplish this by opening the command palette
+with <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> and then selecting **Developer: Reload Window**.
 
 ### Listing and opening running processes
 
