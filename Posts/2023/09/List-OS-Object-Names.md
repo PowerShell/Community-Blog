@@ -282,7 +282,11 @@ foreach ($process in $process_list) {
     # and duplicate its handles.
     $proc_access = $PROCESS_QUERY_INFORMATION -bor $PROCESS_DUP_HANDLE
 
-    $h_process = [Utilities.ProcessAndThread]::OpenProcess($proc_access, $false, $process.Id)
+    $h_process = [Utilities.ProcessAndThread]::OpenProcess(
+        $proc_access,
+        $false,
+        $process.Id
+    )
     
     # If opening the process fails, we continue to the next one.
     if ($h_process -eq [IntPtr]::Zero) { continue }
