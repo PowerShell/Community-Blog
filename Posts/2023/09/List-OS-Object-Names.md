@@ -270,7 +270,6 @@ $process_list = Get-Process
 [System.Collections.Generic.List[string]]$object_names = @()
 
 # Iterating through each process.
-
 foreach ($process in $process_list) {
 
     # 'vmmemCmZygote' is a special protected process used by the Container
