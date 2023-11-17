@@ -3,8 +3,8 @@ post_title: 'Automate Text Summarization with OpenAI and PowerShell'
 username: thepiyush13
 categories: PowerShell, OpenAI, Scripting
 post_slug: automate-text-summarization-with-openai-powershell
-tags: PowerShell, OpenAI, GPT-3, API, Summarization
-summary: This easy-to-follow guide shows you how to use PowerShell to summarize text using OpenAI's GPT-3 API.
+tags: PowerShell, OpenAI, GPT-3.5, API, Summarization
+summary: This easy-to-follow guide shows you how to use PowerShell to summarize text using OpenAI's GPT-3.5 API.
 ---
 
 Automating tasks is the core of PowerShell scripting. Adding artificial intelligence into the mix takes automation to a whole new level. Today, we'll simplify the process of connecting to OpenAI's powerful text summarization API from PowerShell. Let's turn complex AI interaction into a straightforward script.
@@ -77,7 +77,7 @@ Write-Output "Summary: $summary"
 
 Replace `'Your_OpenAI_API_Key'` with your actual key and `'Your text to summarize...'` with what you want to summarize.
 
-Here's a how I am running this function in my local powershell prompt:
+Here's a how I am running this function in my local powershell prompt, I copied the text from Wikipedia:
 ```powershell
 $summary = Invoke-OpenAISummarize -apiKey '*********' -textToSummarize 'PowerShell is a task automation and configuration management program from Microsoft, consisting of a command-line shell and the associated scripting language. Initially a Windows component only, known as Windows PowerShell, it was made open-source and cross-platform on August 18, 2016, with the introduction of PowerShell Core.[5] The former is built on the .NET Framework, the latter on .NET (previously .NET Core).'
 ```
@@ -88,8 +88,13 @@ PowerShell, initially Windows-only, is a Microsoft automation tool that became c
 
 ## Conclusion
 
-Combining AI with PowerShell scripting is like giving superpowers to your computer. By breaking down each step and keeping it simple, you can see how easy it is to automate text summarization using OpenAI's GPT-3 API. Now, try it out and see how you can make this script work for you!
+Combining AI with PowerShell scripting is like giving superpowers to your computer. By breaking down each step and keeping it simple, you can see how easy it is to automate text summarization using OpenAI's GPT-3.5 API. Now, try it out and see how you can make this script work for you!
 
 Remember, the beauty of scripts is in their flexibility, so feel free to tweak and expand the function to fit your needs.
 
 Happy scripting and enjoy the power of AI at your fingertips!
+
+## References
+- https://platform.openai.com/docs/api-reference
+- https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-macos?view=powershell-7.4
+- https://en.wikipedia.org/wiki/PowerShell
