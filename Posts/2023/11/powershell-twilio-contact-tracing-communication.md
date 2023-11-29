@@ -1,6 +1,6 @@
 ---
 post_title: 'Using PowerShell and Twilio API for Efficient Communication in Contact Tracing'
-username: thepiyush13
+username: will2win4u
 categories: PowerShell, Twilio, Communication Technology
 post_slug: powershell-twilio-contact-tracing-communication
 tags: PowerShell, Twilio, API, Communication Technology, Contact Tracing
@@ -29,20 +29,30 @@ After the setup and with the appropriate Twilio module installed, crafting a Pow
 
 ```powershell
 Import-Module Twilio
+	
 $toPhoneNumber = 'Recipient_Phone_Number'
+$credential = [pscredential]:new($twilioAccountSid,
+    (ConvertTo-SecureString $twilioAuthToken -AsPlainText -Force))
 
 # Twilio API URL for sending SMS messages
 $uri = "https://api.twilio.com/2010-04-01/Accounts/$twilioAccountSid/Messages.json"
 
 # Preparing the payload for the POST request
-$params = @{
+$requestParams = @{
     From = $twilioPhoneNumber
     To = $toPhoneNumber
     Body = 'Your body text here.'
 }
 
+$invokeRestMethodSplat = @{
+    Uri = $uri
+    Method = 'Post'
+    Credential = $credential
+    Body = $requestParams
+}
+
 # Using the Invoke-RestMethod command for API interaction
-$response = Invoke-RestMethod -Uri $uri -Method Post -Credential (New-Object System.Management.Automation.PSCredential $twilioAccountSid, (ConvertTo-SecureString $twilioAuthToken -AsPlainText -Force)) -Body $params
+$response = Invoke-RestMethod @invokeRestMethodSplat
 ```
 
 Execute the script, and if all goes as planned, you should see a confirmation of the SMS being sent.
@@ -69,12 +79,32 @@ In this simple table, each column is separated by a comma. The first row is the 
 Once manual sending is confirmed and the CSV file is ready, you can move towards automating the process for contact tracing:
 
 ```powershell
+Import-Module Twilio
+	
 $contactList = Import-Csv -Path 'contact_list.csv'
 
+# Create Twilio API credentials
+$credential = [pscredential]:new($twilioAccountSid,
+    (ConvertTo-SecureString $twilioAuthToken -AsPlainText -Force))
+
+# Twilio API URL for sending SMS messages
+$uri = "https://api.twilio.com/2010-04-01/Accounts/$twilioAccountSid/Messages.json"
+
 foreach ($contact in $contactList) {
-    $params.To = $contact.Phone
-    $params.Body = "Please be informed of a potential COVID-19 exposure. Follow public health guidelines."
-    $response = Invoke-RestMethod -Uri $uri -Method Post -Credential (New-Object System.Management.Automation.PSCredential $twilioAccountSid, (ConvertTo-SecureString $twilioAuthToken -AsPlainText -Force)) -Body $params
+    $requestParams = @{
+        From = $twilioPhoneNumber
+        To = $contact.Phone
+        Body = "Please be informed of a potential COVID-19 exposure. Follow public health guidelines."
+    }
+
+    $invokeRestMethodSplat = @{
+        Uri = $uri
+        Method = 'Post'
+        Credential = $credential
+        Body = $requestParams
+    }
+    $response = Invoke-RestMethod @invokeRestMethodSplat
+
     # Log or take action based on $response as needed
 }
 ```
