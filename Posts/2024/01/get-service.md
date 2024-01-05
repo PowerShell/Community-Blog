@@ -4,10 +4,10 @@ user_login: David Knapp
 post_slug: get-services-not-running-as-local-system-or-network-service
 categories: Get services
 tags: Get-Service
-summary: Get a listing of the operating systems services that are not running as Local System or Network Service.
+summary: Get a listing of the operating systems services that are not running as Local Service, Local System, or Network Service.
 ---
 
-The following script can be used to return the operating system services that are not running as Local System or as the Network Service.  In other words, this can be used to provide a listing of all the services that can be configured to run as a user account or as a service account.
+The following script can be used to return the operating system services that are not running as Local Service, Local System, or as the Network Service.  In other words, this can be used to provide a listing of all the services that can be configured to run as a user account or as a service account.
 
 # Requirements
 
@@ -23,5 +23,5 @@ Open VS Code, create a new .ps1 file, and enter the following command.
 1.  Review the output
 
 ```powershell
-Get-Service | Where-Object {$_.username -ne "localsystem" -and $_.username -ne "NT AUTHORITY\NetworkService"}
+Get-Service | Where-Object {$_.username -ne "NT AUTHORITY\LocalService" -and $_.username -ne "localsystem" -and $_.username -ne "NT AUTHORITY\NetworkService" -and $_.username -ne ""} | Select -Property Name,DisplayName,UserName
 ```
