@@ -11,15 +11,13 @@ The following script can be used to return the operating system services that ar
 
 # Requirements
 
-To run this script, we just need PowerShell.
+To run this script, we just need a Windows host that has PowerShell.
 
 It can also be run from within VS Code.
 
 # How to Run the Script
 
-1.  Open PowerShell and run the following command.
-Or,
-Open VS Code, create a new .ps1 file, and enter the following command.
+1.  Open PowerShell and run the following command.  Or, open VS Code, create a new .ps1 file, and enter the following command.
 1.  Review the output
 
 ```powershell
