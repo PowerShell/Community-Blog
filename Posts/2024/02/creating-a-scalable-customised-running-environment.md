@@ -4,7 +4,8 @@ username: rod-meaney
 categories: PowerShell
 post_slug: creating-a-scalable-customised-running-environment
 tags: PowerShell, Automation, Toolmaking, User Experience
-summary: This post shows how to create an easy to support environment with all your own cmd-lets.
+summary: >-
+  This post shows how to create an easy to support environment with all your own cmdlets.
 ---
 
 Often people come to PoweShell as a developer looking for a simpler life, or as a support person
