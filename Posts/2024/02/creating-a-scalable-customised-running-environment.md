@@ -4,15 +4,14 @@ username: rod-meaney
 categories: PowerShell
 post_slug: creating-a-scalable-customised-running-environment
 tags: PowerShell, Automation, Toolmaking, User Experience
-summary: >-
-  This post shows how to create an easy to support environment with all your own cmdlets.
+summary: This post shows how to create an easy to support environment with all your own cmdlets.
 ---
 
 Often people come to PoweShell as a developer looking for a simpler life, or as a support person
 looking to make their life easier. Either way, we start exploring ways to encapsulate repeatable
 functionality, and through PowerShell that is cmdlets.
 
-How to create these is defined well in [Designing PowerShell For End Users][01]. And Microsoft 
+How to create these is defined well in [Designing PowerShell For End Users][01]. And Microsoft
 obviously have pretty good documention, including  [How to Write a PowerShell Script Module][02]. I
 also have a few basic rules I remember wehen creating cmdlets to go along with the above posts:
 
@@ -33,9 +32,9 @@ There are 2 parts to making an effective running environment
 
 ![folder-structure][03]
 
-We are aiming high here. Over time your functionality will grow and this shows a structure that 
-allows for growth.  There are 3 modules (effectively folders): `Forms`, `BusinessUtilities` and 
-`GeneralUtilities`. They are broken up into 2 main groupings, `my-support` and `my-utilities`. 
+We are aiming high here. Over time your functionality will grow and this shows a structure that
+allows for growth.  There are 3 modules (effectively folders): `Forms`, `BusinessUtilities` and
+`GeneralUtilities`. They are broken up into 2 main groupings, `my-support` and `my-utilities`.
 [ps-community-blog][04] is the GitHub repository where you can find this example.
 
 Inside the `GenreralUtilities` folder you can see the all-important `.psm1`, with the same name as
@@ -57,7 +56,7 @@ Get-ChildItem -Path "$PSScriptRoot\*.ps1" | ForEach-Object {
 What does this do and why does it work?
 
 - At a high level, it iterates over the current folder, and runs every `.ps1` file as PowerShell.
-- `$PSScriptRoot` is the key here, and tells running session, what the location of the current 
+- `$PSScriptRoot` is the key here, and tells running session, what the location of the current
   code is.
 
 This means you can create cmdlets under this structure, and they will automatically load when you
@@ -126,7 +125,7 @@ there, ready to use with all the wonderful functionality you have created.
 
 Having your own PowerShell cmdlets at your fingertips with minimal overhead or thinking makes your
 PowerShell experinece so very much more rewarding. It also makes it easier to do as I like to do
-and start the day with my favourite mantra: 
+and start the day with my favourite mantra:
 
 > Lets break some stuff!
 
