@@ -7,7 +7,7 @@ tags: PowerShell, Automation, Toolmaking, User Experience
 summary: This post shows how to create an easy to support environment with all your own cmdlets.
 ---
 
-Often people come to PoweShell as a developer looking for a simpler life, or as a support person
+Often people come to PowerShell as a developer looking for a simpler life, or as a support person
 looking to make their life easier. Either way, we start exploring ways to encapsulate repeatable
 functionality, and through PowerShell that is cmdlets.
 
