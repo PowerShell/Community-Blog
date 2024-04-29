@@ -8,13 +8,13 @@ summary: Keeping security folks happy (or less upset which is the best we can ho
 ---
 
 If you are involved in support or development, often you need to use secrets, passwords, or
-subscription keys in PowerShell scripts. These need to be kept secure, and separate from your
-scripts but you also need access to them ALL THE TIME.
+subscription keys in PowerShell scripts. These need to be kept secure and separate from your scripts
+but you also need access to them ALL THE TIME.
 
 So instead of hand entering them every time they should be stored in a key store of some sort that
-you can access programmatically. Often off the shelf keystores are not available in your
-environment, or are clumsy to access with PowerShell. A simple way to have easy access to these
-secrets with PowerShell would be helpful.
+you can access programmatically. Often off the shelf keystores are not available in your environment
+or are clumsy to access with PowerShell. A simple way to have easy access to these secrets with
+PowerShell would be helpful.
 
 You could simply have them in plain text, on your machine only, making it relatively secure.
 However, there are many risks with this approach, so adding some additional security is an excellent
