@@ -3,10 +3,6 @@
 This repository is for submissions for posts to the [PowerShell Community Blog][1]. We welcome
 submissions to the blog from anyone in the community.
 
-Submissions for articles on this blog are governed by the
-[Microsoft Open Source Code of Conduct][2] or the [.NET Foundation Code of Conduct][3]. For more
-information, see the [Code of Conduct FAQ][4].
-
 ## The Purpose of This Blog
 
 The intended purpose of the PowerShell Community Blog is to provide a platform for the PowerShell
@@ -57,11 +53,16 @@ and, most likely, git on your workstation.
 > contains a link to take you to the CLA signing page. Before we can accept any blog post
 > submission, you must sign the Contributor License Agreement (CLA). This is a one-time event.
 
+## Code of Conduct
+
+Please see our [Code of Conduct](.github/CODE_OF_CONDUCT.md) before participating in this project.
+
+## Security Policy
+
+For any security issues, please see our [Security Policy](.github/SECURITY.md).
+
 <!-- link references -->
 [1]: https://devblogs.microsoft.com/powershell-community
-[2]: https://opensource.microsoft.com/codeofconduct/
-[3]: https://dotnetfoundation.org/code-of-conduct
-[4]: https://opensource.microsoft.com/codeofconduct/faq/
 [5]: https://devblogs.microsoft.com/powershell-community
 [6]: https://github.com/PowerShell/Community-Blog/tree/main/Docs
 [7]: https://www.bing.com/translator
