@@ -16,10 +16,10 @@
      ```yaml
      ---
      post_title: 'Post Title'
-     user_login: The author's WordPress username, not GitHub ID
+     user_login: The author's Word Press username, not GitHub ID
      author1: <alternative to user_login>
-     author2: <optional> The author's WordPress username, not GitHub ID
-     author3: <optional> The author's WordPress username, not GitHub ID
+     author2: <optional> The author's Word ress username, not GitHub ID
+     author3: <optional> The author's Word Press username, not GitHub ID
      post_slug: <post identifier - see description below>
      categories: existingcategory1, existingcategory2
      tags: tag1, tag2
@@ -32,17 +32,17 @@
      - The `post_title`, `summary`, and `user_login` are required fields.
      - `post_slug` is an identifier for your post and it becomes the end portion of the URL for the
        post.
-       - If the slug exists in WordPress, the post matching the slug is updated.
-       - If the slug does not exist in WordPress, a new post is created.
-       - If you don't provide a slug, WordPress creates a slug when it creates the draft.
+       - If the slug exists in Word Press, the post matching the slug is updated.
+       - If the slug does not exist in Word Press, a new post is created.
+       - If you don't provide a slug, Word Press creates a slug when it creates the draft.
        - Use lowercase letters, numbers, and hyphens. Use hyphens to separate words rather than other
          punctuation.
        - For more information about slugs, see
-         [What is a WordPress slug?](https://www.wpkube.com/wordpress-slug/)
+         [What is a Word Press slug?](https://www.wpkube.com/wordpress-slug/)
      - `categories` - one or more category strings separated by commas
        - The category values must already exist in your blog
      - `tags` - one or more strings separated by commas
-       - New values are added as available tags for your blog in WordPress
+       - New values are added as available tags for your blog in Word Press
      - `summary` - This is the short description of the post that shows in listing of posts on the
        main page of your blog
      - `user_login` or `author1` - can be used to add a single author
@@ -74,7 +74,7 @@
 
 After submitting your Pull Request, the blog admins will review the post. They may suggest editorial
 changes to improve grammar and readability. They may also require specific changes before we can
-publish. Once the pull request is merged, the post is automatically copied to WordPress as a draft.
+publish. Once the pull request is merged, the post is automatically copied to Word Press as a draft.
 From there, the Blog admins will verify that the post renders correctly, make any formatting changes
 required, and publish the post.
 
