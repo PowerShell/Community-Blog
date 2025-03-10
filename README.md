@@ -1,6 +1,6 @@
 # PowerShell Community Blog
 
-This repository is for submissions for posts to the [PowerShell Community Blog][1]. We welcome
+This repository is for submissions for posts to the [PowerShell Community Blog][03]. We welcome
 submissions to the blog from anyone in the community.
 
 ## The Purpose of This Blog
@@ -25,26 +25,24 @@ first language, the review process can help to iron out any problems.
 
 There are several ways you can interact, depending on your needs and levels of enthusiasm.
 
-1. The entry-level, so to speak, is to read the blog and enjoy the content. You can come
-   [to the PowerShell Community Blog directly][5] or use a blog aggregation mechanism to view the
-   content. Over time, we hope and expect the major search engines to index these posts, making it
-   easy for IT Pros to find and use the information contained.
+1. First is to read and enjoy the blog. Over time, we hope and expect the major search engines to
+   index these posts, making it easy for IT Pros to find and use the information contained.
 
-1. You can also comment on any of blog posts directly on the blog. This blog uses WordPress, so in
-   order to add comments, you need to create and then login to a WordPress account. Once you logon
-   successfully to the blog, WordPress allows you to add comments to the posts here.
+1. You can comment on any of blog posts directly on the blog. This blog uses Word Press, so in order
+   to add comments, you need to create and then login to a Word Press account. Once you logon
+   successfully to the blog, Word Press allows you to add comments to the posts here.
 
-   See our [Community Blog docs][6] for detailed instructions. We welcome comments and prefer them
-   in English. You can use an online translator like [Bing Translator][7] if English isn't your
-   first language.
+   To create a Word Press account, see our [Community Blog docs][06] for detailed instructions. We
+   welcome comments and prefer them in English. You can use an online translator like
+   [Bing Translator][07] if English isn't your first language.
 
-1. You may want to contribute to the development of blog posts. You can create new posts, file
-   issues on any article (or proposed article), or help review content submissions. If you find an
-   error, feel free to [file an issue on GitHub][8]. You can also file an issue to suggest a
-   specific topic you feel might make a good blog post.
+1. You may want to contribute your own blog post. You can create new posts, file issues on any
+   article (or proposed article), or help review content submissions. If you find an error, feel
+   free to [file an issue on GitHub][05]. You can also file an issue to suggest a specific topic you
+   feel might make a good blog post.
 
 You need a GitHub account to be able to submit anything to the blog's GitHub repository. You can
-sign up for GitHub at [GitHub's new account sign up page][9]. And, you need to be able to use GitHub
+sign up for GitHub at [GitHub's new account sign up page][04]. And, you need to be able to use GitHub
 and, most likely, git on your workstation.
 
 > [!NOTE]
@@ -55,16 +53,17 @@ and, most likely, git on your workstation.
 
 ## Code of Conduct
 
-Please see our [Code of Conduct](.github/CODE_OF_CONDUCT.md) before participating in this project.
+Please see our [Code of Conduct][01] before participating in this project.
 
 ## Security Policy
 
-For any security issues, please see our [Security Policy](.github/SECURITY.md).
+For any security issues, please see our [Security Policy][02].
 
 <!-- link references -->
-[1]: https://devblogs.microsoft.com/powershell-community
-[5]: https://devblogs.microsoft.com/powershell-community
-[6]: https://github.com/PowerShell/Community-Blog/tree/main/Docs
-[7]: https://www.bing.com/translator
-[8]: https://github.com/PowerShell/Community-Blog/issues
-[9]: https://github.com/join?source=login
+[01]: .github/CODE_OF_CONDUCT.md
+[02]: .github/SECURITY.md
+[03]: https://devblogs.microsoft.com/powershell-community
+[04]: https://github.com/join?source=login
+[05]: https://github.com/PowerShell/Community-Blog/issues
+[06]: https://github.com/PowerShell/Community-Blog/tree/main/Docs
+[07]: https://www.bing.com/translator
